@@ -426,7 +426,9 @@ function AppContent() {
 							value='home'
 							className='flex items-center gap-2'
 						>
-							<Home className='h-4 w-4' />
+							<Database className='h-4 w-4' />
+							Inicio
+						</TabsTrigger>
 						<TabsTrigger
 							value='search'
 							className='flex items-center gap-2'
