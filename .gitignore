@@ -88,8 +88,6 @@ jspm_packages/
 tmp/
 temp/
 
-# CSV files (data files)
-*.csv
 
 # Python cache
 __pycache__/
