@@ -3,6 +3,7 @@ import { PropertyFilters } from "./components/PropertyFilters";
 import { PropertyTable, Property } from "./components/PropertyTable";
 import { MarketAnalytics } from "./components/MarketAnalytics";
 import { ClientMatchesPanel, ClientMatch } from "./components/ClientMatchesPanel";
+import { HomePage } from "./components/HomePage";
 import { ThemeProvider } from "./components/ThemeProvider";
 import { ThemeToggle } from "./components/ThemeToggle";
 import {
