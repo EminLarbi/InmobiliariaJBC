@@ -90,7 +90,6 @@ function AppContent() {
 
 	const [loadedProperties, setLoadedProperties] = useState<Property[]>([]);
 	const [loadedMatches, setLoadedMatches] = useState<ClientMatch[]>([]);
-	const [loadedMatches, setLoadedMatches] = useState<ClientMatch[]>([]);
 	const [dataSource, setDataSource] = useState<"mock" | "csv">("mock");
 	const [viewMode, setViewMode] = useState<ViewMode>("list");
 	const [csvLoading, setCsvLoading] = useState(false);
