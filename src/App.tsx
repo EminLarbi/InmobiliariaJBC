@@ -337,17 +337,16 @@ function AppContent() {
 			result.push(current.trim());
 			return result.map(v => v.replace(/^"|"$/g, ''));
 		};
-				// Si falla el parsing como JSON, intentar como string simple
-				const cleaned = str.replace(/[\[\]']/g, '');
-				if (cleaned.trim()) {
-					return [cleaned.trim()];
-				}
-				return [];
+
 		const headers = parseCSVLine(headerLine);
-			const values = lines[i].split(",").map(v => v.trim().replace(/"/g, ""));
-			
-			if (values.length < headers.length) continue;
-			const values = parseCSVLine(lines[i]);
+		const matches: ClientMatch[] = [];
+
+		for (let i = 1; i < lines.length; i++) {
+			try {
+				const values = parseCSVLine(lines[i]);
+				
+				if (values.length < headers.length) continue;
+
 				const match: ClientMatch = {
 					client_id: values[0] || '',
 					client_name: values[1] || '',
@@ -380,11 +379,6 @@ function AppContent() {
 			} catch (err) {
 				console.warn(`Error procesando fila de matches ${i + 1}:`, err);
 			}
-		}
-
-		console.log(`Clientes cargados: ${clients.length}`);
-		if (clients.length > 0) {
-			console.log('Ejemplo de cliente:', clients[0]);
 		}
 
 		console.log(`Matches cargados: ${matches.length}`);
