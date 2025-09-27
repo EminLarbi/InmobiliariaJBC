@@ -61,10 +61,9 @@ export interface ClientMatch {
 }
 
 interface ClientMatchesPanelProps {
-	clients?: Client[];
   properties: Property[];
   matches: ClientMatch[];
-  clients: Client[];
+  clients?: Client[];
 }
 
 export function ClientMatchesPanel({ properties, matches, clients }: ClientMatchesPanelProps) {
@@ -93,7 +92,7 @@ export function ClientMatchesPanel({ properties, matches, clients }: ClientMatch
       const clientKey = match.client_id || match.client_name;
       if (!acc[clientKey]) {
         // Buscar información completa del cliente
-        const clientInfo = clients.find(c => c.id === match.client_id) || {
+        const clientInfo = clients?.find(c => c.id === match.client_id) || {
           id: match.client_id,
           nombre: match.client_name,
           telefono: '',
@@ -135,7 +134,7 @@ export function ClientMatchesPanel({ properties, matches, clients }: ClientMatch
     });
 
     return groups;
-  }, [filteredMatches]);
+  }, [filteredMatches, clients]);
   
   const formatRange = (min: number | null, max: number | null, unit: string = '') => {
     if (min !== null && max !== null) {
