@@ -61,6 +61,7 @@ export interface ClientMatch {
 }
 
 interface ClientMatchesPanelProps {
+	clients?: Client[];
   properties: Property[];
   matches: ClientMatch[];
   clients: Client[];
