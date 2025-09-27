@@ -309,6 +309,13 @@ function AppContent() {
 		const headerLine = lines[0].replace(/^\uFEFF/, "");
 		
 		// Parser CSV más robusto que maneja comas dentro de comillas
+		// Helper functions for parsing
+		const parseNumber = (str: string): number => {
+			if (!str || str === 'null' || str === '') return 0;
+			const num = parseFloat(str);
+			return isNaN(num) ? 0 : num;
+		};
+
 		const parseCSVLine = (line: string): string[] => {
 			const result: string[] = [];
 			let current = '';
@@ -337,41 +344,36 @@ function AppContent() {
 				}
 				return [];
 		const headers = parseCSVLine(headerLine);
-		
-		console.log('CSV Headers:', headers);
-		
 			const values = lines[i].split(",").map(v => v.trim().replace(/"/g, ""));
 			
 			if (values.length < headers.length) continue;
 			const values = parseCSVLine(lines[i]);
 			try {
-				// Mapeo según el formato real del CSV
+				// Mapeo correcto para ClientMatch según el CSV de matches
 				// client_id,client_name,property_id,link_inmueble,web,anunciante,zona,operacion,tipo,habitaciones,banos,m2,precio,score,s_price,s_area,s_rooms,s_baths,s_operation,zone_match,type_match,rank_client
-
-				// Mapeo por posición según el header que mostraste
 				const match: ClientMatch = {
-					id: values[0] || '',                    // id
-					nombre: values[1] || '',                // nombre
-					telefono: values[2] || '',              // telefono
-					mail: values[3] || '',                  // mail
-					fecha_inclusion: values[4] || '',       // fecha_inclusion
-					creado_info: values[5] || '',           // creado_info
-					operation: values[6] || '',             // operation
-					types: parseArray(values[7] || ''),     // types
-					conditions: parseArray(values[8] || ''), // conditions
-					rooms_min: parseNumber(values[9]),      // rooms_min
-					rooms_max: parseNumber(values[10]),     // rooms_max
-					bath_min: parseNumber(values[11]),      // bath_min
-					bath_max: parseNumber(values[12]),      // bath_max
-					living_min: parseNumber(values[13]),    // living_min
-					living_max: parseNumber(values[14]),    // living_max
-					area_min_m2: parseNumber(values[15]),   // area_min_m2
-					area_max_m2: parseNumber(values[16]),   // area_max_m2
-					price_min_eur: parseNumber(values[17]), // price_min_eur
-					price_max_eur: parseNumber(values[18]), // price_max_eur
-					locations: parseArray(values[19] || ''), // locations
-					flags: parseArray(values[20] || ''),    // flags
-					zona_std: values[21] || ''              // zona_std
+					client_id: values[0] || '',
+					client_name: values[1] || '',
+					property_id: values[2] || '',
+					link_inmueble: values[3] || '',
+					web: values[4] || '',
+					anunciante: values[5] || '',
+					zona: values[6] || '',
+					operacion: values[7] || '',
+					tipo: values[8] || '',
+					habitaciones: parseNumber(values[9]),
+					banos: parseNumber(values[10]),
+					m2: parseNumber(values[11]),
+					precio: parseNumber(values[12]),
+					score: parseNumber(values[13]),
+					s_price: parseNumber(values[14]),
+					s_area: parseNumber(values[15]),
+					s_rooms: parseNumber(values[16]),
+					s_baths: parseNumber(values[17]),
+					s_operation: parseNumber(values[18]),
+					zone_match: values[19] || '',
+					type_match: values[20] || '',
+					rank_client: parseNumber(values[21])
 				};
 
 				// Validar que los datos son válidos antes de añadir
