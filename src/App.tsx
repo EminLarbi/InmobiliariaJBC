@@ -16,6 +16,31 @@ import { Button } from "./components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "./components/ui/tabs";
 import { Badge } from "./components/ui/badge";
 
+export interface ClientMatch {
+  client_id: string;
+  client_name: string;
+  property_id: string;
+  link_inmueble: string;
+  web: string;
+  anunciante: string;
+  zona: string;
+  operacion: string;
+  tipo: string;
+  habitaciones: number;
+  banos: number;
+  m2: number;
+  precio: number;
+  score: number;
+  s_price: number;
+  s_area: number;
+  s_rooms: number;
+  s_baths: number;
+  s_operation: number;
+  zone_match: string;
+  type_match: string;
+  rank_client: number;
+}
+
 interface FilterState {
 	habitaciones: string;
 	baños: string;
@@ -43,6 +68,7 @@ type ViewMode = "cards" | "list";
 // Para entorno Vite, coloca el CSV en `public/` y usa ruta absoluta
 // Ejemplo: `public/inmuebles_unificado.csv` -> "/inmuebles_unificado.csv"
 const DEFAULT_CSV_URL = "\inmuebles_unificado.csv";
+const DEFAULT_MATCHES_CSV_URL = "/matches.csv";
 
 // Para habilitar la carga automática del CSV, descomenta las líneas del useEffect más abajo
 
@@ -63,6 +89,7 @@ function AppContent() {
 	});
 
 	const [loadedProperties, setLoadedProperties] = useState<Property[]>([]);
+	const [loadedMatches, setLoadedMatches] = useState<ClientMatch[]>([]);
 	const [loadedMatches, setLoadedMatches] = useState<ClientMatch[]>([]);
 	const [dataSource, setDataSource] = useState<"mock" | "csv">("mock");
 	const [viewMode, setViewMode] = useState<ViewMode>("list");
