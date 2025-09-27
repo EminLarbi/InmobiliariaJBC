@@ -96,6 +96,10 @@ function AppContent() {
 	const [activeTab, setActiveTab] = useState<string>("home");
 	const [csvLoading, setCsvLoading] = useState(false);
 
+	const handleNavigation = (tab: string) => {
+		setActiveTab(tab);
+	};
+
 	const handleFilterChange = (
 		key: keyof FilterState,
 		value: string | string[]
@@ -458,7 +462,7 @@ function AppContent() {
 						className='space-y-6'
 					>
 						<HomePage 
-							onNavigate={(tab: string) => setActiveTab(tab)}
+							onNavigate={handleNavigation}
 							propertiesCount={currentProperties.length}
 							matchesCount={loadedMatches.length}
 						/>
