@@ -92,6 +92,7 @@ function AppContent() {
 	const [loadedMatches, setLoadedMatches] = useState<ClientMatch[]>([]);
 	const [dataSource, setDataSource] = useState<"mock" | "csv">("mock");
 	const [viewMode, setViewMode] = useState<ViewMode>("list");
+	const [activeTab, setActiveTab] = useState<string>("home");
 	const [csvLoading, setCsvLoading] = useState(false);
 
 	const handleFilterChange = (
@@ -417,15 +418,15 @@ function AppContent() {
 				<Tabs
 					defaultValue='search'
 					className='w-full'
+					value={activeTab}
+					onValueChange={setActiveTab}
+				>
 					<TabsList className='grid w-full grid-cols-4'>
 						<TabsTrigger
 							value='home'
 							className='flex items-center gap-2'
 						>
 							<Home className='h-4 w-4' />
-							Inicio
-						</TabsTrigger>
-					<TabsList className='grid w-full grid-cols-2'>
 						<TabsTrigger
 							value='search'
 							className='flex items-center gap-2'
@@ -454,7 +455,7 @@ function AppContent() {
 						className='space-y-6'
 					>
 						<HomePage 
-							onNavigate={setActiveTab}
+							onNavigate={(tab: string) => setActiveTab(tab)}
 							propertiesCount={currentProperties.length}
 							matchesCount={loadedMatches.length}
 						/>
