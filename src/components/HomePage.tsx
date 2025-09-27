@@ -42,8 +42,12 @@ export function HomePage({ onNavigate, propertiesCount, matchesCount }: HomePage
       <div className="container mx-auto p-6 space-y-8">
         {/* Header */}
         <div className="text-center space-y-4 py-8">
-          <div className="mx-auto w-16 h-16 bg-primary rounded-2xl flex items-center justify-center mb-6">
-            <Building2 className="h-8 w-8 text-white" />
+          <div className="mx-auto w-16 h-16 rounded-2xl flex items-center justify-center mb-6 overflow-hidden">
+            <img 
+              src="/logo.png" 
+              alt="Inmobiliaria JBC Logo" 
+              className="w-full h-full object-contain"
+            />
           </div>
           <h1 className="text-4xl font-bold tracking-tight">
             Inmobiliaria JBC
