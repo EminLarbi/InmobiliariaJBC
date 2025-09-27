@@ -2,20 +2,7 @@ import React from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
 import { Button } from './ui/button';
 import { Badge } from './ui/badge';
-import { 
-  Database, 
-  BarChart3, 
-  Users, 
-  Home as HomeIcon,
-  TrendingUp,
-  Target,
-  ArrowRight,
-  Building2,
-  MapPin,
-  Euro,
-  Calendar,
-  Star
-} from 'lucide-react';
+import { Database, ChartBar as BarChart3, Users, Chrome as HomeIcon, TrendingUp, Target, ArrowRight, Building2, MapPin, Euro, Calendar, Star } from 'lucide-react';
 
 interface HomePageProps {
   onNavigate: (tabValue: string) => void;
