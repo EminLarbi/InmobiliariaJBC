@@ -10,6 +10,31 @@ import { Label } from './ui/label';
 import { Property } from './PropertyTable';
 import { ExternalLink, User, Chrome as Home, Bath, Square, MapPin, Euro, Star, TrendingUp, Users, Target, Search } from 'lucide-react';
 
+export interface Client {
+  id: string;
+  nombre: string;
+  telefono: string;
+  mail: string;
+  fecha_inclusion: string;
+  creado_info: string;
+  operation: string;
+  types: string[];
+  conditions: string[];
+  rooms_min: number | null;
+  rooms_max: number | null;
+  bath_min: number | null;
+  bath_max: number | null;
+  living_min: number | null;
+  living_max: number | null;
+  area_min_m2: number | null;
+  area_max_m2: number | null;
+  price_min_eur: number | null;
+  price_max_eur: number | null;
+  locations: string[];
+  flags: string[];
+  zona_std: string;
+}
+
 export interface ClientMatch {
   client_id: string;
   client_name: string;
@@ -38,9 +63,10 @@ export interface ClientMatch {
 interface ClientMatchesPanelProps {
   properties: Property[];
   matches: ClientMatch[];
+  clients: Client[];
 }
 
-export function ClientMatchesPanel({ properties, matches }: ClientMatchesPanelProps) {
+export function ClientMatchesPanel({ properties, matches, clients }: ClientMatchesPanelProps) {
   const [searchTerm, setSearchTerm] = useState('');
   const [expandedClient, setExpandedClient] = useState<string>('');
   const [currentPage, setCurrentPage] = useState(1);
@@ -65,9 +91,36 @@ export function ClientMatchesPanel({ properties, matches }: ClientMatchesPanelPr
     const groups = filteredMatches.reduce((acc, match) => {
       const clientKey = match.client_id || match.client_name;
       if (!acc[clientKey]) {
+        // Buscar información completa del cliente
+        const clientInfo = clients.find(c => c.id === match.client_id) || {
+          id: match.client_id,
+          nombre: match.client_name,
+          telefono: '',
+          mail: '',
+          fecha_inclusion: '',
+          creado_info: '',
+          operation: '',
+          types: [],
+          conditions: [],
+          rooms_min: null,
+          rooms_max: null,
+          bath_min: null,
+          bath_max: null,
+          living_min: null,
+          living_max: null,
+          area_min_m2: null,
+          area_max_m2: null,
+          price_min_eur: null,
+          price_max_eur: null,
+          locations: [],
+          flags: [],
+          zona_std: ''
+        };
+        
         acc[clientKey] = {
           client_id: match.client_id,
           client_name: match.client_name,
+          client_info: clientInfo,
           matches: []
         };
       }
@@ -82,6 +135,16 @@ export function ClientMatchesPanel({ properties, matches }: ClientMatchesPanelPr
 
     return groups;
   }, [filteredMatches]);
+  
+  const formatRange = (min: number | null, max: number | null, unit: string = '') => {
+    if (min !== null && max !== null) {
+      if (min === max) return `${min}${unit}`;
+      return `${min}-${max}${unit}`;
+    }
+    if (min !== null) return `Desde ${min}${unit}`;
+    if (max !== null) return `Hasta ${max}${unit}`;
+    return 'Sin especificar';
+  };
 
   // Paginación de clientes
   const clientList = Object.values(clientGroups);
@@ -321,7 +384,12 @@ export function ClientMatchesPanel({ properties, matches }: ClientMatchesPanelPr
                       </div>
                       <div className="text-left">
                         <p className="font-medium">{client.client_name}</p>
-                        <p className="text-sm text-muted-foreground">ID: {client.client_id}</p>
+                        <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                          <span>ID: {client.client_id}</span>
+                          {client.client_info?.telefono && (
+                            <span>• {client.client_info.telefono}</span>
+                          )}
+                        </div>
                       </div>
                     </div>
                     <div className="flex items-center gap-2">
@@ -339,6 +407,109 @@ export function ClientMatchesPanel({ properties, matches }: ClientMatchesPanelPr
                 </AccordionTrigger>
                 <AccordionContent>
                   <div className="space-y-4 pt-4" key={`content-${client.client_id}`}>
+                    
+                    {/* Información del cliente */}
+                    {client.client_info && (
+                      <Card className="bg-muted/30">
+                        <CardContent className="p-4">
+                          <h4 className="font-medium mb-3 flex items-center gap-2">
+                            <User className="h-4 w-4 text-primary" />
+                            Perfil del Cliente
+                          </h4>
+                          
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            {/* Información de contacto */}
+                            <div className="space-y-2">
+                              <h5 className="text-sm font-medium text-muted-foreground">Contacto</h5>
+                              <div className="space-y-1 text-sm">
+                                {client.client_info.telefono && (
+                                  <div className="flex items-center gap-2">
+                                    <span className="text-muted-foreground">Teléfono:</span>
+                                    <span>{client.client_info.telefono}</span>
+                                  </div>
+                                )}
+                                {client.client_info.mail && (
+                                  <div className="flex items-center gap-2">
+                                    <span className="text-muted-foreground">Email:</span>
+                                    <span className="truncate">{client.client_info.mail}</span>
+                                  </div>
+                                )}
+                              </div>
+                            </div>
+
+                            {/* Requisitos */}
+                            <div className="space-y-2">
+                              <h5 className="text-sm font-medium text-muted-foreground">Requisitos</h5>
+                              <div className="space-y-1 text-sm">
+                                {client.client_info.types.length > 0 && (
+                                  <div>
+                                    <span className="text-muted-foreground">Tipos:</span>
+                                    <div className="flex flex-wrap gap-1 mt-1">
+                                      {client.client_info.types.map((type, idx) => (
+                                        <Badge key={idx} variant="outline" className="text-xs">
+                                          {type}
+                                        </Badge>
+                                      ))}
+                                    </div>
+                                  </div>
+                                )}
+                                
+                                {(client.client_info.rooms_min || client.client_info.rooms_max) && (
+                                  <div className="flex items-center gap-2">
+                                    <span className="text-muted-foreground">Habitaciones:</span>
+                                    <span>{formatRange(client.client_info.rooms_min, client.client_info.rooms_max)}</span>
+                                  </div>
+                                )}
+                                
+                                {(client.client_info.bath_min || client.client_info.bath_max) && (
+                                  <div className="flex items-center gap-2">
+                                    <span className="text-muted-foreground">Baños:</span>
+                                    <span>{formatRange(client.client_info.bath_min, client.client_info.bath_max)}</span>
+                                  </div>
+                                )}
+                                
+                                {(client.client_info.area_min_m2 || client.client_info.area_max_m2) && (
+                                  <div className="flex items-center gap-2">
+                                    <span className="text-muted-foreground">Superficie:</span>
+                                    <span>{formatRange(client.client_info.area_min_m2, client.client_info.area_max_m2, ' m²')}</span>
+                                  </div>
+                                )}
+                                
+                                {(client.client_info.price_min_eur || client.client_info.price_max_eur) && (
+                                  <div className="flex items-center gap-2">
+                                    <span className="text-muted-foreground">Presupuesto:</span>
+                                    <span className="font-medium">
+                                      {client.client_info.price_min_eur && client.client_info.price_max_eur ? 
+                                        `${formatPrice(client.client_info.price_min_eur)} - ${formatPrice(client.client_info.price_max_eur)}` :
+                                        client.client_info.price_min_eur ? 
+                                          `Desde ${formatPrice(client.client_info.price_min_eur)}` :
+                                          `Hasta ${formatPrice(client.client_info.price_max_eur)}`
+                                      }
+                                    </span>
+                                  </div>
+                                )}
+                              </div>
+                            </div>
+                          </div>
+
+                          {/* Ubicaciones preferidas */}
+                          {client.client_info.locations.length > 0 && (
+                            <div className="mt-3 pt-3 border-t border-border/50">
+                              <h5 className="text-sm font-medium text-muted-foreground mb-2">Ubicaciones preferidas</h5>
+                              <div className="flex flex-wrap gap-1">
+                                {client.client_info.locations.map((location, idx) => (
+                                  <Badge key={idx} variant="secondary" className="text-xs">
+                                    <MapPin className="h-3 w-3 mr-1" />
+                                    {location}
+                                  </Badge>
+                                ))}
+                              </div>
+                            </div>
+                          )}
+                        </CardContent>
+                      </Card>
+                    )}
+
                     <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4">
                       {client.matches.slice(0, 20).map((match) => (
                         <Card key={match.property_id} className="hover:shadow-md transition-shadow">
