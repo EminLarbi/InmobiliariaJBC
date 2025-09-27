@@ -348,9 +348,6 @@ function AppContent() {
 			
 			if (values.length < headers.length) continue;
 			const values = parseCSVLine(lines[i]);
-			try {
-				// Mapeo correcto para ClientMatch según el CSV de matches
-				// client_id,client_name,property_id,link_inmueble,web,anunciante,zona,operacion,tipo,habitaciones,banos,m2,precio,score,s_price,s_area,s_rooms,s_baths,s_operation,zone_match,type_match,rank_client
 				const match: ClientMatch = {
 					client_id: values[0] || '',
 					client_name: values[1] || '',
