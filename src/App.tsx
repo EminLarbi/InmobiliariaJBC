@@ -68,7 +68,7 @@ type ViewMode = "cards" | "list";
 // CONFIGURACIÓN: URL del CSV por defecto
 // Para entorno Vite, coloca el CSV en `public/` y usa ruta absoluta
 // Ejemplo: `public/inmuebles_unificado.csv` -> "/inmuebles_unificado.csv"
-const DEFAULT_CSV_URL = "\inmuebles_unificado.csv";
+const DEFAULT_CSV_URL = "/inmuebles_unificado.csv";
 const DEFAULT_MATCHES_CSV_URL = "/matches.csv";
 
 // Para habilitar la carga automática del CSV, descomenta las líneas del useEffect más abajo
