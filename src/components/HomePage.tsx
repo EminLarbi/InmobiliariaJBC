@@ -44,7 +44,7 @@ export function HomePage({ onNavigate, propertiesCount, matchesCount }: HomePage
         <div className="text-center space-y-4 py-8">
           <div className="mx-auto w-16 h-16 rounded-2xl flex items-center justify-center mb-6 overflow-hidden">
             <img 
-              src="/logo.png" 
+              src="/logo.inmo.png" 
               alt="Inmobiliaria JBC Logo" 
               className="w-full h-full object-contain"
             />
