@@ -12,10 +12,32 @@ import {
 	getUniqueAnunciantes,
 	getUniqueTiposOperacion,
 } from "./components/mockData";
-import { Database, LayoutGrid, List, ChartBar as BarChart3, Users } from "lucide-react";
+import { 
+	Database, 
+	LayoutGrid, 
+	List, 
+	ChartBar as BarChart3, 
+	Users, 
+	Home,
+	Building2 
+} from "lucide-react";
 import { Button } from "./components/ui/button";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "./components/ui/tabs";
 import { Badge } from "./components/ui/badge";
+import {
+	Sidebar,
+	SidebarContent,
+	SidebarFooter,
+	SidebarGroup,
+	SidebarGroupContent,
+	SidebarGroupLabel,
+	SidebarHeader,
+	SidebarInset,
+	SidebarMenu,
+	SidebarMenuButton,
+	SidebarMenuItem,
+	SidebarProvider,
+	SidebarTrigger,
+} from "./components/ui/sidebar";
 
 export interface ClientMatch {
   client_id: string;
@@ -66,12 +88,8 @@ interface FilterState {
 type ViewMode = "cards" | "list";
 
 // CONFIGURACIÓN: URL del CSV por defecto
-// Para entorno Vite, coloca el CSV en `public/` y usa ruta absoluta
-// Ejemplo: `public/inmuebles_unificado.csv` -> "/inmuebles_unificado.csv"
 const DEFAULT_CSV_URL = "/inmuebles_unificado.csv";
 const DEFAULT_MATCHES_CSV_URL = "/matches.csv";
-
-// Para habilitar la carga automática del CSV, descomenta las líneas del useEffect más abajo
 
 function AppContent() {
 	const [filters, setFilters] = useState<FilterState>({
@@ -267,11 +285,6 @@ function AppContent() {
 		});
 	};
 
-	const handleUseMockData = () => {
-		setDataSource("mock");
-		handleClearFilters();
-	};
-
 	// Cargar CSV automáticamente al iniciar la aplicación
 	useEffect(() => {
 		loadCSVFromServer();
@@ -411,84 +424,56 @@ function AppContent() {
 		allTipos.includes(tipo)
 	);
 
-	return (
-		<div className='min-h-screen bg-background'>
-			<div className='container mx-auto p-6 space-y-6'>
-				{/* Header */}
-				<div className='flex justify-end py-4'>
-					<ThemeToggle />
-				</div>
+	const menuItems = [
+		{
+			id: 'home',
+			title: 'Inicio',
+			icon: Home,
+			description: 'Panel principal'
+		},
+		{
+			id: 'search',
+			title: 'Buscar Propiedades',
+			icon: Database,
+			description: 'Explorar inventario'
+		},
+		{
+			id: 'analytics',
+			title: 'Análisis de Mercado',
+			icon: BarChart3,
+			description: 'Insights y tendencias'
+		},
+		{
+			id: 'matches',
+			title: 'Matches de Clientes',
+			icon: Users,
+			description: 'Coincidencias'
+		}
+	];
 
-				{/* Main Navigation */}
-				<Tabs
-					defaultValue='search'
-					className='w-full'
-					value={activeTab}
-					onValueChange={setActiveTab}
-				>
-					<TabsList className='grid w-full grid-cols-4'>
-						<TabsTrigger
-							value='home'
-							className='flex items-center gap-2'
-						>
-							<Database className='h-4 w-4' />
-							Inicio
-						</TabsTrigger>
-						<TabsTrigger
-							value='search'
-							className='flex items-center gap-2'
-						>
-							<Database className='h-4 w-4' />
-							Buscar Propiedades
-						</TabsTrigger>
-						<TabsTrigger
-							value='analytics'
-							className='flex items-center gap-2'
-						>
-							<BarChart3 className='h-4 w-4' />
-							Análisis de Mercado
-						</TabsTrigger>
-						<TabsTrigger
-							value='matches'
-							className='flex items-center gap-2'
-						>
-							<Users className='h-4 w-4' />
-							Matches de Clientes
-						</TabsTrigger>
-					</TabsList>
-
-					<TabsContent
-						value='home'
-						className='space-y-6'
-					>
-						<HomePage 
-							onNavigate={handleNavigation}
-							propertiesCount={currentProperties.length}
-							matchesCount={loadedMatches.length}
-						/>
-					</TabsContent>
-
-					<TabsContent
-						value='analytics'
-						className='space-y-6'
-					>
-						<MarketAnalytics properties={currentProperties} />
-					</TabsContent>
-
-					<TabsContent
-						value='matches'
-						className='space-y-6'
-					>
-						<ClientMatchesPanel 
-							properties={currentProperties} 
-							matches={loadedMatches} 
-						/>
-					</TabsContent>
-
-					<TabsContent
-						value='search'
-						className='space-y-6'
-					>
+	const renderContent = () => {
+		switch (activeTab) {
+			case 'home':
+				return (
+					<HomePage 
+						onNavigate={handleNavigation}
+						propertiesCount={currentProperties.length}
+						matchesCount={loadedMatches.length}
+					/>
+				);
+			case 'analytics':
+				return <MarketAnalytics properties={currentProperties} />;
+			case 'matches':
+				return (
+					<ClientMatchesPanel 
+						properties={currentProperties} 
+						matches={loadedMatches} 
+					/>
+				);
+			case 'search':
+			default:
+				return (
+					<div className='space-y-6'>
 						{/* Filters */}
 						<PropertyFilters
 							filters={filters}
@@ -548,10 +533,103 @@ function AppContent() {
 								viewMode={viewMode}
 							/>
 						</div>
-					</TabsContent>
-				</Tabs>
+					</div>
+				);
+		}
+	};
+
+	return (
+		<SidebarProvider>
+			<div className="flex min-h-screen w-full">
+				<Sidebar>
+					<SidebarHeader className="border-b">
+						<div className="flex items-center gap-2 px-2 py-2">
+							<div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
+								<Building2 className="h-5 w-5 text-white" />
+							</div>
+							<div>
+								<h2 className="text-lg font-semibold">JBC</h2>
+								<p className="text-xs text-muted-foreground">Inmobiliaria</p>
+							</div>
+						</div>
+					</SidebarHeader>
+
+					<SidebarContent>
+						<SidebarGroup>
+							<SidebarGroupLabel>Navegación</SidebarGroupLabel>
+							<SidebarGroupContent>
+								<SidebarMenu>
+									{menuItems.map((item) => {
+										const IconComponent = item.icon;
+										return (
+											<SidebarMenuItem key={item.id}>
+												<SidebarMenuButton
+													onClick={() => handleNavigation(item.id)}
+													isActive={activeTab === item.id}
+													className="w-full"
+												>
+													<IconComponent className="h-4 w-4" />
+													<div className="flex flex-col items-start">
+														<span className="font-medium">{item.title}</span>
+														<span className="text-xs text-muted-foreground">
+															{item.description}
+														</span>
+													</div>
+												</SidebarMenuButton>
+											</SidebarMenuItem>
+										);
+									})}
+								</SidebarMenu>
+							</SidebarGroupContent>
+						</SidebarGroup>
+
+						{/* Stats Section */}
+						<SidebarGroup>
+							<SidebarGroupLabel>Estadísticas</SidebarGroupLabel>
+							<SidebarGroupContent>
+								<div className="px-2 space-y-2">
+									<div className="flex justify-between text-sm">
+										<span className="text-muted-foreground">Propiedades:</span>
+										<Badge variant="secondary">{currentProperties.length}</Badge>
+									</div>
+									<div className="flex justify-between text-sm">
+										<span className="text-muted-foreground">Matches:</span>
+										<Badge variant="secondary">{loadedMatches.length}</Badge>
+									</div>
+									<div className="flex justify-between text-sm">
+										<span className="text-muted-foreground">Fuente:</span>
+										<Badge variant={dataSource === 'csv' ? 'default' : 'outline'}>
+											{dataSource === 'csv' ? 'CSV' : 'Mock'}
+										</Badge>
+									</div>
+								</div>
+							</SidebarGroupContent>
+						</SidebarGroup>
+					</SidebarContent>
+
+					<SidebarFooter className="border-t">
+						<div className="p-2">
+							<ThemeToggle />
+						</div>
+					</SidebarFooter>
+				</Sidebar>
+
+				<SidebarInset>
+					<header className="flex h-16 shrink-0 items-center gap-2 border-b px-4">
+						<SidebarTrigger className="-ml-1" />
+						<div className="flex items-center gap-2">
+							<h1 className="text-lg font-semibold">
+								{menuItems.find(item => item.id === activeTab)?.title || 'Inmobiliaria JBC'}
+							</h1>
+						</div>
+					</header>
+
+					<main className="flex-1 p-6">
+						{renderContent()}
+					</main>
+				</SidebarInset>
 			</div>
-		</div>
+		</SidebarProvider>
 	);
 }
 
