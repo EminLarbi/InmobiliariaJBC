@@ -23,6 +23,7 @@ import {
   Area
 } from 'recharts';
 import { TrendingUp, TrendingDown, DollarSign, Chrome as Home, MapPin, Users, Calendar, CircleAlert as AlertCircle, ChartBar as BarChart3, ChartPie as PieChartIcon, Activity, Award } from 'lucide-react';
+import { Star, Building, Zap, Eye, Target } from 'lucide-react';
 
 interface MarketAnalyticsProps {
   properties: Property[];
