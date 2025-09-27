@@ -434,6 +434,18 @@ export function ClientMatchesPanel({ properties, matches, clients }: ClientMatch
                                     <span className="truncate">{client.client_info.mail}</span>
                                   </div>
                                 )}
+                                {client.client_info.fecha_inclusion && (
+                                  <div className="flex items-center gap-2">
+                                    <span className="text-muted-foreground">Registrado:</span>
+                                    <span>{new Date(client.client_info.fecha_inclusion).toLocaleDateString('es-ES')}</span>
+                                  </div>
+                                )}
+                                {client.client_info.creado_info && (
+                                  <div className="flex items-center gap-2">
+                                    <span className="text-muted-foreground">Creado por:</span>
+                                    <span className="text-xs">{client.client_info.creado_info.replace(/,$/, '')}</span>
+                                  </div>
+                                )}
                               </div>
                             </div>
 
@@ -441,6 +453,15 @@ export function ClientMatchesPanel({ properties, matches, clients }: ClientMatch
                             <div className="space-y-2">
                               <h5 className="text-sm font-medium text-muted-foreground">Requisitos</h5>
                               <div className="space-y-1 text-sm">
+                                {client.client_info.operation && (
+                                  <div className="flex items-center gap-2">
+                                    <span className="text-muted-foreground">Operación:</span>
+                                    <Badge className={`text-xs px-2 py-1 ${getOperationStyle(client.client_info.operation)}`}>
+                                      {client.client_info.operation}
+                                    </Badge>
+                                  </div>
+                                )}
+                                
                                 {client.client_info.types.length > 0 && (
                                   <div>
                                     <span className="text-muted-foreground">Tipos:</span>
@@ -456,6 +477,7 @@ export function ClientMatchesPanel({ properties, matches, clients }: ClientMatch
                                 
                                 {(client.client_info.rooms_min || client.client_info.rooms_max) && (
                                   <div className="flex items-center gap-2">
+                                    <Home className="h-3 w-3 text-muted-foreground" />
                                     <span className="text-muted-foreground">Habitaciones:</span>
                                     <span>{formatRange(client.client_info.rooms_min, client.client_info.rooms_max)}</span>
                                   </div>
@@ -463,6 +485,7 @@ export function ClientMatchesPanel({ properties, matches, clients }: ClientMatch
                                 
                                 {(client.client_info.bath_min || client.client_info.bath_max) && (
                                   <div className="flex items-center gap-2">
+                                    <Bath className="h-3 w-3 text-muted-foreground" />
                                     <span className="text-muted-foreground">Baños:</span>
                                     <span>{formatRange(client.client_info.bath_min, client.client_info.bath_max)}</span>
                                   </div>
@@ -470,6 +493,7 @@ export function ClientMatchesPanel({ properties, matches, clients }: ClientMatch
                                 
                                 {(client.client_info.area_min_m2 || client.client_info.area_max_m2) && (
                                   <div className="flex items-center gap-2">
+                                    <Square className="h-3 w-3 text-muted-foreground" />
                                     <span className="text-muted-foreground">Superficie:</span>
                                     <span>{formatRange(client.client_info.area_min_m2, client.client_info.area_max_m2, ' m²')}</span>
                                   </div>
@@ -477,6 +501,7 @@ export function ClientMatchesPanel({ properties, matches, clients }: ClientMatch
                                 
                                 {(client.client_info.price_min_eur || client.client_info.price_max_eur) && (
                                   <div className="flex items-center gap-2">
+                                    <Euro className="h-3 w-3 text-muted-foreground" />
                                     <span className="text-muted-foreground">Presupuesto:</span>
                                     <span className="font-medium">
                                       {client.client_info.price_min_eur && client.client_info.price_max_eur ? 
@@ -501,6 +526,20 @@ export function ClientMatchesPanel({ properties, matches, clients }: ClientMatch
                                   <Badge key={idx} variant="secondary" className="text-xs">
                                     <MapPin className="h-3 w-3 mr-1" />
                                     {location}
+                                  </Badge>
+                                ))}
+                              </div>
+                            </div>
+                          )}
+                          
+                          {/* Condiciones adicionales */}
+                          {client.client_info.conditions && client.client_info.conditions.length > 0 && (
+                            <div className="mt-3 pt-3 border-t border-border/50">
+                              <h5 className="text-sm font-medium text-muted-foreground mb-2">Condiciones especiales</h5>
+                              <div className="flex flex-wrap gap-1">
+                                {client.client_info.conditions.map((condition, idx) => (
+                                  <Badge key={idx} variant="outline" className="text-xs">
+                                    {condition}
                                   </Badge>
                                 ))}
                               </div>

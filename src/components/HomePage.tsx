@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
 import { Button } from './ui/button';
-import { Database, ChartBar as BarChart3, Users, ArrowRight, Building2 } from 'lucide-react';
+import { Database, ChartBar as BarChart3, Users, ArrowRight, Building2, Target } from 'lucide-react';
 
 interface HomePageProps {
   onNavigate: (tabValue: string) => void;
@@ -20,6 +20,14 @@ export function HomePage({ onNavigate, propertiesCount, matchesCount }: HomePage
       stats: `${propertiesCount} propiedades`
     },
     {
+      id: 'clients',
+      title: 'Buscar Clientes',
+      description: 'Explora y gestiona la base de datos de clientes registrados',
+      icon: Users,
+      color: 'bg-orange-500',
+      stats: 'Base de clientes'
+    },
+    {
       id: 'analytics',
       title: 'Análisis de Mercado',
       description: 'Insights y tendencias del mercado inmobiliario local',
@@ -31,7 +39,7 @@ export function HomePage({ onNavigate, propertiesCount, matchesCount }: HomePage
       id: 'matches',
       title: 'Matches de Clientes',
       description: 'Coincidencias entre clientes y propiedades disponibles',
-      icon: Users,
+      icon: Target,
       color: 'bg-purple-500',
       stats: `${matchesCount} matches activos`
     }
