@@ -1,0 +1,672 @@
+﻿habitaciones,baños,precio,link_inmueble,metros_cuadrados,anunciante,zona,tipo_de_operacion,fecha_inclusion,web
+1,1,170000.0,https://www.fotocasa.es/es/comprar/vivienda/alcoy-alcoi/centre-zona-alta/184998912/d,322.0,Particular,Desconocido,Venta,2025-09-06,Fotocasa
+2,1,450.0,https://www.fotocasa.es/es/alquiler/vivienda/alcoy-alcoi/calefaccion-amueblado/187246290/d,79.0,Particular,Desconocido,Alquiler,2025-09-06,Fotocasa
+4,3,700.0,https://www.fotocasa.es/es/alquiler/vivienda/alcoy-alcoi/calefaccion-parking-trastero-ascensor/187208875/d,135.0,Particular,Desconocido,Alquiler,2025-09-06,Fotocasa
+3,1,550.0,https://www.fotocasa.es/es/alquiler/vivienda/alcoy-alcoi/calefaccion-terraza/184443456/d,89.0,Particular,Desconocido,Alquiler,2025-09-06,Fotocasa
+4,2,113000.0,https://www.fotocasa.es/es/comprar/vivienda/alcoy-alcoi/calefaccion-ascensor/176956239/d,128.0,INMOBILIARIA CANTO,El Cami,Venta,2025-09-07,Fotocasa
+3,2,175000.0,https://www.fotocasa.es/es/comprar/vivienda/alcoy-alcoi/aire-acondicionado-calefaccion-parking-jardin-trastero-ascensor/187251691/d,102.0,Inmobiliaria Sanchéz,Barrio Santa Rosa,Venta,2025-09-07,Fotocasa
+3,2,125000.0,https://www.fotocasa.es/es/comprar/vivienda/alcoy-alcoi/aire-acondicionado-calefaccion-parking-terraza-trastero-ascensor-patio-television-internet-no-amueblado/159812500/d,100.0,ximo,Centro - Zona Alta,Venta,2025-09-07,Fotocasa
+4,2,150000.0,https://www.fotocasa.es/es/comprar/vivienda/alcoy-alcoi/calefaccion-terraza-trastero-patio-amueblado/187468588/d,176.0,Particular,Desconocido,Venta,2025-09-07,Fotocasa
+6,3,415000.0,https://www.idealista.com/inmueble/109205294/,361.0,Inmoparadise,Centro - Zona Alta,Venta,2025-09-07,Idealista
+6,5,630000.0,https://www.idealista.com/inmueble/101456819/,483.0,Avangard Mediterranean Properties,Desconocido,Venta,2025-09-07,Idealista
+11,4,1200.0,https://www.idealista.com/inmueble/106110913/,780.0,TEAM CONCORDE,Desconocido,Venta,2025-09-07,Idealista
+4,2,138000.0,https://www.idealista.com/inmueble/108460518/,114.0,Núcleo Gestiones Inmobiliarias Alcoy,Barrio Eixample,Venta,2025-09-07,Idealista
+4,2,255000.0,https://www.idealista.com/inmueble/108703897/,140.0,VITALITY VIVIENDAS,Barrio Zona Nord,Venta,2025-09-07,Idealista
+3,2,85000.0,https://www.idealista.com/inmueble/108987418/,82.0,Núcleo Gestiones Inmobiliarias Alcoy,Barrio Eixample,Venta,2025-09-07,Idealista
+3,1,49000.0,https://www.idealista.com/inmueble/109116527/,50.0,Núcleo Gestiones Inmobiliarias Alcoy,Barrio Eixample,Venta,2025-09-07,Idealista
+3,2,165000.0,https://www.idealista.com/inmueble/107158829/,146.0,EZOVSKI. real estate,Barrio Zona Nord,Venta,2025-09-07,Idealista
+3,2,119000.0,https://www.idealista.com/inmueble/108772657/,148.0,Núcleo Gestiones Inmobiliarias Alcoy,Centro - Zona Alta,Venta,2025-09-07,Idealista
+2,1,99900.0,https://www.idealista.com/inmueble/108405093/,86.0,Núcleo Gestiones Inmobiliarias Alcoy,Barrio Santa Rosa,Venta,2025-09-07,Idealista
+7,5,567000.0,https://www.idealista.com/inmueble/106551637/,430.0,Remax Blue,Centro - Zona Alta,Venta,2025-09-07,Idealista
+4,1,165000.0,https://www.idealista.com/inmueble/108169412/,94.0,Núcleo Gestiones Inmobiliarias Alcoy,Barrio Eixample,Venta,2025-09-07,Idealista
+4,2,95000.0,https://www.idealista.com/inmueble/108498530/,125.0,Núcleo Gestiones Inmobiliarias Alcoy,Barrio Eixample,Venta,2025-09-07,Idealista
+3,1,49000.0,https://www.idealista.com/inmueble/107952468/,98.0,Núcleo Gestiones Inmobiliarias Alcoy,Barrio Eixample,Venta,2025-09-07,Idealista
+3,2,90000.0,https://www.idealista.com/inmueble/108664854/,104.0,Clikalia España,Barrio Santa Rosa,Venta,2025-09-07,Idealista
+12,5,575000.0,https://www.idealista.com/inmueble/107742464/,1329.0,FINCAS VALENCIA CONSULTORES INMOBILIARIOS,Barrio Batoi - Sargento - Baradello,Venta,2025-09-07,Idealista
+3,1,35000.0,https://www.idealista.com/inmueble/108697505/,110.0,Clikalia España,Centro - Zona Alta,Venta,2025-09-07,Idealista
+3,2,230000.0,https://www.idealista.com/inmueble/109100144/,140.0,Inmobiliaria carbonell,Barrio Zona Nord,Venta,2025-09-07,Idealista
+7,4,2590.0,https://www.idealista.com/inmueble/106274250/,450.0,Costa Weflen Group,Barrio Eixample,Venta,2025-09-07,Idealista
+2,1,50000.0,https://www.idealista.com/inmueble/107040845/,79.0,GESTORES INMOBILIARIOS,Centro - Zona Alta,Venta,2025-09-07,Idealista
+3,3,290000.0,https://www.idealista.com/inmueble/109161648/,185.0,Inmobiliaria carbonell,Barrio Eixample,Venta,2025-09-07,Idealista
+3,2,124900.0,https://www.idealista.com/inmueble/107527031/,100.0,Percent Servicios Inmobiliarios,Desconocido,Venta,2025-09-07,Idealista
+2,1,123000.0,https://www.idealista.com/inmueble/109195492/,90.0,GESTORES INMOBILIARIOS,Desconocido,Venta,2025-09-07,Idealista
+3,2,180000.0,https://www.idealista.com/inmueble/108904276/,120.0,GESTORES INMOBILIARIOS,Desconocido,Venta,2025-09-07,Idealista
+5,1,229000.0,https://www.idealista.com/inmueble/107893855/,354.0,GESTOR DE PROPIEDADES ANDREAS,Barrio Batoi - Sargento - Baradello,Venta,2025-09-07,Idealista
+5,2,249400.0,https://www.idealista.com/inmueble/105459636/,253.0,TEAM CONCORDE,Centro - Zona Alta,Venta,2025-09-07,Idealista
+3,3,238000.0,https://www.idealista.com/inmueble/105459599/,201.0,TEAM CONCORDE,Centro - Zona Alta,Venta,2025-09-07,Idealista
+3,2,150000.0,https://www.idealista.com/inmueble/107894091/,100.0,GESTOR DE PROPIEDADES ANDREAS,Barrio Santa Rosa,Venta,2025-09-07,Idealista
+2,1,65000.0,https://www.idealista.com/inmueble/108775883/,71.0,Alfa & Omega,Centro - Zona Alta,Venta,2025-09-07,Idealista
+4,2,99900.0,https://www.idealista.com/inmueble/109027420/,140.0,GESTORES INMOBILIARIOS,Barrio Zona Nord,Venta,2025-09-07,Idealista
+4,2,110000.0,https://www.idealista.com/inmueble/103476256/,130.0,GESTORES INMOBILIARIOS,Barrio Santa Rosa,Venta,2025-09-07,Idealista
+3,2,185000.0,https://www.idealista.com/inmueble/104745204/,144.0,GESTORES INMOBILIARIOS,Centro - Zona Alta,Venta,2025-09-07,Idealista
+4,2,116000.0,https://www.idealista.com/inmueble/108902456/,112.0,Inmobiliaria carbonell,Centro - Zona Alta,Venta,2025-09-07,Idealista
+3,2,170000.0,https://www.idealista.com/inmueble/107720098/,82.0,GESTORES INMOBILIARIOS,Barrio Zona Nord,Venta,2025-09-07,Idealista
+3,2,149990.0,https://www.idealista.com/inmueble/106795925/,95.0,GESTORES INMOBILIARIOS,Centro - Zona Alta,Venta,2025-09-07,Idealista
+3,2,455000.0,https://www.idealista.com/inmueble/100950082/,138.0,GESTORES INMOBILIARIOS,Barrio Eixample,Venta,2025-09-07,Idealista
+3,2,1200.0,https://www.idealista.com/inmueble/107427880/,400.0,GESTORES INMOBILIARIOS,Barrio Santa Rosa,Venta,2025-09-07,Idealista
+3,2,185000.0,https://www.idealista.com/inmueble/108912527/,130.0,Inmobiliaria carbonell,Centro - Zona Alta,Venta,2025-09-07,Idealista
+3,2,150000.0,https://www.idealista.com/inmueble/107166315/,400.0,GESTORES INMOBILIARIOS,Barrio Eixample,Venta,2025-09-07,Idealista
+2,1,48920.0,https://www.idealista.com/inmueble/108799474/,45.0,GESTORES INMOBILIARIOS,Barrio Eixample,Venta,2025-09-07,Idealista
+2,1,75000.0,https://www.idealista.com/inmueble/107142290/,70.0,GESTORES INMOBILIARIOS,Centro - Zona Alta,Venta,2025-09-07,Idealista
+4,2,133000.0,https://www.idealista.com/inmueble/100911633/,140.0,GESTORES INMOBILIARIOS,Barrio Santa Rosa,Venta,2025-09-07,Idealista
+4,2,149900.0,https://www.idealista.com/inmueble/107065416/,160.0,Particular,Centro - Zona Alta,Venta,2025-09-07,Idealista
+2,2,55000.0,https://www.idealista.com/inmueble/108999975/,70.0,RE/MAX TRUE Valencia,Centro - Zona Alta,Venta,2025-09-07,Idealista
+5,2,95000.0,https://www.idealista.com/inmueble/109078627/,120.0,GESTORES INMOBILIARIOS,Desconocido,Venta,2025-09-07,Idealista
+3,2,130000.0,https://www.idealista.com/inmueble/109061323/,119.0,GESTORES INMOBILIARIOS,Desconocido,Venta,2025-09-07,Idealista
+8,8,759000.0,https://www.idealista.com/inmueble/108337605/,848.0,Kapitalia Inmobiliaria,Desconocido,Venta,2025-09-07,Idealista
+3,2,320000.0,https://www.idealista.com/inmueble/108960623/,364.0,Kapitalia Inmobiliaria,Desconocido,Venta,2025-09-07,Idealista
+3,2,124000.0,https://www.idealista.com/inmueble/108574911/,90.0,GESTORES INMOBILIARIOS,Desconocido,Venta,2025-09-07,Idealista
+2,1,119000.0,https://www.idealista.com/inmueble/108696784/,90.0,GESTORES INMOBILIARIOS,Desconocido,Venta,2025-09-07,Idealista
+4,3,380000.0,https://www.idealista.com/inmueble/107597487/,258.0,Kapitalia Inmobiliaria,Desconocido,Venta,2025-09-07,Idealista
+3,2,98000.0,https://www.idealista.com/inmueble/106599815/,100.0,GESTORES INMOBILIARIOS,Desconocido,Venta,2025-09-07,Idealista
+4,1,110000.0,https://www.idealista.com/inmueble/107797145/,95.0,GESTORES INMOBILIARIOS,Desconocido,Venta,2025-09-07,Idealista
+4,1,50000.0,https://www.idealista.com/inmueble/108280849/,63.0,GESTORES INMOBILIARIOS,Desconocido,Venta,2025-09-07,Idealista
+3,2,165000.0,https://www.idealista.com/inmueble/107539533/,140.0,GESTORES INMOBILIARIOS,Desconocido,Venta,2025-09-07,Idealista
+4,2,135000.0,https://www.idealista.com/inmueble/107423292/,115.0,Best House Alicante Bulevar-Diputación,Barrio Zona Nord,Venta,2025-09-07,Idealista
+3,2,180000.0,https://www.idealista.com/inmueble/106461773/,197.0,GESTORES INMOBILIARIOS,Barrio Eixample,Venta,2025-09-07,Idealista
+3,2,115000.0,https://www.idealista.com/inmueble/106810566/,115.0,Inmobiliaria carbonell,Barrio Eixample,Venta,2025-09-07,Idealista
+10,3,550000.0,https://www.idealista.com/inmueble/107510314/,1383.0,INMOBILIARIA OLCINA,Barrio Batoi - Sargento - Baradello,Venta,2025-09-07,Idealista
+2,1,75000.0,https://www.idealista.com/inmueble/106025314/,70.0,GESTORES INMOBILIARIOS,Centro - Zona Alta,Venta,2025-09-07,Idealista
+5,2,259000.0,https://www.idealista.com/inmueble/105933194/,230.0,GESTORES INMOBILIARIOS,Centro - Zona Alta,Venta,2025-09-07,Idealista
+7,3,220000.0,https://www.idealista.com/inmueble/108387255/,290.0,TEAM CONCORDE,Barrio Eixample,Venta,2025-09-07,Idealista
+3,1,70000.0,https://www.idealista.com/inmueble/107740526/,55.0,GESTORES INMOBILIARIOS,Barrio Zona Nord,Venta,2025-09-07,Idealista
+4,2,117500.0,https://www.idealista.com/inmueble/107694949/,120.0,GESTORES INMOBILIARIOS,Barrio Eixample,Venta,2025-09-07,Idealista
+3,2,100000.0,https://www.idealista.com/inmueble/101279040/,109.0,GESTORES INMOBILIARIOS,Barrio Eixample,Venta,2025-09-07,Idealista
+10,5,723759.0,https://www.idealista.com/inmueble/108022047/,837.0,TEAM CONCORDE,Desconocido,Venta,2025-09-07,Idealista
+4,2,235000.0,https://www.idealista.com/inmueble/108409004/,170.0,INMOBILIARIA OLCINA,Desconocido,Venta,2025-09-07,Idealista
+6,2,195000.0,https://www.idealista.com/inmueble/108364311/,202.0,INMOBILIARIA OLCINA,Desconocido,Venta,2025-09-07,Idealista
+4,2,145000.0,https://www.idealista.com/inmueble/108086763/,155.0,Guillermo MUÑIZ,Desconocido,Venta,2025-09-07,Idealista
+2,1,73000.0,https://www.idealista.com/inmueble/108393054/,60.0,GESTORES INMOBILIARIOS,Desconocido,Venta,2025-09-07,Idealista
+6,3,380000.0,https://www.idealista.com/inmueble/107702956/,258.0,Avangard Mediterranean Properties,Desconocido,Venta,2025-09-07,Idealista
+3,2,79900.0,https://www.idealista.com/inmueble/105980519/,83.0,Soñar Home Consulting,Barrio Eixample,Venta,2025-09-07,Idealista
+3,2,165000.0,https://www.idealista.com/inmueble/107632759/,141.0,HOGARABITAT SERVICIOS INMOBILIARIOS,Centro - Zona Alta,Venta,2025-09-07,Idealista
+2,1,65400.0,https://www.idealista.com/inmueble/108722427/,60.0,newproinmo,Centro - Zona Alta,Venta,2025-09-07,Idealista
+11,11,1590.0,https://www.idealista.com/inmueble/104597928/,1500.0,Found Valencia Real Estate,Centro - Zona Alta,Venta,2025-09-07,Idealista
+5,2,590000.0,https://www.idealista.com/inmueble/108086235/,241.0,Mar & Golf Unique Homes,Centro - Zona Alta,Venta,2025-09-07,Idealista
+8,5,1450.0,https://www.idealista.com/inmueble/103711112/,1426.0,Mar de Casas,Centro - Zona Alta,Venta,2025-09-07,Idealista
+2,1,249000.0,https://www.idealista.com/inmueble/105487534/,354.0,Guillermo MUÑIZ,Desconocido,Venta,2025-09-07,Idealista
+0,1,59900.0,https://www.idealista.com/inmueble/101806877/,59.0,Soñar Home Consulting,Centro - Zona Alta,Venta,2025-09-07,Idealista
+20,10,3500.0,https://www.idealista.com/inmueble/100933633/,10140.0,inmobiliaria aracil,Barrio Batoi - Sargento - Baradello,Venta,2025-09-07,Idealista
+4,1,78000.0,https://www.idealista.com/inmueble/107846273/,100.0,Grupo Conecta Inmobiliaria,Centro - Zona Alta,Venta,2025-09-07,Idealista
+4,3,350000.0,https://www.idealista.com/inmueble/96761312/,258.0,inmobiliaria aracil,Barrio Batoi - Sargento - Baradello,Venta,2025-09-07,Idealista
+4,3,430000.0,https://www.idealista.com/inmueble/108396915/,205.0,INMOBILIARIA OLCINA,Centro - Zona Alta,Venta,2025-09-07,Idealista
+3,2,150000.0,https://www.idealista.com/inmueble/109187243/,120.0,Inmobiliaria carbonell,Barrio Eixample,Venta,2025-09-07,Idealista
+3,2,230000.0,https://www.idealista.com/inmueble/108745744/,140.0,inmobanyeres,Barrio Zona Nord,Venta,2025-09-07,Idealista
+0,1,73000.0,https://www.idealista.com/inmueble/108580307/,60.0,Corins Homes,Centro - Zona Alta,Venta,2025-09-07,Idealista
+3,2,380000.0,https://www.idealista.com/inmueble/109187478/,200.0,HOUSES BY THE SEA,Barrio Zona Nord,Venta,2025-09-07,Idealista
+4,2,177000.0,https://www.idealista.com/inmueble/109105892/,120.0,iad España,Desconocido,Venta,2025-09-07,Idealista
+5,3,490000.0,https://www.idealista.com/inmueble/108770606/,469.0,Clementina Alarcon,Desconocido,Venta,2025-09-07,Idealista
+4,1,68000.0,https://www.idealista.com/inmueble/107846306/,110.0,Grupo Conecta Inmobiliaria,Centro - Zona Alta,Venta,2025-09-07,Idealista
+4,2,125000.0,https://www.idealista.com/inmueble/108696796/,108.0,FLIP & GO,Barrio Santa Rosa,Venta,2025-09-07,Idealista
+3,1,75500.0,https://www.idealista.com/inmueble/108595373/,56.0,Soñar Home Consulting,Centro - Zona Alta,Venta,2025-09-07,Idealista
+4,1,155000.0,https://www.idealista.com/inmueble/109048210/,94.0,BUVE,Desconocido,Venta,2025-09-07,Idealista
+2,1,83475.0,https://www.idealista.com/inmueble/109199231/,72.0,SA ROQUETA INVESTMENT,Centro - Zona Alta,Venta,2025-09-07,Idealista
+4,2,415000.0,https://www.idealista.com/inmueble/109184369/,361.0,Two & Two Grupo Inmobiliario,Centro - Zona Alta,Venta,2025-09-07,Idealista
+3,2,98000.0,https://www.idealista.com/inmueble/109185830/,90.0,Inmobiliaria Blau,Barrio Santa Rosa,Venta,2025-09-07,Idealista
+13,4,690000.0,https://www.idealista.com/inmueble/107860625/,4303.0,Mocadi Calpe,Centro - Zona Alta,Venta,2025-09-07,Idealista
+0,1,59900.0,https://www.idealista.com/inmueble/107966055/,44.0,Soñar Home Consulting,Centro - Zona Alta,Venta,2025-09-07,Idealista
+5,1,249000.0,https://www.idealista.com/inmueble/106850155/,354.0,ALTAGES INMOBILIARIA,Barrio Batoi - Sargento - Baradello,Venta,2025-09-07,Idealista
+2,2,132000.0,https://www.idealista.com/inmueble/105017825/,75.0,Kevin Soriano,Desconocido,Venta,2025-09-07,Idealista
+5,2,355000.0,https://www.idealista.com/inmueble/86939336/,850.0,inmobiliaria aracil,Barrio Eixample,Venta,2025-09-07,Idealista
+10,3,400000.0,https://www.idealista.com/inmueble/92887373/,450.0,inmobiliaria aracil,Barrio Batoi - Sargento - Baradello,Venta,2025-09-07,Idealista
+8,5,1500.0,https://www.idealista.com/inmueble/91211804/,1097.0,inmobiliaria aracil,Barrio Batoi - Sargento - Baradello,Venta,2025-09-07,Idealista
+4,2,175000.0,https://www.idealista.com/inmueble/107579238/,145.0,INMOBILIARIA OLCINA,Barrio Santa Rosa,Venta,2025-09-07,Idealista
+10,3,550000.0,https://www.idealista.com/inmueble/89822636/,1339.0,inmobiliaria aracil,Barrio Zona Nord,Venta,2025-09-07,Idealista
+11,4,1000.0,https://www.idealista.com/inmueble/96281910/,2248.0,inmobiliaria aracil,Barrio Batoi - Sargento - Baradello,Venta,2025-09-07,Idealista
+3,2,165000.0,https://www.idealista.com/inmueble/108433514/,126.0,INMOBILIARIA OLCINA,Centro - Zona Alta,Venta,2025-09-07,Idealista
+3,2,199900.0,https://www.idealista.com/inmueble/107405143/,99.0,Inversiones Car&Mar,Centro - Zona Alta,Venta,2025-09-07,Idealista
+4,2,155000.0,https://www.idealista.com/inmueble/108919420/,159.0,INMOBILIARIA OLCINA,Barrio Zona Nord,Venta,2025-09-07,Idealista
+5,3,400000.0,https://www.idealista.com/inmueble/88650204/,351.0,inmobiliaria aracil,Barrio Santa Rosa,Venta,2025-09-07,Idealista
+4,3,700000.0,https://www.idealista.com/inmueble/106789653/,256.0,INMOBILIARIA OLCINA,Centro - Zona Alta,Venta,2025-09-07,Idealista
+6,3,224000.0,https://www.idealista.com/inmueble/106506148/,270.0,Kevin Soriano,Barrio Eixample,Venta,2025-09-07,Idealista
+4,2,115000.0,https://www.idealista.com/inmueble/108167077/,107.0,Wolo,Barrio Santa Rosa,Venta,2025-09-07,Idealista
+3,2,165000.0,https://www.idealista.com/inmueble/107581451/,140.0,Inmobiliaria Blau,Centro - Zona Alta,Venta,2025-09-07,Idealista
+0,1,45000.0,https://www.idealista.com/inmueble/109000098/,47.0,RE/MAX TRUE Valencia,Centro - Zona Alta,Venta,2025-09-07,Idealista
+3,1,159000.0,https://www.idealista.com/inmueble/108510805/,129.0,ALTAGES INMOBILIARIA,Barrio Santa Rosa,Venta,2025-09-07,Idealista
+0,1,170000.0,https://www.idealista.com/inmueble/108809209/,322.0,Century 21 Plaza,Centro - Zona Alta,Venta,2025-09-07,Idealista
+12,1,550000.0,https://www.idealista.com/inmueble/108360875/,1339.0,homes-in-costa-blanca,Desconocido,Venta,2025-09-07,Idealista
+5,5,1200.0,https://www.idealista.com/inmueble/104956078/,16000.0,inmobiliaria aracil,Barrio Santa Rosa,Venta,2025-09-07,Idealista
+22,12,4300.0,https://www.idealista.com/inmueble/108046261/,240.0,inmobiliaria aracil,Barrio Batoi - Sargento - Baradello,Venta,2025-09-07,Idealista
+3,1,180000.0,https://www.idealista.com/inmueble/108000656/,100.0,inmobiliaria aracil,Barrio Eixample,Venta,2025-09-07,Idealista
+6,2,229000.0,https://www.idealista.com/inmueble/108360861/,337.0,homes-in-costa-blanca,Desconocido,Venta,2025-09-07,Idealista
+2,1,55000.0,https://www.idealista.com/inmueble/109157231/,40.0,Espana Online Inmo SL,Centro - Zona Alta,Venta,2025-09-07,Idealista
+4,1,200000.0,https://www.idealista.com/inmueble/108009043/,145.0,inmobiliaria aracil,Barrio Eixample,Venta,2025-09-07,Idealista
+0,1,170000.0,https://www.idealista.com/inmueble/101375541/,322.0,Hipoges,Centro - Zona Alta,Venta,2025-09-07,Idealista
+3,2,175000.0,https://www.idealista.com/inmueble/104899880/,86.0,inmobiliaria aracil,Barrio Santa Rosa,Venta,2025-09-07,Idealista
+6,1,185000.0,https://www.idealista.com/inmueble/104706688/,268.0,inmobiliaria aracil,Barrio Eixample,Venta,2025-09-07,Idealista
+0,1,88000.0,https://www.idealista.com/inmueble/109007961/,90.0,TE COMPRO LA CASA,Centro - Zona Alta,Venta,2025-09-07,Idealista
+3,1,120000.0,https://www.idealista.com/inmueble/108625788/,104.0,Gestiche gestión inmobiliaria S.L.,Barrio Zona Nord,Venta,2025-09-07,Idealista
+4,1,148000.0,https://www.idealista.com/inmueble/103297292/,115.0,inmobiliaria aracil,Centro - Zona Alta,Venta,2025-09-07,Idealista
+3,1,129000.0,https://www.idealista.com/inmueble/107759467/,140.0,inmobiliaria aracil,Centro - Zona Alta,Venta,2025-09-07,Idealista
+3,2,93000.0,https://www.idealista.com/inmueble/108955434/,110.0,INMOBROKERS.ES,Barrio Batoi - Sargento - Baradello,Venta,2025-09-07,Idealista
+3,2,170000.0,https://www.idealista.com/inmueble/107817536/,190.0,inmobiliaria aracil,Barrio Zona Nord,Venta,2025-09-07,Idealista
+3,2,150000.0,https://www.idealista.com/inmueble/107748751/,100.0,inmobiliaria aracil,Barrio Eixample,Venta,2025-09-07,Idealista
+5,2,480000.0,https://www.idealista.com/inmueble/105031950/,420.0,inmobiliaria aracil,Barrio Batoi - Sargento - Baradello,Venta,2025-09-07,Idealista
+4,3,289000.0,https://www.idealista.com/inmueble/107630745/,464.0,Hipoges,Centro - Zona Alta,Venta,2025-09-07,Idealista
+4,2,365000.0,https://www.idealista.com/inmueble/107654480/,400.0,International Realty,Barrio Batoi - Sargento - Baradello,Venta,2025-09-07,Idealista
+3,2,76000.0,https://www.idealista.com/inmueble/108689535/,76.0,Solvia SE,Centro - Zona Alta,Venta,2025-09-07,Idealista
+7,5,567000.0,https://www.idealista.com/inmueble/108062957/,430.0,Inmobiliaria Euro,Desconocido,Venta,2025-09-07,Idealista
+4,2,139000.0,https://www.idealista.com/inmueble/105055632/,158.0,Inversiones Car&Mar,Barrio Santa Rosa,Venta,2025-09-07,Idealista
+2,1,77000.0,https://www.idealista.com/inmueble/108927423/,70.0,BUVE,Desconocido,Venta,2025-09-07,Idealista
+4,2,180000.0,https://www.idealista.com/inmueble/108000837/,140.0,Inmobiliaria carbonell,Barrio Santa Rosa,Venta,2025-09-07,Idealista
+2,1,123000.0,https://www.idealista.com/inmueble/109198703/,90.0,inmobiliaria aracil,Desconocido,Venta,2025-09-07,Idealista
+10,10,4300.0,https://www.idealista.com/inmueble/102488152/,1850.0,Inmobiiaria Tarrazó,Desconocido,Venta,2025-09-07,Idealista
+3,4,280000.0,https://www.idealista.com/inmueble/108385281/,234.0,Inmobiiaria Tarrazó,Desconocido,Venta,2025-09-07,Idealista
+3,2,185000.0,https://www.idealista.com/inmueble/99914687/,150.0,Inmobiiaria Tarrazó,Desconocido,Venta,2025-09-07,Idealista
+3,2,178000.0,https://www.idealista.com/inmueble/101928059/,100.0,Inmobiiaria Tarrazó,Desconocido,Venta,2025-09-07,Idealista
+4,2,121999.0,https://www.idealista.com/inmueble/108566822/,115.0,INMOBILIARIA OLCINA,Desconocido,Venta,2025-09-07,Idealista
+0,1,80000.0,https://www.idealista.com/inmueble/104420416/,98.0,NEXT HOME INMOBILIARIA,Centro - Zona Alta,Venta,2025-09-07,Idealista
+0,1,69000.0,https://www.idealista.com/inmueble/101437728/,55.0,Soñar Home Consulting,Centro - Zona Alta,Venta,2025-09-07,Idealista
+3,2,175000.0,https://www.idealista.com/inmueble/104502661/,103.0,Inversiones Car&Mar,Desconocido,Venta,2025-09-07,Idealista
+0,1,154000.0,https://www.idealista.com/inmueble/100699241/,100.0,INMOBILIARIA OLCINA,Barrio Batoi - Sargento - Baradello,Venta,2025-09-07,Idealista
+3,2,123900.0,https://www.idealista.com/inmueble/107808469/,100.0,Inversiones Car&Mar,Desconocido,Venta,2025-09-07,Idealista
+4,3,65000.0,https://www.idealista.com/inmueble/108075238/,143.0,Particular,Centro - Zona Alta,Venta,2025-09-07,Idealista
+4,2,140000.0,https://www.idealista.com/inmueble/107176592/,150.0,inmobiliaria aracil,Barrio Eixample,Venta,2025-09-07,Idealista
+3,2,82000.0,https://www.idealista.com/inmueble/108649187/,83.0,Inmobiliaria carbonell,Barrio Santa Rosa,Venta,2025-09-07,Idealista
+0,1,61000.0,https://www.idealista.com/inmueble/1720207/,50.0,Particular,Barrio Santa Rosa,Venta,2025-09-07,Idealista
+7,5,567000.0,https://www.idealista.com/inmueble/108060272/,430.0,Atelier Inmo Homes,Desconocido,Venta,2025-09-07,Idealista
+10,5,450000.0,https://www.idealista.com/inmueble/107169441/,800.0,inmobiliaria aracil,Centro - Zona Alta,Venta,2025-09-07,Idealista
+3,2,124000.0,https://www.idealista.com/inmueble/107884884/,100.0,Inmobiliaria carbonell,Barrio Zona Nord,Venta,2025-09-07,Idealista
+3,2,130000.0,https://www.idealista.com/inmueble/97461767/,130.0,Particular,Barrio Santa Rosa,Venta,2025-09-07,Idealista
+2,1,109000.0,https://www.idealista.com/inmueble/107983147/,90.0,inmobiliaria aracil,Centro - Zona Alta,Venta,2025-09-07,Idealista
+4,3,353556.0,https://www.idealista.com/inmueble/108443580/,400.0,Atelier Inmo Homes,Desconocido,Venta,2025-09-07,Idealista
+5,2,140000.0,https://www.idealista.com/inmueble/109071616/,155.0,TX CASAS INMOBILIARIA,Desconocido,Venta,2025-09-07,Idealista
+4,3,345000.0,https://www.idealista.com/inmueble/1971201/,400.0,Particular,Barrio Santa Rosa,Venta,2025-09-07,Idealista
+5,2,155000.0,https://www.idealista.com/inmueble/107229103/,140.0,Particular,Barrio Zona Nord,Venta,2025-09-07,Idealista
+3,2,124000.0,https://www.idealista.com/inmueble/109135447/,90.0,ALTAGES INMOBILIARIA,Barrio Zona Nord,Venta,2025-09-07,Idealista
+2,1,119000.0,https://www.idealista.com/inmueble/108677866/,90.0,Particular,Centro - Zona Alta,Venta,2025-09-07,Idealista
+4,2,142800.0,https://www.idealista.com/inmueble/109009359/,150.0,TX CASAS INMOBILIARIA,Desconocido,Venta,2025-09-07,Idealista
+3,2,180000.0,https://www.idealista.com/inmueble/108932013/,120.0,Particular,Barrio Zona Nord,Venta,2025-09-07,Idealista
+5,2,140000.0,https://www.idealista.com/inmueble/108632061/,150.0,Particular,Barrio Santa Rosa,Venta,2025-09-07,Idealista
+3,2,195000.0,https://www.idealista.com/inmueble/105918375/,144.0,Particular,Barrio Eixample,Venta,2025-09-07,Idealista
+3,2,180000.0,https://www.idealista.com/inmueble/108972407/,112.0,Particular,Barrio Zona Nord,Venta,2025-09-07,Idealista
+3,1,82000.0,https://www.idealista.com/inmueble/108833306/,95.0,inmobiliaria aracil,Desconocido,Venta,2025-09-07,Idealista
+4,2,159000.0,https://www.idealista.com/inmueble/106302045/,160.0,inmobiliaria aracil,Desconocido,Venta,2025-09-07,Idealista
+10,3,350000.0,https://www.idealista.com/inmueble/96852970/,939.0,inmobiliaria aracil,Barrio Zona Nord,Venta,2025-09-07,Idealista
+2,2,120000.0,https://www.idealista.com/inmueble/107879192/,148.0,inmobiliaria aracil,Desconocido,Venta,2025-09-07,Idealista
+7,2,105000.0,https://www.idealista.com/inmueble/104696549/,464.0,SERVICIOS INMOBILIARIOS INTERWORLD,Desconocido,Venta,2025-09-07,Idealista
+4,1,215000.0,https://www.idealista.com/inmueble/107268434/,250.0,SERVICIOS INMOBILIARIOS INTERWORLD,Desconocido,Venta,2025-09-07,Idealista
+18,6,2500.0,https://www.idealista.com/inmueble/95371747/,1200.0,inmobiliaria aracil,Desconocido,Venta,2025-09-07,Idealista
+3,1,159000.0,https://www.idealista.com/inmueble/107031618/,129.0,inmobiliaria aracil,Desconocido,Venta,2025-09-07,Idealista
+2,2,160000.0,https://www.idealista.com/inmueble/107465763/,85.0,inmobiliaria aracil,Desconocido,Venta,2025-09-07,Idealista
+4,1,75000.0,https://www.idealista.com/inmueble/108693975/,95.0,inmobiliaria aracil,Desconocido,Venta,2025-09-07,Idealista
+4,2,235000.0,https://www.idealista.com/inmueble/108748048/,160.0,inmobiliaria aracil,Desconocido,Venta,2025-09-07,Idealista
+2,1,63000.0,https://www.idealista.com/inmueble/108789921/,60.0,ALTAGES INMOBILIARIA,Barrio Eixample,Venta,2025-09-07,Idealista
+3,2,125000.0,https://www.idealista.com/inmueble/106300536/,100.0,inmobiliaria aracil,Desconocido,Venta,2025-09-07,Idealista
+3,2,94990.0,https://www.idealista.com/inmueble/108693023/,120.0,ALTAGES INMOBILIARIA,Barrio Santa Rosa,Venta,2025-09-07,Idealista
+3,1,55000.0,https://www.idealista.com/inmueble/108353781/,63.0,redtoone inmobiliaria,Desconocido,Venta,2025-09-07,Idealista
+15,6,3500.0,https://www.idealista.com/inmueble/103839077/,2187.0,Particular,Desconocido,Venta,2025-09-07,Idealista
+4,2,110000.0,https://www.idealista.com/inmueble/108918196/,95.0,TX CASAS INMOBILIARIA,Desconocido,Venta,2025-09-07,Idealista
+3,2,380000.0,https://www.idealista.com/inmueble/105398365/,185.0,NEXT STEP PROPERTIES,Desconocido,Venta,2025-09-07,Idealista
+3,1,30597.0,https://www.idealista.com/inmueble/108813301/,84.0,INVEST MSS REAL ESTATE,Centro - Zona Alta,Venta,2025-09-07,Idealista
+4,2,187000.0,https://www.idealista.com/inmueble/109162788/,165.0,Inmobiliaria Numero Uno,Desconocido,Venta,2025-09-07,Idealista
+2,1,159900.0,https://www.idealista.com/inmueble/108637383/,79.0,Inmobiliaria Hache,Desconocido,Venta,2025-09-07,Idealista
+6,4,460000.0,https://www.idealista.com/inmueble/107808694/,250.0,ArPons Luxury Real Estate,Desconocido,Venta,2025-09-07,Idealista
+2,2,110000.0,https://www.idealista.com/inmueble/105154714/,92.0,inmobiliaria aracil,Centro - Zona Alta,Venta,2025-09-07,Idealista
+5,2,145000.0,https://www.idealista.com/inmueble/108435211/,135.0,Inmobiliaria Numero Uno,Desconocido,Venta,2025-09-07,Idealista
+2,1,95450.0,https://www.idealista.com/inmueble/109113115/,81.0,SA ROQUETA INVESTMENT,Desconocido,Venta,2025-09-07,Idealista
+3,1,112125.0,https://www.idealista.com/inmueble/109040815/,101.0,SA ROQUETA INVESTMENT,Desconocido,Venta,2025-09-07,Idealista
+2,1,83475.0,https://www.idealista.com/inmueble/109113025/,73.0,SA ROQUETA INVESTMENT,Desconocido,Venta,2025-09-07,Idealista
+5,3,280000.0,https://www.idealista.com/inmueble/99941294/,329.0,Inmobiliaria Terra,Centro - Zona Alta,Venta,2025-09-07,Idealista
+5,2,235000.0,https://www.idealista.com/inmueble/108783435/,160.0,Inmobiliaria Blau,Centro - Zona Alta,Venta,2025-09-07,Idealista
+3,2,199000.0,https://www.idealista.com/inmueble/107223506/,124.0,Inmocast,Desconocido,Venta,2025-09-07,Idealista
+5,3,185000.0,https://www.idealista.com/inmueble/108637795/,240.0,Inmobiliaria Blau,Barrio Eixample,Venta,2025-09-07,Idealista
+2,1,99700.0,https://www.idealista.com/inmueble/104924267/,51.0,Inmobiliaria Bancaria,Centro - Zona Alta,Venta,2025-09-07,Idealista
+2,1,60000.0,https://www.idealista.com/inmueble/96557927/,107.0,Solvia HR,Centro - Zona Alta,Venta,2025-09-07,Idealista
+3,2,290000.0,https://www.idealista.com/inmueble/100985940/,226.0,inmobiliaria aracil,Centro - Zona Alta,Venta,2025-09-07,Idealista
+3,2,185000.0,https://www.idealista.com/inmueble/109071684/,100.0,TX CASAS INMOBILIARIA,Desconocido,Venta,2025-09-07,Idealista
+10,4,245000.0,https://www.idealista.com/inmueble/109034812/,900.0,Particular,Centro - Zona Alta,Venta,2025-09-07,Idealista
+6,2,150000.0,https://www.idealista.com/inmueble/105522027/,207.0,inmobiliaria aracil,Barrio Eixample,Venta,2025-09-07,Idealista
+3,4,280000.0,https://www.idealista.com/inmueble/26915958/,250.0,Particular,Centro - Zona Alta,Venta,2025-09-07,Idealista
+4,3,369999.0,https://www.idealista.com/inmueble/108593635/,230.0,INMOBILIARIA OLCINA,Desconocido,Venta,2025-09-07,Idealista
+6,3,415000.0,https://www.idealista.com/inmueble/108593720/,351.0,INMOBILIARIA OLCINA,Desconocido,Venta,2025-09-07,Idealista
+7,5,220000.0,https://www.idealista.com/inmueble/108446333/,285.0,Inmobiliaria Blau,Barrio Eixample,Venta,2025-09-07,Idealista
+9,4,295000.0,https://www.idealista.com/inmueble/108360901/,559.0,homes-in-costa-blanca,Desconocido,Venta,2025-09-07,Idealista
+4,1,85000.0,https://www.idealista.com/inmueble/108198362/,90.0,Particular,Barrio Santa Rosa,Venta,2025-09-07,Idealista
+3,1,11000.0,https://www.idealista.com/inmueble/105375746/,65.0,Solvia HR,Barrio Zona Nord,Venta,2025-09-07,Idealista
+4,3,335000.0,https://www.idealista.com/inmueble/100929686/,400.0,GESTIMAR INMOBILIARIA,Centro - Zona Alta,Venta,2025-09-07,Idealista
+3,2,165000.0,https://www.idealista.com/inmueble/107896510/,140.0,Inversiones Car&Mar,Desconocido,Venta,2025-09-07,Idealista
+0,1,198000.0,https://www.idealista.com/inmueble/106336249/,50.0,Particular,Desconocido,Venta,2025-09-07,Idealista
+3,1,17000.0,https://www.idealista.com/inmueble/99133154/,95.0,Solvia HR,Centro - Zona Alta,Venta,2025-09-07,Idealista
+4,2,300000.0,https://www.idealista.com/inmueble/107834018/,240.0,Particular,Desconocido,Venta,2025-09-07,Idealista
+2,1,23000.0,https://www.idealista.com/inmueble/96567154/,70.0,Solvia HR,Barrio Zona Nord,Venta,2025-09-07,Idealista
+0,1,9000.0,https://www.idealista.com/inmueble/96561690/,28.0,Solvia HR,Centro - Zona Alta,Venta,2025-09-07,Idealista
+0,1,12000.0,https://www.idealista.com/inmueble/96561689/,44.0,Solvia HR,Centro - Zona Alta,Venta,2025-09-07,Idealista
+5,2,259000.0,https://www.idealista.com/inmueble/86526548/,230.0,Particular,Centro - Zona Alta,Venta,2025-09-07,Idealista
+0,1,34200.0,https://www.idealista.com/inmueble/99132631/,110.0,Solvia HR,Centro - Zona Alta,Venta,2025-09-07,Idealista
+3,2,210000.0,https://www.idealista.com/inmueble/106084017/,140.0,Inmobiliaria Terra,Barrio Zona Nord,Venta,2025-09-07,Idealista
+0,1,12000.0,https://www.idealista.com/inmueble/96566503/,55.0,Solvia HR,Centro - Zona Alta,Venta,2025-09-07,Idealista
+5,2,235000.0,https://www.idealista.com/inmueble/108702897/,160.0,Particular,Centro - Zona Alta,Venta,2025-09-07,Idealista
+0,1,50000.0,https://www.idealista.com/inmueble/99963210/,40.0,GEALSA,Centro - Zona Alta,Venta,2025-09-07,Idealista
+2,1,45600.0,https://www.idealista.com/inmueble/107973477/,75.0,Solvia Inmobiliaria NB,Centro - Zona Alta,Venta,2025-09-07,Idealista
+4,2,175000.0,https://www.idealista.com/inmueble/107865188/,130.0,Particular,Barrio Santa Rosa,Venta,2025-09-07,Idealista
+3,2,76000.0,https://www.idealista.com/inmueble/108689754/,76.0,Solvia HR,Centro - Zona Alta,Venta,2025-09-07,Idealista
+0,1,34200.0,https://www.idealista.com/inmueble/106915943/,110.0,Solvia SE,Centro - Zona Alta,Venta,2025-09-07,Idealista
+0,1,30500.0,https://www.idealista.com/inmueble/106915942/,109.0,Solvia SE,Centro - Zona Alta,Venta,2025-09-07,Idealista
+0,1,143750.0,https://www.idealista.com/inmueble/106328582/,150.0,Aliseda inmobiliaria,Barrio Eixample,Venta,2025-09-07,Idealista
+4,1,69500.0,https://www.idealista.com/inmueble/108394166/,98.0,Inversiones Car&Mar,Desconocido,Venta,2025-09-07,Idealista
+0,1,30500.0,https://www.idealista.com/inmueble/99132630/,109.0,Solvia HR,Centro - Zona Alta,Venta,2025-09-07,Idealista
+3,1,37400.0,https://www.idealista.com/inmueble/104890873/,91.0,Solvia SE,Barrio Eixample,Venta,2025-09-07,Idealista
+3,2,93000.0,https://www.idealista.com/inmueble/108842916/,110.0,GTI INMOFREELANCE,Desconocido,Venta,2025-09-07,Idealista
+3,3,240000.0,https://www.idealista.com/inmueble/106844612/,220.0,inmobiliaria aracil,Desconocido,Venta,2025-09-07,Idealista
+3,3,999000.0,https://www.idealista.com/inmueble/106479280/,400.0,Particular,Barrio Santa Rosa,Venta,2025-09-07,Idealista
+3,1,90000.0,https://www.idealista.com/inmueble/102873459/,124.0,NEXT HOME INMOBILIARIA,Desconocido,Venta,2025-09-07,Idealista
+0,1,100000.0,https://www.idealista.com/inmueble/107667632/,180.0,Particular,Centro - Zona Alta,Venta,2025-09-07,Idealista
+4,2,140000.0,https://www.idealista.com/inmueble/101553161/,137.0,ASPELX GESTIÓN INMOBILIARIA,Desconocido,Venta,2025-09-07,Idealista
+3,2,185000.0,https://www.idealista.com/inmueble/102545563/,140.0,NEXT HOME INMOBILIARIA,Desconocido,Venta,2025-09-07,Idealista
+4,1,87500.0,https://www.idealista.com/inmueble/107766389/,74.0,Particular,Barrio Santa Rosa,Venta,2025-09-07,Idealista
+3,2,115000.0,https://www.idealista.com/inmueble/107316941/,90.0,inmobiliaria aracil,Desconocido,Venta,2025-09-07,Idealista
+7,5,361305.0,https://www.idealista.com/inmueble/106967544/,614.0,inmobiliaria aracil,Desconocido,Venta,2025-09-07,Idealista
+4,2,298000.0,https://www.idealista.com/inmueble/105080006/,220.0,Particular,Barrio Eixample,Venta,2025-09-07,Idealista
+3,3,374500.0,https://www.idealista.com/inmueble/107743932/,182.0,Particular,Barrio Eixample,Venta,2025-09-07,Idealista
+3,1,140000.0,https://www.idealista.com/inmueble/107228155/,110.0,Particular,Barrio Zona Nord,Venta,2025-09-07,Idealista
+3,2,124000.0,https://www.idealista.com/inmueble/107793838/,108.0,Inmobiliaria Terra,Desconocido,Venta,2025-09-07,Idealista
+4,1,63500.0,https://www.idealista.com/inmueble/109083164/,143.0,TX CASAS INMOBILIARIA,Desconocido,Venta,2025-09-07,Idealista
+6,3,215000.0,https://www.idealista.com/inmueble/107911329/,190.0,SERVICIOS INMOBILIARIOS INTERWORLD,Desconocido,Venta,2025-09-07,Idealista
+3,2,93000.0,https://www.idealista.com/inmueble/108802562/,118.0,TU CASA EN ELCHE TCE 2023,Desconocido,Venta,2025-09-07,Idealista
+0,2,25000.0,https://www.idealista.com/inmueble/108045216/,62.0,Inmobiliaria Hache,Desconocido,Venta,2025-09-07,Idealista
+4,2,300000.0,https://www.idealista.com/inmueble/102851130/,170.0,inmobiliaria aracil,Desconocido,Venta,2025-09-07,Idealista
+3,1,99000.0,https://www.idealista.com/inmueble/102483285/,225.0,Inmobiliaria Terra,Centro - Zona Alta,Venta,2025-09-07,Idealista
+3,2,140000.0,https://www.idealista.com/inmueble/108636107/,118.0,Inmobiliaria Terra,Barrio Santa Rosa,Venta,2025-09-07,Idealista
+2,1,140000.0,https://www.idealista.com/inmueble/107854880/,70.0,Inmobiliaria Terra,Barrio Eixample,Venta,2025-09-07,Idealista
+2,2,120000.0,https://www.idealista.com/inmueble/107623981/,130.0,Inmobiliaria Numero Uno,Desconocido,Venta,2025-09-07,Idealista
+3,2,93000.0,https://www.idealista.com/inmueble/108651592/,118.0,Inmobiliaria Terra,Barrio Santa Rosa,Venta,2025-09-07,Idealista
+4,2,235000.0,https://www.idealista.com/inmueble/107897763/,170.0,ArPons Luxury Real Estate,Desconocido,Venta,2025-09-07,Idealista
+3,1,85000.0,https://www.idealista.com/inmueble/109195435/,80.0,TX CASAS INMOBILIARIA,Desconocido,Venta,2025-09-07,Idealista
+4,2,110000.0,https://www.idealista.com/inmueble/107657435/,90.0,Abenza inmuebles,Desconocido,Venta,2025-09-07,Idealista
+3,1,69900.0,https://www.idealista.com/inmueble/108122177/,112.0,Inmobiliaria Hache,Desconocido,Venta,2025-09-07,Idealista
+4,2,130000.0,https://www.idealista.com/inmueble/105366816/,140.0,NEXT STEP PROPERTIES,Desconocido,Venta,2025-09-07,Idealista
+3,2,92000.0,https://www.idealista.com/inmueble/107657381/,90.0,Abenza inmuebles,Desconocido,Venta,2025-09-07,Idealista
+6,2,130000.0,https://www.idealista.com/inmueble/108979120/,168.0,Inmobiliaria Hache,Barrio Eixample,Venta,2025-09-07,Idealista
+4,2,250000.0,https://www.idealista.com/inmueble/108440331/,180.0,Inmobiliaria Numero Uno,Desconocido,Venta,2025-09-07,Idealista
+3,2,116150.0,https://www.idealista.com/inmueble/107956346/,131.0,Aliseda inmobiliaria,Desconocido,Venta,2025-09-07,Idealista
+4,2,105000.0,https://www.idealista.com/inmueble/107658044/,135.0,Inmobiliaria Numero Uno,Desconocido,Venta,2025-09-07,Idealista
+2,1,123000.0,https://www.idealista.com/inmueble/109101525/,90.0,Particular,Barrio Eixample,Venta,2025-09-07,Idealista
+3,2,95000.0,https://www.idealista.com/inmueble/107396314/,95.0,INMOBILIARIA NORTE,Desconocido,Venta,2025-09-07,Idealista
+3,1,69900.0,https://www.idealista.com/inmueble/105993042/,79.0,INMOBILIARIA NORTE,Desconocido,Venta,2025-09-07,Idealista
+3,2,395800.0,https://www.idealista.com/inmueble/106433913/,3648.0,Aliseda inmobiliaria,Barrio Zona Nord,Venta,2025-09-07,Idealista
+4,2,142800.0,https://www.idealista.com/inmueble/107657140/,150.0,Inversiones Car&Mar,Desconocido,Venta,2025-09-07,Idealista
+0,1,83475.0,https://www.idealista.com/inmueble/107385916/,72.0,Aliseda inmobiliaria,Desconocido,Venta,2025-09-07,Idealista
+3,1,145000.0,https://www.idealista.com/inmueble/108475879/,131.0,INMOBILIARIA NORTE,Desconocido,Venta,2025-09-07,Idealista
+0,2,112125.0,https://www.idealista.com/inmueble/108459600/,85.0,Aliseda inmobiliaria,Desconocido,Venta,2025-09-07,Idealista
+6,4,690000.0,https://www.idealista.com/inmueble/104508598/,505.0,Particular,Barrio Eixample,Venta,2025-09-07,Idealista
+3,1,149000.0,https://www.idealista.com/inmueble/108672730/,97.0,Particular,Centro - Zona Alta,Venta,2025-09-07,Idealista
+2,1,75000.0,https://www.idealista.com/inmueble/97216193/,70.0,Particular,Centro - Zona Alta,Venta,2025-09-07,Idealista
+4,3,185000.0,https://www.idealista.com/inmueble/108954761/,174.0,Particular,Centro - Zona Alta,Venta,2025-09-07,Idealista
+3,2,165000.0,https://www.idealista.com/inmueble/102377023/,141.0,Particular,Centro - Zona Alta,Venta,2025-09-07,Idealista
+3,2,98000.0,https://www.idealista.com/inmueble/106594158/,100.0,Particular,Barrio Santa Rosa,Venta,2025-09-07,Idealista
+2,1,159000.0,https://www.idealista.com/inmueble/108610578/,92.0,Particular,Barrio Eixample,Venta,2025-09-07,Idealista
+3,2,130000.0,https://www.idealista.com/inmueble/108413163/,90.0,Particular,Centro - Zona Alta,Venta,2025-09-07,Idealista
+3,2,175000.0,https://www.idealista.com/inmueble/97761053/,100.0,Particular,Barrio Eixample,Venta,2025-09-07,Idealista
+3,2,123000.0,https://www.idealista.com/inmueble/83017352/,105.0,Particular,Barrio Santa Rosa,Venta,2025-09-07,Idealista
+5,3,185000.0,https://www.idealista.com/inmueble/108318287/,240.0,Particular,Barrio Eixample,Venta,2025-09-07,Idealista
+3,2,120000.0,https://www.idealista.com/inmueble/34412508/,120.0,Particular,Centro - Zona Alta,Venta,2025-09-07,Idealista
+0,2,95450.0,https://www.idealista.com/inmueble/108058634/,80.0,Aliseda inmobiliaria,Desconocido,Venta,2025-09-07,Idealista
+0,1,89125.0,https://www.idealista.com/inmueble/108331396/,73.0,Aliseda inmobiliaria,Desconocido,Venta,2025-09-07,Idealista
+6,4,345000.0,https://www.idealista.com/inmueble/105958743/,585.0,Particular,Centro - Zona Alta,Venta,2025-09-07,Idealista
+4,2,320000.0,https://www.idealista.com/inmueble/108940128/,220.0,Particular,Barrio Batoi - Sargento - Baradello,Venta,2025-09-07,Idealista
+3,2,120000.0,https://www.idealista.com/inmueble/97844337/,100.0,Particular,Centro - Zona Alta,Venta,2025-09-07,Idealista
+5,2,147000.0,https://www.idealista.com/inmueble/108446125/,146.0,Inmobiliaria Terra,Desconocido,Venta,2025-09-07,Idealista
+5,2,140000.0,https://www.idealista.com/inmueble/108150209/,150.0,Particular,Barrio Santa Rosa,Venta,2025-09-07,Idealista
+0,3,104690.0,https://www.idealista.com/inmueble/106638848/,104.0,NEXT HOME INMOBILIARIA,Desconocido,Venta,2025-09-07,Idealista
+3,1,67900.0,https://www.idealista.com/inmueble/108721953/,80.0,Particular,Centro - Zona Alta,Venta,2025-09-07,Idealista
+2,1,125000.0,https://www.idealista.com/inmueble/108272920/,70.0,Particular,Centro - Zona Alta,Venta,2025-09-07,Idealista
+2,1,46500.0,https://www.idealista.com/inmueble/107910096/,45.0,Particular,Barrio Eixample,Venta,2025-09-07,Idealista
+4,2,159000.0,https://www.idealista.com/inmueble/107572101/,98.0,Particular,Barrio Santa Rosa,Venta,2025-09-07,Idealista
+2,1,80000.0,https://www.idealista.com/inmueble/25773154/,80.0,Particular,Centro - Zona Alta,Venta,2025-09-07,Idealista
+10,2,150000.0,https://www.idealista.com/inmueble/99875222/,170.0,Particular,Centro - Zona Alta,Venta,2025-09-07,Idealista
+3,2,130000.0,https://www.idealista.com/inmueble/108899661/,105.0,TX CASAS INMOBILIARIA,Desconocido,Venta,2025-09-07,Idealista
+2,1,50000.0,https://www.idealista.com/inmueble/106753450/,135.0,Particular,Centro - Zona Alta,Venta,2025-09-07,Idealista
+3,2,165000.0,https://www.idealista.com/inmueble/108786924/,95.0,Inmobiliaria Numero Uno,Desconocido,Venta,2025-09-07,Idealista
+4,1,92000.0,https://www.idealista.com/inmueble/106297795/,100.0,Particular,Barrio Santa Rosa,Venta,2025-09-07,Idealista
+5,3,195000.0,https://www.idealista.com/inmueble/100283971/,175.0,Particular,Centro - Zona Alta,Venta,2025-09-07,Idealista
+4,2,140000.0,https://www.idealista.com/inmueble/108159633/,120.0,INMOBILIARIA NORTE,Desconocido,Venta,2025-09-07,Idealista
+5,3,325000.0,https://www.idealista.com/inmueble/101569427/,280.0,Particular,Barrio Eixample,Venta,2025-09-07,Idealista
+4,2,130000.0,https://www.idealista.com/inmueble/106904910/,136.0,Particular,Barrio Santa Rosa,Venta,2025-09-07,Idealista
+3,2,150000.0,https://www.idealista.com/inmueble/107477781/,100.0,Particular,Barrio Santa Rosa,Venta,2025-09-07,Idealista
+4,2,180000.0,https://www.idealista.com/inmueble/103403370/,150.0,Particular,Barrio Eixample,Venta,2025-09-07,Idealista
+3,2,131000.0,https://www.idealista.com/inmueble/91837932/,120.0,Particular,Centro - Zona Alta,Venta,2025-09-07,Idealista
+4,2,117500.0,https://www.idealista.com/inmueble/106979980/,120.0,Particular,Barrio Eixample,Venta,2025-09-07,Idealista
+3,2,185000.0,https://www.idealista.com/inmueble/81156708/,150.0,Particular,Centro - Zona Alta,Venta,2025-09-07,Idealista
+4,2,230000.0,https://www.idealista.com/inmueble/81772162/,256.0,Particular,Desconocido,Venta,2025-09-07,Idealista
+3,1,120000.0,https://www.idealista.com/inmueble/101270956/,105.0,Particular,Barrio Santa Rosa,Venta,2025-09-07,Idealista
+0,1,76000.0,https://www.idealista.com/inmueble/81156772/,60.0,Particular,Centro - Zona Alta,Venta,2025-09-07,Idealista
+3,2,130000.0,https://www.idealista.com/inmueble/86910426/,90.0,Particular,Barrio Zona Nord,Venta,2025-09-07,Idealista
+0,0,20000.0,https://www.idealista.com/inmueble/105841744/,54.0,Particular,Centro - Zona Alta,Venta,2025-09-07,Idealista
+1,1,550.0,https://www.idealista.com/inmueble/109206802/,45.0,Particular,Centro - Zona Alta,Alquiler,2025-09-07,Idealista
+2,1,550.0,https://www.idealista.com/inmueble/109203774/,111.0,Inmobiiaria Tarrazó,Desconocido,Alquiler,2025-09-07,Idealista
+3,1,550.0,https://www.idealista.com/inmueble/109203242/,74.0,ALTAGES INMOBILIARIA,Barrio Zona Nord,Alquiler,2025-09-07,Idealista
+3,1,590.0,https://www.idealista.com/inmueble/109199073/,94.0,INVERNOMICS REAL ESTATE,Barrio Zona Nord,Alquiler,2025-09-07,Idealista
+3,2,650.0,https://www.idealista.com/inmueble/109197582/,90.0,C I M E G Consulting,Barrio Santa Rosa,Alquiler,2025-09-07,Idealista
+3,1,600.0,https://www.idealista.com/inmueble/109193186/,78.0,Particular,Centro - Zona Alta,Alquiler,2025-09-07,Idealista
+4,2,900.0,https://www.idealista.com/inmueble/109183605/,180.0,Particular,Barrio Eixample,Alquiler,2025-09-07,Idealista
+2,1,650.0,https://www.idealista.com/inmueble/109190179/,70.0,Zazume,Barrio Santa Rosa,Alquiler,2025-09-07,Idealista
+3,1,580.0,https://www.idealista.com/inmueble/109190154/,75.0,Zazume,Barrio Santa Rosa,Alquiler,2025-09-07,Idealista
+0,1,550.0,https://www.idealista.com/inmueble/108625585/,60.0,Corins Homes,Centro - Zona Alta,Alquiler,2025-09-07,Idealista
+2,1,650.0,https://www.idealista.com/inmueble/109166332/,70.0,Zazume,Barrio Santa Rosa,Alquiler,2025-09-07,Idealista
+3,1,550.0,https://www.idealista.com/inmueble/106714287/,75.0,Investhome,Barrio Santa Rosa,Alquiler,2025-09-07,Idealista
+3,2,750.0,https://www.idealista.com/inmueble/109100988/,120.0,Inmobiliaria carbonell,Barrio Eixample,Alquiler,2025-09-07,Idealista
+3,2,650.0,https://www.idealista.com/inmueble/109188040/,122.0,Zazume,Desconocido,Alquiler,2025-09-07,Idealista
+4,3,1800.0,https://www.idealista.com/inmueble/108396916/,205.0,INMOBILIARIA OLCINA,Desconocido,Alquiler,2025-09-07,Idealista
+2,1,675.0,https://www.idealista.com/inmueble/109126973/,70.0,Avanhouse,Centro - Zona Alta,Alquiler,2025-09-07,Idealista
+0,1,500.0,https://www.idealista.com/inmueble/108319704/,45.0,Particular,Centro - Zona Alta,Alquiler,2025-09-07,Idealista
+3,2,710.0,https://www.idealista.com/inmueble/103984265/,90.0,ALTAGES INMOBILIARIA,Barrio Zona Nord,Alquiler,2025-09-07,Idealista
+2,1,500.0,https://www.idealista.com/inmueble/109160678/,80.0,Inversiones Car&Mar,Centro - Zona Alta,Alquiler,2025-09-07,Idealista
+3,1,750.0,https://www.idealista.com/inmueble/108865182/,71.0,Inversiones Car&Mar,Centro - Zona Alta,Alquiler,2025-09-07,Idealista
+3,1,650.0,https://www.idealista.com/inmueble/109023961/,82.0,Investhome,Centro - Zona Alta,Alquiler,2025-09-07,Idealista
+0,1,700.0,https://www.idealista.com/inmueble/109117798/,45.0,Particular,Centro - Zona Alta,Alquiler,2025-09-07,Idealista
+2,1,550.0,https://www.idealista.com/inmueble/109062259/,53.0,Investhome,Centro - Zona Alta,Alquiler,2025-09-07,Idealista
+3,1,650.0,https://www.idealista.com/inmueble/109158658/,105.0,Particular,Desconocido,Alquiler,2025-09-07,Idealista
+2,1,600.0,https://www.idealista.com/inmueble/109155640/,62.0,Particular,Desconocido,Alquiler,2025-09-07,Idealista
+2,1,525.0,https://www.idealista.com/inmueble/109075856/,120.0,VHogares,Centro - Zona Alta,Alquiler,2025-09-07,Idealista
+4,1,600.0,https://www.idealista.com/inmueble/108972324/,115.0,Particular,Barrio Santa Rosa,Alquiler,2025-09-07,Idealista
+3,2,1200.0,https://www.idealista.com/inmueble/108852987/,140.0,INMOBILIARIA OLCINA,Desconocido,Alquiler,2025-09-07,Idealista
+6,1,1500.0,https://www.idealista.com/inmueble/108958651/,300.0,Martinez & Asociados,Barrio Batoi - Sargento - Baradello,Alquiler,2025-09-07,Idealista
+2,1,390.0,https://www.idealista.com/inmueble/107945691/,45.0,ALTAGES INMOBILIARIA,Centro - Zona Alta,Alquiler,2025-09-07,Idealista
+4,2,700.0,https://www.idealista.com/inmueble/108796390/,160.0,Particular,Barrio Eixample,Alquiler,2025-09-07,Idealista
+0,1,450.0,https://www.idealista.com/inmueble/86525258/,40.0,Particular,Centro - Zona Alta,Alquiler,2025-09-07,Idealista
+5,1,1500.0,https://www.idealista.com/inmueble/108994627/,300.0,Abarca servicios inmobiliarios,Desconocido,Alquiler,2025-09-07,Idealista
+3,1,750.0,https://www.idealista.com/inmueble/108706048/,75.0,Inversiones Car&Mar,Centro - Zona Alta,Alquiler,2025-09-07,Idealista
+0,1,600.0,https://www.idealista.com/inmueble/108827256/,48.0,Inversiones Car&Mar,Barrio Eixample,Alquiler,2025-09-07,Idealista
+4,2,675.0,https://www.idealista.com/inmueble/109139571/,117.0,NEXT HOME INMOBILIARIA,Desconocido,Alquiler,2025-09-07,Idealista
+5,2,860.0,https://www.idealista.com/inmueble/108569251/,125.0,Particular,Barrio Eixample,Alquiler,2025-09-07,Idealista
+4,2,700.0,https://www.idealista.com/inmueble/107943831/,127.0,NEXT HOME INMOBILIARIA,Desconocido,Alquiler,2025-09-07,Idealista
+0,1,295.0,https://www.idealista.com/inmueble/102207482/,25.0,ALTAGES INMOBILIARIA,Centro - Zona Alta,Alquiler,2025-09-07,Idealista
+0,1,400.0,https://www.idealista.com/inmueble/108122782/,30.0,Inmobiliaria Hache,Desconocido,Alquiler,2025-09-07,Idealista
+3,1,600.0,https://www.idealista.com/inmueble/108885490/,75.0,ALTAGES INMOBILIARIA,Centro - Zona Alta,Alquiler,2025-09-07,Idealista
+2,1,460.0,https://www.idealista.com/inmueble/91703475/,75.0,Particular,Centro - Zona Alta,Alquiler,2025-09-07,Idealista
+4,2,800.0,https://www.idealista.com/inmueble/105288133/,150.0,Particular,Centro - Zona Alta,Alquiler,2025-09-07,Idealista
+3,2,750.0,https://www.idealista.com/inmueble/108983878/,128.0,Particular,Barrio Santa Rosa,Alquiler,2025-09-07,Idealista
+2,1,675.0,https://www.idealista.com/inmueble/109033284/,85.0,Particular,Barrio Zona Nord,Alquiler,2025-09-07,Idealista
+2,1,550.0,https://www.idealista.com/inmueble/101854015/,82.0,NEXT HOME INMOBILIARIA,Desconocido,Alquiler,2025-09-07,Idealista
+0,1,450.0,https://www.idealista.com/inmueble/102440312/,35.0,Loving flat,Centro - Zona Alta,Alquiler,2025-09-07,Idealista
+4,2,900.0,https://www.idealista.com/inmueble/108790501/,176.0,Particular,Barrio Zona Nord,Alquiler,2025-09-07,Idealista
+2,1,450.0,https://www.idealista.com/inmueble/108951162/,79.0,NEXT HOME INMOBILIARIA,Desconocido,Alquiler,2025-09-07,Idealista
+0,1,475.0,https://www.idealista.com/inmueble/101571395/,50.0,Particular,Centro - Zona Alta,Alquiler,2025-09-07,Idealista
+2,1,700.0,https://www.idealista.com/inmueble/29780273/,120.0,Particular,Centro - Zona Alta,Alquiler,2025-09-07,Idealista
+3,1,700.0,https://www.idealista.com/inmueble/106240925/,190.0,Particular,Centro - Zona Alta,Alquiler,2025-09-07,Idealista
+7,5,2400.0,https://www.idealista.com/inmueble/106990668/,614.0,inmobiliaria aracil,Desconocido,Alquiler,2025-09-07,Idealista
+3,1,600.0,https://www.idealista.com/inmueble/105714248/,110.0,Particular,Barrio Eixample,Alquiler,2025-09-07,Idealista
+3,2,720.0,https://www.idealista.com/inmueble/107638822/,105.0,Abenza inmuebles,Desconocido,Alquiler,2025-09-07,Idealista
+2,1,680.0,https://www.idealista.com/inmueble/108552116/,95.0,Inmobiliaria Hache,Desconocido,Alquiler,2025-09-07,Idealista
+3,1,570.0,https://www.idealista.com/inmueble/100930484/,65.0,GESTORES INMOBILIARIOS,Centro - Zona Alta,Alquiler,2025-09-07,Idealista
+2,1,550.0,https://www.idealista.com/inmueble/108801931/,65.0,Inmocast,Desconocido,Alquiler,2025-09-07,Idealista
+3,2,660.0,https://www.idealista.com/inmueble/109179832/,87.0,Particular,Desconocido,Alquiler,2025-09-07,Idealista
+2,1,500.0,https://www.idealista.com/inmueble/108432909/,60.0,Inmobiliaria Hache,Desconocido,Alquiler,2025-09-07,Idealista
+0,1,550.0,https://www.idealista.com/inmueble/108781129/,60.0,INMOBILIARIA NORTE,Desconocido,Alquiler,2025-09-07,Idealista
+0,1,450.0,https://www.idealista.com/inmueble/85630508/,75.0,Particular,Centro - Zona Alta,Alquiler,2025-09-07,Idealista
+3,1,675.0,https://www.idealista.com/inmueble/109145688/,120.0,Particular,Barrio Eixample,Alquiler,2025-09-07,Idealista
+3,1,600.0,https://www.idealista.com/inmueble/109103239/,70.0,TX CASAS INMOBILIARIA,Desconocido,Alquiler,2025-09-07,Idealista
+4,1,550.0,https://www.idealista.com/inmueble/96768054/,120.0,Particular,Centro - Zona Alta,Alquiler,2025-09-07,Idealista
+3,2,600.0,https://www.idealista.com/inmueble/98816242/,111.0,Particular,Centro - Zona Alta,Alquiler,2025-09-07,Idealista
+4,2,600.0,https://www.idealista.com/inmueble/105537175/,100.0,Particular,Barrio Santa Rosa,Alquiler,2025-09-07,Idealista
+3,1,600.0,https://www.idealista.com/inmueble/109114256/,75.0,TX CASAS INMOBILIARIA,Desconocido,Alquiler,2025-09-07,Idealista
+4,2,900.0,https://www.idealista.com/inmueble/108970648/,114.0,Particular,Centro - Zona Alta,Alquiler,2025-09-07,Idealista
+2,2,680.0,https://www.idealista.com/inmueble/105788331/,60.0,Particular,Centro - Zona Alta,Alquiler,2025-09-07,Idealista
+3,1,560.0,https://www.idealista.com/inmueble/107865051/,80.0,Particular,Barrio Zona Nord,Alquiler,2025-09-07,Idealista
+3,1,550.0,https://www.idealista.com/inmueble/101489251/,87.0,Particular,Centro - Zona Alta,Alquiler,2025-09-07,Idealista
+2,1,650.0,https://www.idealista.com/inmueble/108649566/,75.0,Particular,Barrio Eixample,Alquiler,2025-09-07,Idealista
+1,1,500.0,https://www.idealista.com/inmueble/98088552/,40.0,Particular,Centro - Zona Alta,Alquiler,2025-09-07,Idealista
+0,1,350.0,https://www.idealista.com/inmueble/108626439/,40.0,Particular,Centro - Zona Alta,Alquiler,2025-09-07,Idealista
+3,1,560.0,https://www.idealista.com/inmueble/108120934/,80.0,Particular,Centro - Zona Alta,Alquiler,2025-09-07,Idealista
+4,2,640.0,https://www.idealista.com/inmueble/90909215/,130.0,Particular,Centro - Zona Alta,Alquiler,2025-09-07,Idealista
+3,2,850.0,https://www.idealista.com/inmueble/108954160/,140.0,Particular,Barrio Santa Rosa,Alquiler,2025-09-07,Idealista
+3,1,650.0,https://www.idealista.com/inmueble/109040665/,95.0,Particular,Barrio Zona Nord,Alquiler,2025-09-07,Idealista
+3,1,600.0,https://www.idealista.com/inmueble/106080382/,73.0,Particular,Barrio Zona Nord,Alquiler,2025-09-07,Idealista
+3,2,245000.0,https://www.idealista.com/inmueble/109209910/,140.0,Particular,Desconocido,Venta,2025-09-07,Idealista
+0,2,2000.0,https://www.picoblanes.com/local-comercial-en-alcoy-centro-es994440.html,450.0,Picó Blanes,Centro - Zona Alta,Alquiler,2025-08-24,Picó Blanes
+3,2,330000.0,https://www.picoblanes.com/casa-chalet-en-cocentaina-cocentaina-con-vistas-es1277136.html,420.0,Picó Blanes,Cocentaina,Venta,2025-08-24,Picó Blanes
+6,2,380000.0,https://www.picoblanes.com/casa-chalet-en-cocentaina-gormaig-con-piscina-es1496754.html,400.0,Picó Blanes,Gormaig,Venta,2025-08-24,Picó Blanes
+11,7,450000.0,https://www.picoblanes.com/edificio-en-alcoy-el-cami-con-garaje-es1557983.html,550.0,Picó Blanes,El Cami,Venta,2025-08-24,Picó Blanes
+3,2,180000.0,https://www.picoblanes.com/atico-en-alcoy-ensanche-con-ascensor-es1597642.html,100.0,Picó Blanes,Barrio Eixample,Venta,2025-08-24,Picó Blanes
+0,0,900.0,https://www.picoblanes.com/local-comercial-en-alcoy-norte-es823662.html,205.0,Picó Blanes,Barrio Zona Nord,Alquiler,2025-08-24,Picó Blanes
+0,0,428.0,https://www.picoblanes.com/local-comercial-en-alcoy-ensanche-es1177748.html,98.0,Picó Blanes,Barrio Eixample,Alquiler,2025-08-24,Picó Blanes
+0,0,8000.0,https://www.picoblanes.com/garaje-parking-en-alcoy-ensanche-con-garaje-es1334698.html,Desconocido,Picó Blanes,Barrio Eixample,Venta,2025-08-24,Picó Blanes
+0,0,650.0,https://www.picoblanes.com/local-comercial-en-alcoy-ensanche-es1173263.html,100.0,Picó Blanes,Barrio Eixample,Alquiler,2025-08-24,Picó Blanes
+0,1,50000.0,https://www.picoblanes.com/local-comercial-en-alcoy-el-cami-es1117823.html,113.0,Picó Blanes,El Cami,Venta,2025-08-24,Picó Blanes
+4,2,235000.0,https://www.picoblanes.com/casa-chalet-en-alcoy-baradello-con-piscina-es1548748.html,170.0,Picó Blanes,Barrio Batoi - Sargento - Baradello,Venta,2025-08-24,Picó Blanes
+0,0,175000.0,https://www.picoblanes.com/edificio-en-alcoy-viaducto-es1334869.html,751.0,Picó Blanes,Viaducto,Venta,2025-08-24,Picó Blanes
+0,0,90000.0,https://www.picoblanes.com/parcela-en-cocentaina-gormaig-es823608.html,1232.0,Picó Blanes,Gormaig,Venta,2025-08-24,Picó Blanes
+4,2,161000.0,https://www.picoblanes.com/casa-adosada-en-cocentaina-cocentaina-con-vistas-es1273096.html,186.0,Picó Blanes,Cocentaina,Venta,2025-08-24,Picó Blanes
+0,0,90000.0,https://www.picoblanes.com/edificio-en-alcoy-centro-es1059288.html,579.0,Picó Blanes,Centro - Zona Alta,Venta,2025-08-24,Picó Blanes
+5,2,147000.0,https://www.picoblanes.com/piso-en-alcoy-ensanche-con-ascensor-es1610658.html,130.0,Picó Blanes,Barrio Eixample,Venta,2025-08-24,Picó Blanes
+0,0,110000.0,https://www.picoblanes.com/nave-en-alcoy-batoy-es1173250.html,1000.0,Picó Blanes,Barrio Batoi - Sargento - Baradello,Venta,2025-08-24,Picó Blanes
+0,3,900.0,https://www.picoblanes.com/local-comercial-en-alcoy-centro-es1043052.html,350.0,Picó Blanes,Centro - Zona Alta,Alquiler,2025-08-24,Picó Blanes
+3,2,165000.0,https://www.picoblanes.com/piso-en-alcoy-el-cami-con-ascensor-es1205407.html,140.0,Picó Blanes,El Cami,Venta,2025-08-24,Picó Blanes
+0,2,2000.0,https://www.picoblanes.com/oficina-en-alcoy-centro-es994441.html,405.0,Picó Blanes,Centro - Zona Alta,Alquiler,2025-08-24,Picó Blanes
+0,0,50000.0,https://www.picoblanes.com/local-comercial-en-alcoy-ensanche-es945951.html,135.0,Picó Blanes,Barrio Eixample,Venta,2025-08-24,Picó Blanes
+0,0,400.0,https://www.picoblanes.com/local-comercial-en-alcoy-norte-es1539069.html,90.0,Picó Blanes,Barrio Zona Nord,Alquiler,2025-08-24,Picó Blanes
+6,3,750000.0,https://www.picoblanes.com/casa-chalet-en-alcoy-viaducto-con-piscina-es1558869.html,611.0,Picó Blanes,Viaducto,Venta,2025-08-24,Picó Blanes
+0,0,12000.0,https://www.picoblanes.com/garaje-parking-en-alcoy-ensanche-con-garaje-es874546.html,Desconocido,Picó Blanes,Barrio Eixample,Venta,2025-08-24,Picó Blanes
+5,4,560000.0,https://www.picoblanes.com/casa-chalet-en-baneres-banyeres-con-piscina-es1540421.html,450.0,Picó Blanes,Banyeres,Venta,2025-08-24,Picó Blanes
+4,3,175000.0,https://www.picoblanes.com/casa-adosada-en-cocentaina-cocentaina-con-garaje-es881509.html,141.0,Picó Blanes,Cocentaina,Venta,2025-08-24,Picó Blanes
+0,0,60000.0,https://www.picoblanes.com/local-comercial-en-alcoy-santa-rosa-es1137248.html,120.0,Picó Blanes,Barrio Santa Rosa,Venta,2025-08-24,Picó Blanes
+0,0,550000.0,https://www.picoblanes.com/parcela-en-alcoy-beniata-es833857.html,5738.0,Picó Blanes,Beniata,Venta,2025-08-24,Picó Blanes
+0,0,68000.0,https://www.picoblanes.com/local-comercial-en-alcoy-norte-es1539068.html,90.0,Picó Blanes,Barrio Zona Nord,Venta,2025-08-24,Picó Blanes
+0,0,165000.0,https://www.picoblanes.com/nave-en-cocentaina-els-algars-es1177763.html,490.0,Picó Blanes,Els Algars,Venta,2025-08-24,Picó Blanes
+0,0,90000.0,https://www.picoblanes.com/local-comercial-en-alcoy-norte-es1111700.html,90.0,Picó Blanes,Barrio Zona Nord,Venta,2025-08-24,Picó Blanes
+0,0,500.0,https://www.picoblanes.com/local-comercial-en-alcoy-ensanche-es1256853.html,110.0,Picó Blanes,Barrio Eixample,Alquiler,2025-08-24,Picó Blanes
+0,2,88000.0,https://www.picoblanes.com/local-comercial-en-alcoy-norte-con-ascensor-es1395170.html,159.0,Picó Blanes,Barrio Zona Nord,Venta,2025-08-24,Picó Blanes
+0,2,160000.0,https://www.picoblanes.com/local-comercial-en-alcoy-santa-rosa-es1029865.html,550.0,Picó Blanes,Barrio Santa Rosa,Venta,2025-08-24,Picó Blanes
+0,0,250.0,https://www.picoblanes.com/local-comercial-en-alcoy-ensanche-es1356350.html,90.0,Picó Blanes,Barrio Eixample,Alquiler,2025-08-24,Picó Blanes
+0,0,4375.0,https://www.picoblanes.com/oficina-en-alcoy-norte-es917580.html,673.0,Picó Blanes,Barrio Zona Nord,Alquiler,2025-08-24,Picó Blanes
+3,2,130000.0,https://www.picoblanes.com/piso-en-alcoy-ensanche-con-ascensor-es1557973.html,114.0,Picó Blanes,Barrio Eixample,Venta,2025-08-24,Picó Blanes
+0,2,130000.0,https://www.picoblanes.com/oficina-en-alcoy-santa-rosa-con-ascensor-es880898.html,130.0,Picó Blanes,Barrio Santa Rosa,Venta,2025-08-24,Picó Blanes
+4,2,190000.0,https://www.picoblanes.com/piso-en-alcoy-ensanche-con-ascensor-es1488438.html,285.0,Picó Blanes,Barrio Eixample,Venta,2025-08-24,Picó Blanes
+0,0,45000.0,https://www.picoblanes.com/local-comercial-en-alcoy-centro-es1235308.html,260.0,Picó Blanes,Centro - Zona Alta,Venta,2025-08-24,Picó Blanes
+0,0,99000.0,https://www.picoblanes.com/local-comercial-en-alcoy-norte-es1273107.html,130.0,Picó Blanes,Barrio Zona Nord,Venta,2025-08-24,Picó Blanes
+0,0,450.0,https://www.picoblanes.com/local-comercial-en-alcoy-santa-rosa-es1618164.html,120.0,Picó Blanes,Barrio Santa Rosa,Alquiler,2025-08-24,Picó Blanes
+0,0,170000.0,https://www.picoblanes.com/local-comercial-en-alcoy-norte-es851765.html,160.0,Picó Blanes,Barrio Zona Nord,Venta,2025-08-24,Picó Blanes
+0,0,175000.0,https://www.picoblanes.com/oficina-en-alcoy-ensanche-con-ascensor-es841208.html,185.0,Picó Blanes,Barrio Eixample,Venta,2025-08-24,Picó Blanes
+4,4,425000.0,https://www.picoblanes.com/casa-chalet-en-muro-de-alcoy-muro-con-piscina-es1599092.html,329.0,Picó Blanes,Muro,Venta,2025-08-24,Picó Blanes
+0,0,70000.0,https://www.picoblanes.com/local-comercial-en-alcoy-ensanche-es1452093.html,207.0,Picó Blanes,Barrio Eixample,Venta,2025-08-24,Picó Blanes
+0,0,12000.0,https://www.picoblanes.com/garaje-parking-en-alcoy-ensanche-con-garaje-es1054478.html,Desconocido,Picó Blanes,Barrio Eixample,Venta,2025-08-24,Picó Blanes
+2,2,150000.0,https://www.picoblanes.com/piso-en-alcoy-centro-con-ascensor-es841615.html,183.0,Picó Blanes,Centro - Zona Alta,Venta,2025-08-24,Picó Blanes
+0,0,185000.0,https://www.picoblanes.com/local-comercial-en-alcoy-santa-rosa-es1542016.html,100.0,Picó Blanes,Barrio Santa Rosa,Venta,2025-08-24,Picó Blanes
+0,0,900.0,https://www.picoblanes.com/local-comercial-en-alcoy-norte-es1575679.html,308.0,Picó Blanes,Barrio Zona Nord,Alquiler,2025-08-24,Picó Blanes
+3,3,280000.0,https://www.picoblanes.com/casa-adosada-en-alcoy-viaducto-con-vistas-es824738.html,234.0,Picó Blanes,Viaducto,Venta,2025-08-24,Picó Blanes
+3,2,120000.0,https://www.picoblanes.com/piso-en-alcoy-santa-rosa-con-ascensor-es1087300.html,106.0,Picó Blanes,Barrio Santa Rosa,Venta,2025-08-24,Picó Blanes
+0,0,80000.0,https://www.picoblanes.com/local-comercial-en-alcoy-norte-es823743.html,103.0,Picó Blanes,Barrio Zona Nord,Venta,2025-08-24,Picó Blanes
+3,3,190000.0,https://www.picoblanes.com/atico-en-cocentaina-cocentaina-con-ascensor-es1379497.html,160.0,Picó Blanes,Cocentaina,Venta,2025-08-24,Picó Blanes
+0,0,150000.0,https://www.picoblanes.com/local-comercial-en-alcoy-ensanche-es1167832.html,150.0,Picó Blanes,Barrio Eixample,Alquiler,2025-08-24,Picó Blanes
+4,2,190000.0,https://www.picoblanes.com/atico-en-alcoy-ensanche-con-ascensor-es1488458.html,285.0,Picó Blanes,Barrio Eixample,Venta,2025-08-24,Picó Blanes
+4,1,200000.0,https://www.picoblanes.com/casa-chalet-en-cocentaina-cocentaina-con-piscina-es1167566.html,70.0,Picó Blanes,Cocentaina,Venta,2025-08-24,Picó Blanes
+0,0,450.0,https://www.picoblanes.com/local-comercial-en-alcoy-ensanche-es1539092.html,218.0,Picó Blanes,Barrio Eixample,Alquiler,2025-08-24,Picó Blanes
+0,2,70000.0,https://www.picoblanes.com/local-comercial-en-alcoy-norte-con-garaje-es822968.html,175.0,Picó Blanes,Barrio Zona Nord,Venta,2025-08-24,Picó Blanes
+4,3,290000.0,https://www.picoblanes.com/casa-chalet-en-alcoy-el-cami-con-piscina-es774487.html,400.0,Picó Blanes,El Cami,Venta,2025-08-24,Picó Blanes
+0,0,150000.0,https://www.picoblanes.com/local-comercial-en-alcoy-ensanche-es1053009.html,191.0,Picó Blanes,Barrio Eixample,Venta,2025-08-24,Picó Blanes
+0,0,180000.0,https://www.picoblanes.com/local-comercial-en-alcoy-centro-es1127358.html,218.0,Picó Blanes,Centro - Zona Alta,Venta,2025-08-24,Picó Blanes
+0,0,550.0,https://www.picoblanes.com/local-comercial-en-alcoy-norte-es823705.html,101.0,Picó Blanes,Barrio Zona Nord,Alquiler,2025-08-24,Picó Blanes
+4,2,170000.0,https://www.picoblanes.com/piso-en-alcoy-ensanche-con-ascensor-es1430008.html,150.0,Picó Blanes,Barrio Eixample,Venta,2025-08-24,Picó Blanes
+0,0,502200.0,https://www.picoblanes.com/casa-chalet-en-alcoy-centro-es1504170.html,505.0,Picó Blanes,Centro - Zona Alta,Venta,2025-08-24,Picó Blanes
+3,2,120000.0,https://www.picoblanes.com/piso-en-alcoy-centro-con-vistas-es894552.html,80.0,Picó Blanes,Centro - Zona Alta,Venta,2025-08-24,Picó Blanes
+0,1,60000.0,https://www.picoblanes.com/local-comercial-en-alcoy-ensanche-es1298958.html,80.0,Picó Blanes,Barrio Eixample,Venta,2025-08-24,Picó Blanes
+0,1,50000.0,https://www.picoblanes.com/oficina-en-alcoy-santa-rosa-es1000816.html,110.0,Picó Blanes,Barrio Santa Rosa,Venta,2025-08-24,Picó Blanes
+3,2,148000.0,https://www.picoblanes.com/piso-en-alcoy-ensanche-con-ascensor-es1621356.html,111.0,Picó Blanes,Barrio Eixample,Venta,2025-08-24,Picó Blanes
+0,0,165000.0,https://www.picoblanes.com/nave-en-alcoy-el-cami-es797287.html,522.0,Picó Blanes,El Cami,Venta,2025-08-24,Picó Blanes
+0,0,60000.0,https://www.picoblanes.com/local-comercial-en-alcoy-norte-es977992.html,135.0,Picó Blanes,Barrio Zona Nord,Venta,2025-08-24,Picó Blanes
+0,1,150000.0,https://www.picoblanes.com/local-comercial-en-alcoy-ensanche-es1187368.html,209.0,Picó Blanes,Barrio Eixample,Venta,2025-08-24,Picó Blanes
+4,3,399000.0,https://www.picoblanes.com/piso-en-alcoy-centro-con-ascensor-es1105414.html,314.0,Picó Blanes,Centro - Zona Alta,Venta,2025-08-24,Picó Blanes
+4,2,165000.0,https://www.picoblanes.com/piso-en-alcoy-ensanche-con-ascensor-es1164744.html,174.0,Picó Blanes,Barrio Eixample,Venta,2025-08-24,Picó Blanes
+0,0,1200.0,https://www.picoblanes.com/oficina-en-alcoy-norte-con-garaje-es1029850.html,195.0,Picó Blanes,Barrio Zona Nord,Alquiler,2025-08-24,Picó Blanes
+0,0,13700.0,https://www.picoblanes.com/garaje-parking-en-alcoy-ensanche-con-garaje-es1059244.html,13.0,Picó Blanes,Barrio Eixample,Venta,2025-08-24,Picó Blanes
+0,0,250000.0,https://www.picoblanes.com/parcela-en-alcoy-norte-es843518.html,1400.0,Picó Blanes,Barrio Zona Nord,Venta,2025-08-24,Picó Blanes
+0,1,750.0,https://www.picoblanes.com/local-comercial-en-alcoy-norte-es833214.html,230.0,Picó Blanes,Barrio Zona Nord,Alquiler,2025-08-24,Picó Blanes
+0,0,190000.0,https://www.picoblanes.com/nave-en-alcoy-cotes-baixes-es965789.html,900.0,Picó Blanes,Cotes Baixes,Venta,2025-08-24,Picó Blanes
+0,0,115000.0,https://www.picoblanes.com/local-comercial-en-alcoy-norte-es917618.html,145.0,Picó Blanes,Barrio Zona Nord,Venta,2025-08-24,Picó Blanes
+0,0,50000.0,https://www.picoblanes.com/local-comercial-en-alcoy-norte-es894502.html,138.0,Picó Blanes,Barrio Zona Nord,Venta,2025-08-24,Picó Blanes
+0,0,165000.0,https://www.picoblanes.com/edificio-en-alcoy-centro-es1164373.html,450.0,Picó Blanes,Centro - Zona Alta,Venta,2025-08-24,Picó Blanes
+0,0,800.0,https://www.picoblanes.com/local-comercial-en-alcoy-centro-es1375357.html,218.0,Picó Blanes,Centro - Zona Alta,Alquiler,2025-08-24,Picó Blanes
+2,1,72000.0,https://www.picoblanes.com/piso-en-alcoy-santa-rosa-es1559533.html,60.0,Picó Blanes,Barrio Santa Rosa,Venta,2025-08-24,Picó Blanes
+5,1,190000.0,https://www.picoblanes.com/casa-chalet-en-cocentaina-cocentaina-con-vistas-es1425314.html,225.0,Picó Blanes,Cocentaina,Venta,2025-08-24,Picó Blanes
+0,0,800000.0,https://www.picoblanes.com/local-comercial-en-alcoy-ensanche-es1556090.html,800.0,Picó Blanes,Barrio Eixample,Venta,2025-08-24,Picó Blanes
+0,0,38000.0,https://www.picoblanes.com/local-comercial-en-alcoy-ensanche-es1053016.html,120.0,Picó Blanes,Barrio Eixample,Venta,2025-08-24,Picó Blanes
+4,2,180000.0,https://www.picoblanes.com/piso-en-alcoy-ensanche-con-ascensor-es1452109.html,140.0,Picó Blanes,Barrio Eixample,Venta,2025-08-24,Picó Blanes
+0,0,48000.0,https://www.picoblanes.com/local-comercial-en-alcoy-ensanche-es1243298.html,138.0,Picó Blanes,Barrio Eixample,Venta,2025-08-24,Picó Blanes
+0,0,78000.0,https://www.picoblanes.com/local-comercial-en-alcoy-santa-rosa-es1234941.html,253.0,Picó Blanes,Barrio Santa Rosa,Venta,2025-08-24,Picó Blanes
+0,0,75000.0,https://www.picoblanes.com/local-comercial-en-alcoy-norte-es894500.html,250.0,Picó Blanes,Barrio Zona Nord,Venta,2025-08-24,Picó Blanes
+0,0,1400.0,https://www.picoblanes.com/local-comercial-en-alcoy-el-cami-es1317627.html,547.0,Picó Blanes,El Cami,Alquiler,2025-08-24,Picó Blanes
+0,1,650.0,https://www.picoblanes.com/oficina-en-alcoy-ensanche-con-ascensor-es1526193.html,170.0,Picó Blanes,Barrio Eixample,Alquiler,2025-08-24,Picó Blanes
+0,2,800.0,https://www.picoblanes.com/oficina-en-alcoy-santa-rosa-con-ascensor-es880899.html,130.0,Picó Blanes,Barrio Santa Rosa,Alquiler,2025-08-24,Picó Blanes
+5,3,400000.0,https://www.picoblanes.com/casa-chalet-en-cocentaina-els-algars-con-piscina-es1625913.html,412.0,Picó Blanes,Els Algars,Venta,2025-08-24,Picó Blanes
+0,0,800.0,https://www.picoblanes.com/local-comercial-en-alcoy-ensanche-es965479.html,215.0,Picó Blanes,Barrio Eixample,Alquiler,2025-08-24,Picó Blanes
+0,0,180000.0,https://www.picoblanes.com/local-comercial-en-alcoy-ensanche-es1099075.html,140.0,Picó Blanes,Barrio Eixample,Venta,2025-08-24,Picó Blanes
+0,0,80000.0,https://www.picoblanes.com/local-comercial-en-alcoy-norte-es823707.html,101.0,Picó Blanes,Barrio Zona Nord,Venta,2025-08-24,Picó Blanes
+0,2,130000.0,https://www.picoblanes.com/piso-en-alcoy-santa-rosa-con-ascensor-es1592123.html,130.0,Picó Blanes,Barrio Santa Rosa,Venta,2025-08-24,Picó Blanes
+5,1,225000.0,https://www.picoblanes.com/oficina-en-alcoy-centro-con-vistas-es774710.html,130.0,Picó Blanes,Centro - Zona Alta,Venta,2025-08-24,Picó Blanes
+0,0,800.0,https://www.picoblanes.com/oficina-en-alcoy-centro-es1595974.html,Desconocido,Picó Blanes,Centro - Zona Alta,Alquiler,2025-08-24,Picó Blanes
+0,0,40000.0,https://www.picoblanes.com/oficina-en-alcoy-centro-es1561715.html,69.0,Picó Blanes,Centro - Zona Alta,Venta,2025-08-24,Picó Blanes
+0,1,130000.0,https://www.picoblanes.com/oficina-en-alcoy-ensanche-con-ascensor-es1526191.html,170.0,Picó Blanes,Barrio Eixample,Venta,2025-08-24,Picó Blanes
+0,0,300000.0,https://www.picoblanes.com/nave-en-alcoy-cotes-baixes-es824697.html,1000.0,Picó Blanes,Cotes Baixes,Venta,2025-08-24,Picó Blanes
+0,1,1500.0,https://www.picoblanes.com/oficina-en-alcoy-norte-es1030101.html,230.0,Picó Blanes,Barrio Zona Nord,Alquiler,2025-08-24,Picó Blanes
+0,0,450.0,https://www.picoblanes.com/local-comercial-en-alcoy-norte-es1618166.html,255.0,Picó Blanes,Barrio Zona Nord,Alquiler,2025-08-24,Picó Blanes
+6,3,460000.0,https://www.picoblanes.com/casa-chalet-en-alcoy-montesol-con-piscina-es1395169.html,250.0,Picó Blanes,Montesol,Venta,2025-08-24,Picó Blanes
+3,2,150000.0,https://www.picoblanes.com/piso-en-alcoy-santa-rosa-con-ascensor-es1563617.html,106.0,Picó Blanes,Barrio Santa Rosa,Venta,2025-08-24,Picó Blanes
+3,2,124000.0,https://www.picoblanes.com/piso-en-alcoy-norte-con-ascensor-es1557367.html,98.0,Picó Blanes,Barrio Zona Nord,Venta,2025-08-24,Picó Blanes
+3,2,400000.0,https://www.picoblanes.com/casa-chalet-en-cocentaina-gormaig-con-piscina-es1251679.html,280.0,Picó Blanes,Gormaig,Venta,2025-08-24,Picó Blanes
+0,0,195000.0,https://www.picoblanes.com/parcela-en-alcoy-beniata-es919385.html,1708.0,Picó Blanes,Beniata,Venta,2025-08-24,Picó Blanes
+0,0,85000.0,https://www.picoblanes.com/local-comercial-en-alcoy-ensanche-es1093547.html,204.0,Picó Blanes,Barrio Eixample,Venta,2025-08-24,Picó Blanes
+0,0,89000.0,https://www.picoblanes.com/local-comercial-en-alcoy-viaducto-con-garaje-es1106936.html,432.0,Picó Blanes,Viaducto,Venta,2025-08-24,Picó Blanes
+0,0,86000.0,https://www.picoblanes.com/local-comercial-en-alcoy-santa-rosa-es1085717.html,125.0,Picó Blanes,Barrio Santa Rosa,Venta,2025-08-24,Picó Blanes
+4,1,150000.0,https://www.picoblanes.com/piso-en-alcoy-ensanche-con-ascensor-es1526092.html,144.0,Picó Blanes,Barrio Eixample,Venta,2025-08-24,Picó Blanes
+4,2,187500.0,https://www.picoblanes.com/piso-en-alcoy-norte-con-ascensor-es1299065.html,180.0,Picó Blanes,Barrio Zona Nord,Venta,2025-08-24,Picó Blanes
+0,0,13000.0,https://www.picoblanes.com/garaje-parking-en-alcoy-ensanche-con-garaje-es919389.html,Desconocido,Picó Blanes,Barrio Eixample,Venta,2025-08-24,Picó Blanes
+0,2,300.0,https://www.picoblanes.com/oficina-en-alcoy-centro-con-ascensor-es988192.html,50.0,Picó Blanes,Centro - Zona Alta,Alquiler,2025-08-24,Picó Blanes
+2,1,75000.0,https://www.picoblanes.com/piso-en-alcoy-centro-es1547608.html,75.0,Picó Blanes,Centro - Zona Alta,Venta,2025-08-24,Picó Blanes
+0,0,300.0,https://www.picoblanes.com/oficina-en-alcoy-santa-rosa-con-ascensor-es827995.html,90.0,Picó Blanes,Barrio Santa Rosa,Alquiler,2025-08-24,Picó Blanes
+0,0,80000.0,https://www.picoblanes.com/local-comercial-en-alcoy-ensanche-es1111761.html,130.0,Picó Blanes,Barrio Eixample,Venta,2025-08-24,Picó Blanes
+0,0,175000.0,https://www.picoblanes.com/nave-en-alcoy-viaducto-es1334712.html,751.0,Picó Blanes,Viaducto,Venta,2025-08-24,Picó Blanes
+5,2,70000.0,https://www.picoblanes.com/casa-de-pueblo-en-benilloba-pueblos-de-la-montantildea-con-vistas-es1047132.html,288.0,Picó Blanes,Pueblos De La Montaña,Venta,2025-08-24,Picó Blanes
+0,0,88000.0,https://www.picoblanes.com/local-comercial-en-alcoy-el-cami-es932120.html,196.0,Picó Blanes,El Cami,Venta,2025-08-24,Picó Blanes
+0,0,1000.0,https://www.picoblanes.com/local-comercial-en-alcoy-centro-es1566315.html,160.0,Picó Blanes,Centro - Zona Alta,Alquiler,2025-08-24,Picó Blanes
+4,2,185000.0,https://www.picoblanes.com/casa-adosada-en-cocentaina-cocentaina-con-garaje-es1610650.html,140.0,Picó Blanes,Cocentaina,Venta,2025-08-24,Picó Blanes
+0,0,70000.0,https://www.picoblanes.com/local-comercial-en-alcoy-ensanche-es1572886.html,125.0,Picó Blanes,Barrio Eixample,Venta,2025-08-24,Picó Blanes
+0,0,85000.0,https://www.picoblanes.com/local-comercial-en-alcoy-centro-es1273095.html,164.0,Picó Blanes,Centro - Zona Alta,Venta,2025-08-24,Picó Blanes
+0,0,500.0,https://www.picoblanes.com/local-comercial-en-alcoy-santa-rosa-es1082623.html,120.0,Picó Blanes,Barrio Santa Rosa,Alquiler,2025-08-24,Picó Blanes
+0,0,750.0,https://www.picoblanes.com/local-comercial-en-alcoy-ensanche-es1000794.html,150.0,Picó Blanes,Barrio Eixample,Alquiler,2025-08-24,Picó Blanes
+0,0,100000.0,https://www.picoblanes.com/parcela-en-cocentaina-gormaig-es1186467.html,1439.0,Picó Blanes,Gormaig,Venta,2025-08-24,Picó Blanes
+3,2,145000.0,https://www.picoblanes.com/piso-en-alcoy-el-cami-con-ascensor-es1362744.html,120.0,Picó Blanes,El Cami,Venta,2025-08-24,Picó Blanes
+2,1,600.0,https://www.picoblanes.com/piso-en-alcoy-centro-con-vistas-es1574647.html,70.0,Picó Blanes,Centro - Zona Alta,Alquiler,2025-08-24,Picó Blanes
+0,0,80000.0,https://www.picoblanes.com/oficina-en-alcoy-norte-con-ascensor-es849800.html,60.0,Picó Blanes,Barrio Zona Nord,Venta,2025-08-24,Picó Blanes
+3,1,45000.0,https://www.picoblanes.com/piso-en-alcoy-centro-con-vistas-es1334738.html,90.0,Picó Blanes,Centro - Zona Alta,Venta,2025-08-24,Picó Blanes
+3,2,170000.0,https://www.picoblanes.com/piso-en-alcoy-norte-con-ascensor-es1548692.html,122.0,Picó Blanes,Barrio Zona Nord,Venta,2025-08-24,Picó Blanes
+6,3,350000.0,https://www.picoblanes.com/casa-chalet-en-muro-de-alcoy-muro-con-piscina-es1550181.html,300.0,Picó Blanes,Muro,Venta,2025-08-24,Picó Blanes
+5,2,340000.0,https://www.picoblanes.com/casa-chalet-en-cocentaina-cocentaina-con-piscina-es795894.html,230.0,Picó Blanes,Cocentaina,Venta,2025-08-24,Picó Blanes
+5,3,325000.0,https://www.picoblanes.com/casa-adosada-en-benimarfull-pueblos-de-la-montantildea-con-vistas-es1153805.html,315.0,Picó Blanes,Pueblos De La Montaña,Venta,2025-08-24,Picó Blanes
+0,0,3000.0,https://www.picoblanes.com/local-comercial-en-alcoy-ensanche-es1557699.html,800.0,Picó Blanes,Barrio Eixample,Alquiler,2025-08-24,Picó Blanes
+0,0,60000.0,https://www.picoblanes.com/local-comercial-en-alcoy-centro-es1047088.html,110.0,Picó Blanes,Centro - Zona Alta,Venta,2025-08-24,Picó Blanes
+7,3,350000.0,https://www.picoblanes.com/casa-chalet-en-alcoy-ensanche-con-piscina-es1623079.html,300.0,Picó Blanes,Barrio Eixample,Venta,2025-08-24,Picó Blanes
+0,0,110000.0,https://www.picoblanes.com/local-comercial-en-alcoy-ensanche-es961247.html,337.0,Picó Blanes,Barrio Eixample,Venta,2025-08-24,Picó Blanes
+0,0,70000.0,https://www.picoblanes.com/local-comercial-en-alcoy-ensanche-es989276.html,260.0,Picó Blanes,Barrio Eixample,Venta,2025-08-24,Picó Blanes
+3,2,185000.0,https://www.picoblanes.com/piso-en-alcoy-centro-con-ascensor-es1511047.html,125.0,Picó Blanes,Centro - Zona Alta,Venta,2025-08-24,Picó Blanes
+5,1,79000.0,https://www.picoblanes.com/piso-en-alcoy-centro-es1298942.html,142.0,Picó Blanes,Centro - Zona Alta,Venta,2025-08-24,Picó Blanes
+3,2,375000.0,https://www.picoblanes.com/casa-adosada-en-alcoy-ensanche-con-piscina-es1495088.html,251.0,Picó Blanes,Barrio Eixample,Venta,2025-08-24,Picó Blanes
+0,0,1000.0,https://www.picoblanes.com/nave-en-alcoy-beniata-es1277066.html,413.0,Picó Blanes,Beniata,Alquiler,2025-08-24,Picó Blanes
+0,0,350.0,https://www.picoblanes.com/local-comercial-en-alcoy-batoy-es824775.html,120.0,Picó Blanes,Barrio Batoi - Sargento - Baradello,Alquiler,2025-08-24,Picó Blanes
+0,0,500.0,https://www.picoblanes.com/local-comercial-en-alcoy-santa-rosa-es775367.html,170.0,Picó Blanes,Barrio Santa Rosa,Alquiler,2025-08-24,Picó Blanes
+3,2,72000.0,https://www.picoblanes.com/piso-en-alcoy-ensanche-con-vistas-es1600592.html,90.0,Picó Blanes,Barrio Eixample,Venta,2025-08-24,Picó Blanes
+2,1,140000.0,https://www.picoblanes.com/atico-en-alcoy-ensanche-con-ascensor-es1085734.html,95.0,Picó Blanes,Barrio Eixample,Venta,2025-08-24,Picó Blanes
+3,1,120000.0,https://www.picoblanes.com/piso-en-alcoy-el-cami-es1319652.html,100.0,Picó Blanes,El Cami,Venta,2025-08-24,Picó Blanes
+0,0,150000.0,https://www.picoblanes.com/local-comercial-en-alcoy-ensanche-es965477.html,215.0,Picó Blanes,Barrio Eixample,Venta,2025-08-24,Picó Blanes
+0,0,99000.0,https://www.picoblanes.com/nave-en-alcoy-viaducto-es832692.html,312.0,Picó Blanes,Viaducto,Venta,2025-08-24,Picó Blanes
+0,0,700.0,https://www.picoblanes.com/local-comercial-en-alcoy-el-cami-es1319447.html,187.0,Picó Blanes,El Cami,Alquiler,2025-08-24,Picó Blanes
+6,3,415000.0,https://www.picoblanes.com/casa-chalet-en-cocentaina-cocentaina-con-piscina-es1010952.html,505.0,Picó Blanes,Cocentaina,Venta,2025-08-24,Picó Blanes
+4,3,630000.0,https://www.picoblanes.com/casa-chalet-en-cocentaina-gormaig-con-piscina-es1254437.html,227.0,Picó Blanes,Gormaig,Venta,2025-08-24,Picó Blanes
+5,1,125000.0,https://www.picoblanes.com/piso-en-alcoy-ensanche-con-garaje-es1251685.html,159.0,Picó Blanes,Barrio Eixample,Venta,2025-08-24,Picó Blanes
+2,1,160000.0,https://www.picoblanes.com/atico-en-alcoy-centro-con-ascensor-es1264761.html,92.0,Picó Blanes,Centro - Zona Alta,Venta,2025-08-24,Picó Blanes
+0,0,120000.0,https://www.picoblanes.com/nave-en-alcoy-beniata-es772543.html,400.0,Picó Blanes,Beniata,Venta,2025-08-24,Picó Blanes
+0,0,350.0,https://www.picoblanes.com/local-comercial-en-alcoy-santa-rosa-es1485708.html,138.0,Picó Blanes,Barrio Santa Rosa,Alquiler,2025-08-24,Picó Blanes
+0,0,70520.0,https://www.picoblanes.com/local-comercial-en-alcoy-ensanche-es1539090.html,218.0,Picó Blanes,Barrio Eixample,Venta,2025-08-24,Picó Blanes
+0,0,35000.0,https://www.picoblanes.com/local-comercial-en-alcoy-santa-rosa-es917375.html,47.0,Picó Blanes,Barrio Santa Rosa,Venta,2025-08-24,Picó Blanes
+3,3,238000.0,https://www.picoblanes.com/piso-en-alcoy-centro-con-ascensor-es1626086.html,200.0,Picó Blanes,Centro - Zona Alta,Venta,2025-08-24,Picó Blanes
+3,2,180000.0,https://www.picoblanes.com/piso-en-alcoy-norte-con-ascensor-es1625726.html,111.0,Picó Blanes,Barrio Zona Nord,Venta,2025-08-24,Picó Blanes
+0,0,700.0,https://www.picoblanes.com/local-comercial-en-alcoy-viaducto-con-garaje-es1106939.html,432.0,Picó Blanes,Viaducto,Alquiler,2025-08-24,Picó Blanes
+7,4,361305.0,https://www.picoblanes.com/piso-en-alcoy-ensanche-con-vistas-es1500378.html,440.0,Picó Blanes,Barrio Eixample,Venta,2025-08-24,Picó Blanes
+4,2,270000.0,https://www.picoblanes.com/casa-chalet-en-muro-de-alcoy-muro-con-vistas-es1598370.html,210.0,Picó Blanes,Muro,Venta,2025-08-24,Picó Blanes
+0,0,150000.0,https://www.picoblanes.com/local-comercial-en-alcoy-ensanche-es1000793.html,150.0,Picó Blanes,Barrio Eixample,Venta,2025-08-24,Picó Blanes
+3,1,200000.0,https://www.picoblanes.com/casa-chalet-en-planes-pueblos-de-la-montantildea-con-piscina-es1562452.html,132.0,Picó Blanes,Pueblos De La Montaña,Venta,2025-08-24,Picó Blanes
+0,0,500.0,https://www.picoblanes.com/local-comercial-en-alcoy-centro-es1239237.html,120.0,Picó Blanes,Centro - Zona Alta,Alquiler,2025-08-24,Picó Blanes
+0,0,700.0,https://www.picoblanes.com/local-comercial-en-alcoy-el-cami-es1044500.html,150.0,Picó Blanes,El Cami,Alquiler,2025-08-24,Picó Blanes
+0,0,85000.0,https://www.picoblanes.com/local-comercial-en-alcoy-norte-es1070471.html,129.0,Picó Blanes,Barrio Zona Nord,Venta,2025-08-24,Picó Blanes
+0,1,80000.0,https://www.picoblanes.com/local-comercial-en-alcoy-ensanche-es841275.html,130.0,Picó Blanes,Barrio Eixample,Venta,2025-08-24,Picó Blanes
+0,0,2500.0,https://www.picoblanes.com/local-comercial-en-alcoy-santa-rosa-es1201834.html,177.0,Picó Blanes,Barrio Santa Rosa,Alquiler,2025-08-24,Picó Blanes
+0,0,89000.0,https://www.picoblanes.com/oficina-en-alcoy-centro-con-ascensor-es1601739.html,180.0,Picó Blanes,Centro - Zona Alta,Venta,2025-08-24,Picó Blanes
+0,0,28000.0,https://www.picoblanes.com/oficina-en-alcoy-santa-rosa-es819421.html,30.0,Picó Blanes,Barrio Santa Rosa,Venta,2025-08-24,Picó Blanes
+0,2,250000.0,https://www.picoblanes.com/nave-en-alcoy-beniata-es937590.html,650.0,Picó Blanes,Beniata,Venta,2025-08-24,Picó Blanes
+0,0,80000.0,https://www.picoblanes.com/local-comercial-en-alcoy-norte-es851762.html,190.0,Picó Blanes,Barrio Zona Nord,Venta,2025-08-24,Picó Blanes
+3,2,140000.0,https://www.picoblanes.com/piso-en-alcoy-centro-con-ascensor-es1362111.html,104.0,Picó Blanes,Centro - Zona Alta,Venta,2025-08-24,Picó Blanes
+6,3,395000.0,https://www.picoblanes.com/casa-chalet-en-alcoy-viaducto-con-piscina-es1228892.html,575.0,Picó Blanes,Viaducto,Venta,2025-08-24,Picó Blanes
+5,3,249000.0,https://www.picoblanes.com/piso-en-alcoy-centro-con-ascensor-es799744.html,250.0,Picó Blanes,Centro - Zona Alta,Venta,2025-08-24,Picó Blanes
+0,0,502200.0,https://www.picoblanes.com/edificio-en-alcoy-centro-es1499967.html,505.0,Picó Blanes,Centro - Zona Alta,Venta,2025-08-24,Picó Blanes
+0,1,22000.0,https://www.picoblanes.com/oficina-en-alcoy-ensanche-es804800.html,25.0,Picó Blanes,Barrio Eixample,Venta,2025-08-24,Picó Blanes
+0,0,800.0,https://www.picoblanes.com/local-comercial-en-alcoy-norte-es1334749.html,270.0,Picó Blanes,Barrio Zona Nord,Alquiler,2025-08-24,Picó Blanes
+3,2,450000.0,https://www.picoblanes.com/casa-chalet-en-alcoy-sargento-con-piscina-es807529.html,118.0,Picó Blanes,Barrio Batoi - Sargento - Baradello,Venta,2025-08-24,Picó Blanes
+4,3,195000.0,https://www.picoblanes.com/casa-de-pueblo-en-planes-pueblos-de-la-montantildea-con-vistas-es1000827.html,338.0,Picó Blanes,Pueblos De La Montaña,Venta,2025-08-24,Picó Blanes
+0,0,180000.0,https://www.picoblanes.com/local-comercial-en-muro-de-alcoy-muro-es1600792.html,530.0,Picó Blanes,Muro,Venta,2025-08-24,Picó Blanes
+0,0,27500.0,https://www.picoblanes.com/local-comercial-en-alcoy-ensanche-es955107.html,116.0,Picó Blanes,Barrio Eixample,Venta,2025-08-24,Picó Blanes
+2,2,275000.0,https://www.picoblanes.com/casa-chalet-en-benimarfull-pueblos-de-la-montantildea-con-piscina-es1598091.html,170.0,Picó Blanes,Pueblos De La Montaña,Venta,2025-08-24,Picó Blanes
+6,3,600000.0,https://www.picoblanes.com/casa-chalet-en-cocentaina-gormaig-con-vistas-es1356457.html,518.0,Picó Blanes,Gormaig,Venta,2025-08-24,Picó Blanes
+0,0,390000.0,https://www.picoblanes.com/nave-en-alcoy-viaducto-es771927.html,789.0,Picó Blanes,Viaducto,Venta,2025-08-24,Picó Blanes
+0,0,2000.0,https://www.picoblanes.com/nave-en-alcoy-beniata-es975279.html,963.0,Picó Blanes,Beniata,Alquiler,2025-08-24,Picó Blanes
+0,2,225000.0,https://www.picoblanes.com/nave-en-muro-de-alcoy-muro-es827131.html,1380.0,Picó Blanes,Muro,Venta,2025-08-24,Picó Blanes
+0,0,350.0,https://www.picoblanes.com/oficina-en-alcoy-santa-rosa-con-ascensor-es827987.html,90.0,Picó Blanes,Barrio Santa Rosa,Alquiler,2025-08-24,Picó Blanes
+0,0,45000.0,https://www.picoblanes.com/local-comercial-en-alcoy-el-cami-es1557941.html,106.0,Picó Blanes,El Cami,Venta,2025-08-24,Picó Blanes
+5,1,150000.0,https://www.picoblanes.com/casa-adosada-en-cocentaina-cocentaina-con-vistas-es1551462.html,186.0,Picó Blanes,Cocentaina,Venta,2025-08-24,Picó Blanes
+3,2,140000.0,https://www.picoblanes.com/piso-en-alcoy-centro-con-ascensor-es1046987.html,120.0,Picó Blanes,Centro - Zona Alta,Venta,2025-08-24,Picó Blanes
+0,0,150000.0,https://www.picoblanes.com/local-comercial-en-alcoy-norte-es1575675.html,308.0,Picó Blanes,Barrio Zona Nord,Venta,2025-08-24,Picó Blanes
+0,1,49000.0,https://www.picoblanes.com/local-comercial-en-alcoy-viaducto-es1153814.html,79.0,Picó Blanes,Viaducto,Venta,2025-08-24,Picó Blanes
+6,2,250000.0,https://www.picoblanes.com/casa-de-pueblo-en-muro-de-alcoy-con-vistas-es850918.html,295.0,Picó Blanes,Muro,Venta,2025-08-24,Picó Blanes
+2,1,800.0,https://www.picoblanes.com/piso-en-alcoy-batoy-con-garaje-es1625881.html,160.0,Picó Blanes,Barrio Batoi - Sargento - Baradello,Alquiler,2025-08-24,Picó Blanes
+0,0,225000.0,https://www.picoblanes.com/solar-urbano-en-alcoy-centro-es1618335.html,325.0,Picó Blanes,Centro - Zona Alta,Venta,2025-08-24,Picó Blanes
+4,2,185000.0,https://www.picoblanes.com/piso-en-alcoy-norte-con-ascensor-es1594973.html,135.0,Picó Blanes,Barrio Zona Nord,Venta,2025-08-24,Picó Blanes
+11,4,400000.0,https://www.picoblanes.com/casa-chalet-en-alcoy-santa-rosa-con-piscina-es1299174.html,800.0,Picó Blanes,Barrio Santa Rosa,Venta,2025-08-24,Picó Blanes
+0,2,85000.0,https://www.picoblanes.com/local-comercial-en-alcoy-norte-es1334704.html,237.0,Picó Blanes,Barrio Zona Nord,Venta,2025-08-24,Picó Blanes
+5,2,85000.0,https://www.picoblanes.com/casa-de-pueblo-en-benilloba-pueblos-de-la-montantildea-con-vistas-es1574322.html,265.0,Picó Blanes,Pueblos De La Montaña,Venta,2025-08-24,Picó Blanes
+0,0,85000.0,https://www.picoblanes.com/local-comercial-en-alcoy-ensanche-es1177747.html,98.0,Picó Blanes,Barrio Eixample,Venta,2025-08-24,Picó Blanes
+0,2,120000.0,https://www.picoblanes.com/local-comercial-en-alcoy-norte-es943124.html,445.0,Picó Blanes,Barrio Zona Nord,Venta,2025-08-24,Picó Blanes
+5,3,250000.0,https://www.picoblanes.com/casa-chalet-en-alcocer-de-planes-pueblos-de-la-montantildea-con-vistas-es812843.html,300.0,Picó Blanes,Pueblos De La Montaña,Venta,2025-08-24,Picó Blanes
+0,0,1000.0,https://www.picoblanes.com/local-comercial-en-alcoy-el-cami-es1044497.html,900.0,Picó Blanes,El Cami,Alquiler,2025-08-24,Picó Blanes
+0,0,99000.0,https://www.picoblanes.com/local-comercial-en-alcoy-norte-es1116926.html,129.0,Picó Blanes,Barrio Zona Nord,Alquiler,2025-08-24,Picó Blanes
+3,1,200000.0,https://www.picoblanes.com/casa-chalet-en-cocentaina-cocentaina-con-vistas-es1599613.html,130.0,Picó Blanes,Cocentaina,Venta,2025-08-24,Picó Blanes
+5,2,259000.0,https://www.picoblanes.com/atico-en-alcoy-centro-con-ascensor-es943064.html,230.0,Picó Blanes,Centro - Zona Alta,Venta,2025-08-24,Picó Blanes
+0,0,110000.0,https://www.picoblanes.com/oficina-en-alcoy-norte-con-ascensor-es1046989.html,146.0,Picó Blanes,Barrio Zona Nord,Venta,2025-08-24,Picó Blanes
+0,0,800.0,https://www.picoblanes.com/local-comercial-en-alcoy-centro-es1602280.html,Desconocido,Picó Blanes,Centro - Zona Alta,Alquiler,2025-08-24,Picó Blanes
+0,1,1100.0,https://www.picoblanes.com/oficina-en-alcoy-centro-con-ascensor-es988188.html,178.0,Picó Blanes,Centro - Zona Alta,Alquiler,2025-08-24,Picó Blanes
+0,0,425000.0,https://www.picoblanes.com/local-comercial-en-alcoy-santa-rosa-es823613.html,210.0,Picó Blanes,Barrio Santa Rosa,Venta,2025-08-24,Picó Blanes
+0,0,600.0,https://www.picoblanes.com/local-comercial-en-alcoy-norte-es946416.html,90.0,Picó Blanes,Barrio Zona Nord,Alquiler,2025-08-24,Picó Blanes
+5,2,175000.0,https://www.picoblanes.com/casa-chalet-en-muro-de-alcoy-muro-con-piscina-es1367018.html,114.0,Picó Blanes,Muro,Venta,2025-08-24,Picó Blanes
+0,0,180000.0,https://www.picoblanes.com/local-comercial-en-cocentaina-cocentaina-es1599667.html,550.0,Picó Blanes,Cocentaina,Venta,2025-08-24,Picó Blanes
+6,3,92000.0,https://www.picoblanes.com/casa-chalet-en-gorga-pueblos-de-la-montana-con-vistas-es872320.html,167.0,Picó Blanes,Pueblos De La Montaña,Venta,2025-08-24,Picó Blanes
+4,2,250000.0,https://www.picoblanes.com/edificio-en-alcoy-centro-con-vistas-es1556354.html,600.0,Picó Blanes,Centro - Zona Alta,Venta,2025-08-24,Picó Blanes
+0,0,18000.0,https://www.picoblanes.com/oficina-en-alcoy-santa-rosa-es1046999.html,24.0,Picó Blanes,Barrio Santa Rosa,Venta,2025-08-24,Picó Blanes
+0,1,110000.0,https://www.picoblanes.com/oficina-en-alcoy-ensanche-con-ascensor-es822958.html,160.0,Picó Blanes,Barrio Eixample,Venta,2025-08-24,Picó Blanes
+0,0,596790.0,https://www.picoblanes.com/parcela-en-muro-de-alcoy-muro-es1193105.html,3141.0,Picó Blanes,Muro,Venta,2025-08-24,Picó Blanes
+3,1,800.0,https://www.picoblanes.com/piso-en-alcoy-el-cami-con-ascensor-es1623096.html,120.0,Picó Blanes,El Cami,Alquiler,2025-08-24,Picó Blanes
+0,1,150000.0,https://www.picoblanes.com/local-comercial-en-alcoy-norte-es833206.html,230.0,Picó Blanes,Barrio Zona Nord,Venta,2025-08-24,Picó Blanes
+0,0,75000.0,https://www.picoblanes.com/local-comercial-en-alcoy-ensanche-es823606.html,103.0,Picó Blanes,Barrio Eixample,Venta,2025-08-24,Picó Blanes
+4,2,420000.0,https://www.picoblanes.com/casa-chalet-en-muro-de-alcoy-muro-con-ascensor-es1547577.html,393.0,Picó Blanes,Muro,Venta,2025-08-24,Picó Blanes
+0,1,120000.0,https://www.picoblanes.com/nave-en-alcoy-cotes-baixes-es817857.html,343.0,Picó Blanes,Cotes Baixes,Venta,2025-08-24,Picó Blanes
+7,1,80000.0,https://www.picoblanes.com/casa-de-pueblo-en-quatretondeta-con-vistas-es1136084.html,580.0,Picó Blanes,Desconocido,Venta,2025-08-24,Picó Blanes
+5,3,280000.0,https://www.picoblanes.com/casa-chalet-en-cocentaina-cocentaina-con-piscina-es1557951.html,172.0,Picó Blanes,Cocentaina,Venta,2025-08-24,Picó Blanes
+0,0,42000.0,https://www.picoblanes.com/local-comercial-en-alcoy-batoy-es1177339.html,120.0,Picó Blanes,Barrio Batoi - Sargento - Baradello,Venta,2025-08-24,Picó Blanes
+2,1,115000.0,https://www.picoblanes.com/piso-en-alcoy-santa-rosa-con-ascensor-es1618313.html,75.0,Picó Blanes,Barrio Santa Rosa,Venta,2025-08-24,Picó Blanes
+0,1,800.0,https://www.picoblanes.com/local-comercial-en-alcoy-norte-con-vistas-es1171152.html,100.0,Picó Blanes,Barrio Zona Nord,Alquiler,2025-08-24,Picó Blanes
+0,0,55000.0,https://www.picoblanes.com/local-comercial-en-alcoy-norte-es1135732.html,255.0,Picó Blanes,Barrio Zona Nord,Venta,2025-08-24,Picó Blanes
+7,2,300000.0,https://www.picoblanes.com/casa-chalet-en-muro-de-alcoy-muro-con-piscina-es1054477.html,310.0,Picó Blanes,Muro,Venta,2025-08-24,Picó Blanes
+5,2,295000.0,https://www.picoblanes.com/piso-en-alcoy-ensanche-con-ascensor-es1001000.html,200.0,Picó Blanes,Barrio Eixample,Venta,2025-08-24,Picó Blanes
+4,2,160000.0,https://www.picoblanes.com/piso-en-alcoy-ensanche-con-ascensor-es818796.html,178.0,Picó Blanes,Barrio Eixample,Venta,2025-08-24,Picó Blanes
+0,0,295000.0,https://www.picoblanes.com/nave-en-muro-de-alcoy-muro-es937098.html,400.0,Picó Blanes,Muro,Venta,2025-08-24,Picó Blanes
+0,1,45000.0,https://www.picoblanes.com/local-comercial-en-alcoy-centro-con-garaje-es841622.html,60.0,Picó Blanes,Centro - Zona Alta,Venta,2025-08-24,Picó Blanes
+0,0,150000.0,https://www.picoblanes.com/local-comercial-en-alcoy-norte-es1618170.html,205.0,Picó Blanes,Barrio Zona Nord,Venta,2025-08-24,Picó Blanes
+2,1,600.0,https://www.picoblanes.com/piso-en-alcoy-santa-rosa-es1621321.html,70.0,Picó Blanes,Barrio Santa Rosa,Alquiler,2025-09-06,Picó Blanes
+3,3,430000.0,https://www.picoblanes.com/atico-en-alcoy-ensanche-con-vistas-es823878.html,320.0,Picó Blanes,Barrio Eixample,Venta,2025-09-06,Picó Blanes
+3,1,85000.0,https://www.picoblanes.com/piso-en-alcoy-ensanche-con-vistas-es1638268.html,80.0,Picó Blanes,Barrio Eixample,Venta,2025-09-06,Picó Blanes
+3,1,600.0,https://www.picoblanes.com/piso-en-alcoy-santa-rosa-es1621323.html,70.0,Picó Blanes,Barrio Santa Rosa,Alquiler,2025-09-06,Picó Blanes
+3,2,700.0,https://www.picoblanes.com/piso-en-alcoy-santa-rosa-con-ascensor-es1029843.html,110.0,Picó Blanes,Barrio Santa Rosa,Alquiler,2025-09-06,Picó Blanes
+2,1,520.0,https://www.picoblanes.com/piso-en-alcoy-santa-rosa-es1621318.html,70.0,Picó Blanes,Barrio Santa Rosa,Alquiler,2025-09-06,Picó Blanes
+3,3,430000.0,https://www.picoblanes.com/piso-en-alcoy-ensanche-con-vistas-es1143502.html,320.0,Picó Blanes,Barrio Eixample,Venta,2025-09-06,Picó Blanes
+4,2,1000.0,https://www.picoblanes.com/piso-en-alcoy-centro-con-ascensor-es1633391.html,140.0,Picó Blanes,Centro - Zona Alta,Alquiler,2025-09-06,Picó Blanes
+3,1,580.0,https://www.picoblanes.com/piso-en-alcoy-santa-rosa-es1621319.html,70.0,Picó Blanes,Barrio Santa Rosa,Alquiler,2025-09-06,Picó Blanes
+3,1,70000.0,https://www.picoblanes.com/piso-en-alcoy-norte-con-vistas-es1557852.html,86.0,Picó Blanes,Barrio Zona Nord,Venta,2025-09-06,Picó Blanes
+2,1,800.0,https://www.picoblanes.com/casa-adosada-en-alcoy-batoy-con-garaje-es1633226.html,160.0,Picó Blanes,Barrio Batoi - Sargento - Baradello,Alquiler,2025-09-06,Picó Blanes
+2,1,620.0,https://www.picoblanes.com/piso-en-alcoy-santa-rosa-es1621317.html,70.0,Picó Blanes,Barrio Santa Rosa,Alquiler,2025-09-06,Picó Blanes
