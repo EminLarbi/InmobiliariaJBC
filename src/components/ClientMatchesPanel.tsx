@@ -41,18 +41,29 @@ export function ClientMatchesPanel({ properties, matches }: ClientMatchesPanelPr
   const clientGroups = useMemo(() => {
     if (!matches.length) return {};
 
+    console.log('Total matches:', matches.length);
+    console.log('Sample matches:', matches.slice(0, 3));
+
     // Agrupar matches por cliente
     const groups = matches.reduce((acc, match) => {
-      if (!acc[match.client_name]) {
-        acc[match.client_name] = {
+      const clientKey = match.client_id || match.client_name;
+      if (!acc[clientKey]) {
+        acc[clientKey] = {
           client_id: match.client_id,
           client_name: match.client_name,
           matches: []
         };
       }
-      acc[match.client_name].matches.push(match);
+      acc[clientKey].matches.push(match);
       return acc;
     }, {} as Record<string, { client_id: string; client_name: string; matches: ClientMatch[] }>);
+
+    console.log('Client groups:', Object.keys(groups));
+    console.log('Groups detail:', Object.entries(groups).map(([key, group]) => ({
+      key,
+      client_name: group.client_name,
+      matches_count: group.matches.length
+    })));
 
     // Ordenar matches dentro de cada cliente por rank_client
     Object.values(groups).forEach(group => {
