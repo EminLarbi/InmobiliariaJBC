@@ -1,5 +1,5 @@
 import React from 'react';
-import { ExternalLink, Home, Bath, Square, MapPin, Calendar, User, Globe } from 'lucide-react';
+import { ExternalLink, Chrome as Home, Bath, Square, MapPin, Calendar, User, Globe } from 'lucide-react';
 import { Badge } from './ui/badge';
 import { Card, CardContent } from './ui/card';
 import { Button } from './ui/button';
@@ -280,8 +280,9 @@ export function PropertyTable({ properties, viewMode = 'cards', maxItems = 30 }:
         </div>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-        {currentProperties.map((property) => {
+      <div className="space-y-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+          {currentProperties.map((property) => {
           const operationStyle = getOperationStyle(property.tipo_de_operacion);
           
           return (
@@ -362,8 +363,9 @@ export function PropertyTable({ properties, viewMode = 'cards', maxItems = 30 }:
             </Card>
           );
         })}
+        </div>
+        <PaginationControls />
       </div>
-      <PaginationControls />
     </div>
   );
 }
