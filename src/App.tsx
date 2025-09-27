@@ -105,6 +105,7 @@ function AppContent() {
 	const [viewMode, setViewMode] = useState<ViewMode>("list");
 	const [activeTab, setActiveTab] = useState<string>("home");
 	const [csvLoading, setCsvLoading] = useState(false);
+	const [matchesLoading, setMatchesLoading] = useState(false);
 
 	const handleNavigation = (tab: string) => {
 		setActiveTab(tab);
@@ -277,9 +278,80 @@ function AppContent() {
 		});
 	};
 
+	// Función para cargar matches CSV desde el servidor
+	const loadMatchesFromServer = async () => {
+		try {
+			setMatchesLoading(true);
+			const response = await fetch(DEFAULT_MATCHES_CSV_URL);
+			if (!response.ok) {
+				throw new Error(`Error al cargar matches: ${response.status}`);
+			}
+
+			const csvText = await response.text();
+			const matches = parseMatchesCSV(csvText);
+
+			setLoadedMatches(matches);
+		} catch (error) {
+			console.warn('No se pudo cargar matches.csv, usando datos vacíos');
+			setLoadedMatches([]);
+		} finally {
+			setMatchesLoading(false);
+		}
+	};
+
+	// Función para parsear CSV de matches
+	const parseMatchesCSV = (csvText: string): ClientMatch[] => {
+		const lines = csvText.trim().split("\n");
+		if (lines.length < 2) return [];
+
+		const headers = lines[0].split(",").map(h => h.trim().replace(/"/g, ""));
+		
+		const matches: ClientMatch[] = [];
+		
+		for (let i = 1; i < lines.length; i++) {
+			const values = lines[i].split(",").map(v => v.trim().replace(/"/g, ""));
+			
+			if (values.length < headers.length) continue;
+
+			try {
+				const match: ClientMatch = {
+					client_id: values[headers.indexOf('client_id')] || '',
+					client_name: values[headers.indexOf('client_name')] || '',
+					property_id: values[headers.indexOf('property_id')] || '',
+					link_inmueble: values[headers.indexOf('link_inmueble')] || '',
+					web: values[headers.indexOf('web')] || '',
+					anunciante: values[headers.indexOf('anunciante')] || '',
+					zona: values[headers.indexOf('zona')] || '',
+					operacion: values[headers.indexOf('operacion')] || '',
+					tipo: values[headers.indexOf('tipo')] || '',
+					habitaciones: parseInt(values[headers.indexOf('habitaciones')]) || 0,
+					banos: parseInt(values[headers.indexOf('banos')]) || 0,
+					m2: parseFloat(values[headers.indexOf('m2')]) || 0,
+					precio: parseFloat(values[headers.indexOf('precio')]) || 0,
+					score: parseFloat(values[headers.indexOf('score')]) || 0,
+					s_price: parseFloat(values[headers.indexOf('s_price')]) || 0,
+					s_area: parseFloat(values[headers.indexOf('s_area')]) || 0,
+					s_rooms: parseFloat(values[headers.indexOf('s_rooms')]) || 0,
+					s_baths: parseFloat(values[headers.indexOf('s_baths')]) || 0,
+					s_operation: parseFloat(values[headers.indexOf('s_operation')]) || 0,
+					zone_match: values[headers.indexOf('zone_match')] || '',
+					type_match: values[headers.indexOf('type_match')] || '',
+					rank_client: parseInt(values[headers.indexOf('rank_client')]) || 0,
+				};
+
+				matches.push(match);
+			} catch (err) {
+				console.warn(`Error procesando fila de matches ${i + 1}:`, err);
+			}
+		}
+
+		return matches;
+	};
+
 	// Cargar CSV automáticamente al iniciar la aplicación
 	useEffect(() => {
 		loadCSVFromServer();
+		loadMatchesFromServer();
 	}, []);
 
 	// Seleccionar la fuente de datos activa
