@@ -43,6 +43,8 @@ interface ClientMatchesPanelProps {
 export function ClientMatchesPanel({ properties, matches }: ClientMatchesPanelProps) {
   const [searchTerm, setSearchTerm] = useState('');
   const [expandedClient, setExpandedClient] = useState<string>('');
+  const [currentPage, setCurrentPage] = useState(1);
+  const maxClientsPerPage = 30;
 
   // Filtrar matches por término de búsqueda
   const filteredMatches = useMemo(() => {
@@ -81,9 +83,20 @@ export function ClientMatchesPanel({ properties, matches }: ClientMatchesPanelPr
     return groups;
   }, [filteredMatches]);
 
+  // Paginación de clientes
+  const clientList = Object.values(clientGroups);
+  const totalPages = Math.ceil(clientList.length / maxClientsPerPage);
+  const startIndex = (currentPage - 1) * maxClientsPerPage;
+  const endIndex = startIndex + maxClientsPerPage;
+  const currentClients = clientList.slice(startIndex, endIndex);
+
+  // Reset página cuando cambian los filtros
+  React.useEffect(() => {
+    setCurrentPage(1);
+  }, [searchTerm]);
+
   // Memoizar cálculos pesados
   const stats = useMemo(() => {
-    const clientList = Object.values(clientGroups);
     const totalClients = clientList.length;
     const totalMatches = filteredMatches.length;
     const avgMatchesPerClient = totalClients > 0 ? totalMatches / totalClients : 0;
@@ -95,7 +108,8 @@ export function ClientMatchesPanel({ properties, matches }: ClientMatchesPanelPr
       avgMatchesPerClient,
       highQualityMatches
     };
-  }, [clientGroups, filteredMatches]);
+  }, [clientList, filteredMatches]);
+
   const formatPrice = (price: number) => {
     return new Intl.NumberFormat('es-ES', {
       style: 'currency',
@@ -231,6 +245,59 @@ export function ClientMatchesPanel({ properties, matches }: ClientMatchesPanelPr
         </CardContent>
       </Card>
 
+      {/* Controles de paginación */}
+      {totalPages > 1 && (
+        <div className="flex items-center justify-between">
+          <div className="text-sm text-muted-foreground">
+            Página {currentPage} de {totalPages} • Mostrando {startIndex + 1}-{Math.min(endIndex, clientList.length)} de {clientList.length} clientes
+          </div>
+          <div className="flex items-center gap-2">
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => setCurrentPage(prev => Math.max(1, prev - 1))}
+              disabled={currentPage === 1}
+            >
+              Anterior
+            </Button>
+            <div className="flex items-center gap-1">
+              {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
+                let pageNum;
+                if (totalPages <= 5) {
+                  pageNum = i + 1;
+                } else if (currentPage <= 3) {
+                  pageNum = i + 1;
+                } else if (currentPage >= totalPages - 2) {
+                  pageNum = totalPages - 4 + i;
+                } else {
+                  pageNum = currentPage - 2 + i;
+                }
+                
+                return (
+                  <Button
+                    key={pageNum}
+                    variant={currentPage === pageNum ? "default" : "outline"}
+                    size="sm"
+                    onClick={() => setCurrentPage(pageNum)}
+                    className="w-8 h-8 p-0"
+                  >
+                    {pageNum}
+                  </Button>
+                );
+              })}
+            </div>
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => setCurrentPage(prev => Math.min(totalPages, prev + 1))}
+              disabled={currentPage === totalPages}
+            >
+              Siguiente
+            </Button>
+          </div>
+        </div>
+      )}
+
       {/* Lista de Clientes y sus Matches */}
       <Card>
         <CardHeader>
@@ -244,7 +311,7 @@ export function ClientMatchesPanel({ properties, matches }: ClientMatchesPanelPr
         </CardHeader>
         <CardContent>
           <Accordion type="single" collapsible className="w-full" value={expandedClient} onValueChange={setExpandedClient}>
-            {Object.values(clientGroups).map((client) => (
+            {currentClients.map((client) => (
               <AccordionItem key={client.client_id} value={client.client_id}>
                 <AccordionTrigger className="hover:no-underline">
                   <div className="flex items-center justify-between w-full mr-4">

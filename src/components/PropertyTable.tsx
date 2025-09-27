@@ -29,9 +29,23 @@ export interface Property {
 interface PropertyTableProps {
   properties: Property[];
   viewMode?: 'cards' | 'list';
+  maxItems?: number;
 }
 
-export function PropertyTable({ properties, viewMode = 'cards' }: PropertyTableProps) {
+export function PropertyTable({ properties, viewMode = 'cards', maxItems = 30 }: PropertyTableProps) {
+  const [currentPage, setCurrentPage] = React.useState(1);
+  
+  // Calcular paginación
+  const totalPages = Math.ceil(properties.length / maxItems);
+  const startIndex = (currentPage - 1) * maxItems;
+  const endIndex = startIndex + maxItems;
+  const currentProperties = properties.slice(startIndex, endIndex);
+  
+  // Reset página cuando cambian las propiedades
+  React.useEffect(() => {
+    setCurrentPage(1);
+  }, [properties.length]);
+
   const formatPrice = (price: number) => {
     return new Intl.NumberFormat('es-ES', {
       style: 'currency',
@@ -71,7 +85,7 @@ export function PropertyTable({ properties, viewMode = 'cards' }: PropertyTableP
     }
   };
 
-  if (properties.length === 0) {
+  if (currentProperties.length === 0 && properties.length === 0) {
     return (
       <Card className="border-dashed">
         <div className="text-center py-12">
@@ -87,29 +101,86 @@ export function PropertyTable({ properties, viewMode = 'cards' }: PropertyTableP
     );
   }
 
+  const PaginationControls = () => {
+    if (totalPages <= 1) return null;
+    
+    return (
+      <div className="flex items-center justify-between mt-6">
+        <div className="text-sm text-muted-foreground">
+          Mostrando {startIndex + 1}-{Math.min(endIndex, properties.length)} de {properties.length} propiedades
+        </div>
+        <div className="flex items-center gap-2">
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => setCurrentPage(prev => Math.max(1, prev - 1))}
+            disabled={currentPage === 1}
+          >
+            Anterior
+          </Button>
+          <div className="flex items-center gap-1">
+            {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
+              let pageNum;
+              if (totalPages <= 5) {
+                pageNum = i + 1;
+              } else if (currentPage <= 3) {
+                pageNum = i + 1;
+              } else if (currentPage >= totalPages - 2) {
+                pageNum = totalPages - 4 + i;
+              } else {
+                pageNum = currentPage - 2 + i;
+              }
+              
+              return (
+                <Button
+                  key={pageNum}
+                  variant={currentPage === pageNum ? "default" : "outline"}
+                  size="sm"
+                  onClick={() => setCurrentPage(pageNum)}
+                  className="w-8 h-8 p-0"
+                >
+                  {pageNum}
+                </Button>
+              );
+            })}
+          </div>
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => setCurrentPage(prev => Math.min(totalPages, prev + 1))}
+            disabled={currentPage === totalPages}
+          >
+            Siguiente
+          </Button>
+        </div>
+      </div>
+    );
+  };
+
   // Vista de lista (tabla)
   if (viewMode === 'list') {
     return (
-      <Card>
-        <CardContent className="p-0">
-          <div className="overflow-x-auto">
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead className="w-20">Tipo</TableHead>
-                  <TableHead>Ubicación</TableHead>
-                  <TableHead className="text-right">Precio</TableHead>
-                  <TableHead className="text-center">Hab</TableHead>
-                  <TableHead className="text-center">Baños</TableHead>
-                  <TableHead className="text-center">m²</TableHead>
-                  <TableHead className="min-w-32">Anunciante</TableHead>
-                  <TableHead>Web</TableHead>
-                  <TableHead>Fecha</TableHead>
-                  <TableHead className="w-16"></TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {properties.map((property) => {
+      <div className="space-y-4">
+        <Card>
+          <CardContent className="p-0">
+            <div className="overflow-x-auto">
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead className="w-20">Tipo</TableHead>
+                    <TableHead>Ubicación</TableHead>
+                    <TableHead className="text-right">Precio</TableHead>
+                    <TableHead className="text-center">Hab</TableHead>
+                    <TableHead className="text-center">Baños</TableHead>
+                    <TableHead className="text-center">m²</TableHead>
+                    <TableHead className="min-w-32">Anunciante</TableHead>
+                    <TableHead>Web</TableHead>
+                    <TableHead>Fecha</TableHead>
+                    <TableHead className="w-16"></TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {currentProperties.map((property) => {
                   const operationStyle = getOperationStyle(property.tipo_de_operacion);
                   
                   return (
@@ -181,11 +252,13 @@ export function PropertyTable({ properties, viewMode = 'cards' }: PropertyTableP
                     </TableRow>
                   );
                 })}
-              </TableBody>
-            </Table>
-          </div>
-        </CardContent>
-      </Card>
+                </TableBody>
+              </Table>
+            </div>
+          </CardContent>
+        </Card>
+        <PaginationControls />
+      </div>
     );
   }
 
@@ -207,8 +280,9 @@ export function PropertyTable({ properties, viewMode = 'cards' }: PropertyTableP
         </div>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-        {properties.map((property) => {
+      <div className="space-y-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+          {currentProperties.map((property) => {
           const operationStyle = getOperationStyle(property.tipo_de_operacion);
           
           return (
@@ -289,6 +363,8 @@ export function PropertyTable({ properties, viewMode = 'cards' }: PropertyTableP
             </Card>
           );
         })}
+        </div>
+        <PaginationControls />
       </div>
     </div>
   );
