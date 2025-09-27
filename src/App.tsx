@@ -306,20 +306,20 @@ function AppContent() {
 
 		// Eliminar BOM si existe y preparar headers
 		const headerLine = lines[0].replace(/^\uFEFF/, "");
-		const headers = headerLine.split(";").map(h => h.trim().replace(/"/g, ""));
+		const headers = headerLine.split(",").map(h => h.trim().replace(/"/g, ""));
 		
 		console.log('CSV Headers:', headers);
 		
 		const matches: ClientMatch[] = [];
 		
 		for (let i = 1; i < lines.length; i++) {
-			const values = lines[i].split(";").map(v => v.trim().replace(/"/g, ""));
+			const values = lines[i].split(",").map(v => v.trim().replace(/"/g, ""));
 			
 			if (values.length < headers.length) continue;
 
 			try {
-				// Mapeo directo por posición basado en el formato del CSV
-				// Formato: client_id,client_name,property_id,link_inmueble,web,anunciante,zona,operacion,tipo,habitaciones,banos,m2,precio,score,s_price,s_area,s_rooms,s_baths,s_operation,zone_match,type_match,rank_client
+				// Mapeo según el formato real del CSV
+				// client_id,client_name,property_id,link_inmueble,web,anunciante,zona,operacion,tipo,habitaciones,banos,m2,precio,score,s_price,s_area,s_rooms,s_baths,s_operation,zone_match,type_match,rank_client
 
 				const match: ClientMatch = {
 					client_id: values[0] || '',
@@ -346,12 +346,16 @@ function AppContent() {
 					rank_client: parseInt(values[21]) || 0,
 				};
 
-				matches.push(match);
+				// Validar que los datos son válidos antes de añadir
+				if (match.client_id && match.client_name && match.property_id) {
+					matches.push(match);
+				}
 			} catch (err) {
 				console.warn(`Error procesando fila de matches ${i + 1}:`, err);
 			}
 		}
 
+		console.log(`Matches cargados: ${matches.length}`);
 
 		return matches;
 	};
