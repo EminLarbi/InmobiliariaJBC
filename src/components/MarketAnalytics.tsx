@@ -22,19 +22,9 @@ import {
   AreaChart,
   Area
 } from 'recharts';
-import { 
-  TrendingUp, 
-  TrendingDown, 
-  DollarSign, 
-  Home, 
-  MapPin, 
-  Users, 
-  Calendar,
-  AlertCircle,
-  BarChart3,
-  PieChart as PieChartIcon,
-  Activity,
-  Award
+import { TrendingUp, TrendingDown, DollarSign, Chrome as Home, MapPin, Users, Calendar, CircleAlert as AlertCircle, ChartBar as BarChart3, ChartPie as PieChartIcon, Activity, Award } from 'lucide-react'ye,
+  Star,
+  Building
 } from 'lucide-react';
 
 interface MarketAnalyticsProps {
@@ -50,6 +40,19 @@ export function MarketAnalytics({ properties }: MarketAnalyticsProps) {
     // Filtrar propiedades por tipo para análisis específicos
     const ventaProperties = properties.filter(p => p.tipo_de_operacion === 'Venta');
     const alquilerProperties = properties.filter(p => p.tipo_de_operacion === 'Alquiler');
+    
+    // Función para identificar zonas estratégicas
+    const isStrategicZone = (zona: string) => {
+      const lowerZona = zona.toLowerCase();
+      return lowerZona.includes('barr') || 
+             lowerZona.includes('centro') || 
+             lowerZona.includes('desconocido');
+    };
+
+    // Separar propiedades por zonas estratégicas
+    const strategicZoneProperties = properties.filter(p => isStrategicZone(p.zona));
+    const strategicZoneVentas = ventaProperties.filter(p => isStrategicZone(p.zona));
+    const otherZoneProperties = properties.filter(p => !isStrategicZone(p.zona));
 
     // Análisis básico (solo ventas para promedios de precios)
     const totalProperties = properties.length;
@@ -88,7 +91,8 @@ export function MarketAnalytics({ properties }: MarketAnalyticsProps) {
           ventaPrices: [],
           alquilerPrices: [],
           pricesPerM2Venta: [],
-          pricesPerM2Alquiler: []
+          pricesPerM2Alquiler: [],
+          isStrategic: isStrategicZone(property.zona)
         };
       }
       acc[property.zona].count++;
@@ -131,8 +135,13 @@ export function MarketAnalytics({ properties }: MarketAnalyticsProps) {
       minPriceVenta: data.ventaPrices.length > 0 ? Math.min(...data.ventaPrices) : 0,
       maxPriceVenta: data.ventaPrices.length > 0 ? Math.max(...data.ventaPrices) : 0,
       minPriceAlquiler: data.alquilerPrices.length > 0 ? Math.min(...data.alquilerPrices) : 0,
-      maxPriceAlquiler: data.alquilerPrices.length > 0 ? Math.max(...data.alquilerPrices) : 0
+      maxPriceAlquiler: data.alquilerPrices.length > 0 ? Math.max(...data.alquilerPrices) : 0,
+      isStrategic: data.isStrategic
     })).sort((a, b) => b.count - a.count);
+
+    // Separar zonas estratégicas para análisis especial
+    const strategicZones = zoneStats.filter(zone => zone.isStrategic);
+    const otherZones = zoneStats.filter(zone => !zone.isStrategic);
 
     // Análisis por competidores
     const competitorAnalysis = properties.reduce((acc, property) => {
@@ -145,6 +154,7 @@ export function MarketAnalytics({ properties }: MarketAnalyticsProps) {
           totalPriceAlquiler: 0,
           totalSize: 0,
           zones: new Set(),
+          strategicZones: new Set(),
           types: new Set(),
           prices: []
         };
@@ -154,6 +164,10 @@ export function MarketAnalytics({ properties }: MarketAnalyticsProps) {
       acc[property.anunciante].zones.add(property.zona);
       acc[property.anunciante].types.add(property.tipo_de_operacion);
       acc[property.anunciante].prices.push(property.precio);
+      
+      if (isStrategicZone(property.zona)) {
+        acc[property.anunciante].strategicZones.add(property.zona);
+      }
       
       if (property.tipo_de_operacion === 'Venta') {
         acc[property.anunciante].ventaCount++;
@@ -176,7 +190,9 @@ export function MarketAnalytics({ properties }: MarketAnalyticsProps) {
       avgSize: data.totalSize / data.count,
       marketShare: (data.count / totalProperties) * 100,
       zonesCount: data.zones.size,
+      strategicZonesCount: data.strategicZones.size,
       typesCount: data.types.size,
+      strategicPresence: (data.strategicZones.size / strategicZones.length) * 100,
       minPrice: Math.min(...data.prices),
       maxPrice: Math.max(...data.prices)
     })).sort((a, b) => b.count - a.count);
@@ -240,6 +256,7 @@ export function MarketAnalytics({ properties }: MarketAnalyticsProps) {
       marketShare: totalVentas > 0 ? (data.count / totalVentas) * 100 : 0
     })).sort((a, b) => a.habitaciones - b.habitaciones);
 
+    // Análisis por tipo de operación
     const operationStats = [
       {
         tipo: 'Venta',
@@ -259,6 +276,28 @@ export function MarketAnalytics({ properties }: MarketAnalyticsProps) {
       }
     ];
 
+    // Detección de oportunidades en zonas estratégicas
+    const strategicOpportunities = strategicZones.filter(zone => 
+      zone.ventaCount > 0 && // Debe tener ventas
+      zone.ventaCount < strategicZoneVentas.length * 0.15 && // Zona poco explotada
+      zone.avgPricePerM2Venta > avgPricePerM2Venta * 1.05 // Precios por encima del promedio
+    );
+
+    // Análisis de penetración en zonas estratégicas
+    const strategicZoneAnalysis = {
+      totalStrategicZones: strategicZones.length,
+      totalStrategicProperties: strategicZoneProperties.length,
+      strategicMarketShare: (strategicZoneProperties.length / totalProperties) * 100,
+      avgPriceStrategicVenta: strategicZoneVentas.length > 0 ? 
+        strategicZoneVentas.reduce((sum, p) => sum + p.precio, 0) / strategicZoneVentas.length : 0,
+      avgPricePerM2Strategic: (() => {
+        const values = strategicZoneVentas
+          .map(p => (p.metros_cuadrados && p.metros_cuadrados > 0 ? p.precio / p.metros_cuadrados : null))
+          .filter((v): v is number => typeof v === 'number' && isFinite(v));
+        return values.length > 0 ? values.reduce((s, v) => s + v, 0) / values.length : 0;
+      })()
+    };
+
     return {
       totalProperties,
       totalVentas,
@@ -269,10 +308,14 @@ export function MarketAnalytics({ properties }: MarketAnalyticsProps) {
       avgPricePerM2Alquiler,
       avgSizeVenta,
       zoneStats,
+      strategicZones,
+      otherZones,
       competitorStats,
       timeSeriesData,
       roomsStats,
-      operationStats
+      operationStats,
+      strategicOpportunities,
+      strategicZoneAnalysis
     };
   }, [properties]);
 
@@ -345,17 +388,125 @@ export function MarketAnalytics({ properties }: MarketAnalyticsProps) {
 
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Zonas Activas</CardTitle>
-            <MapPin className="h-4 w-4 text-muted-foreground" />
+            <CardTitle className="text-sm font-medium">Zonas Estratégicas</CardTitle>
+            <Star className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{analytics.zoneStats.length}</div>
+            <div className="text-2xl font-bold">{analytics.strategicZones.length}</div>
             <p className="text-xs text-muted-foreground">
-              Zonas con actividad inmobiliaria
+              {analytics.strategicZoneAnalysis.strategicMarketShare.toFixed(1)}% del mercado
             </p>
           </CardContent>
         </Card>
       </div>
+
+      {/* Análisis de Zonas Estratégicas */}
+      <Card>
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            <Star className="h-5 w-5 text-primary" />
+            Zonas Estratégicas Prioritarias
+          </CardTitle>
+          <CardDescription>
+            Análisis de zonas que contienen "Barr", "Centro" o "Desconocido" - Foco principal del negocio
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div>
+              <h4 className="font-medium mb-4">Rendimiento de Zonas Estratégicas</h4>
+              <div className="space-y-4">
+                {analytics.strategicZones.slice(0, 5).map((zone, index) => (
+                  <div key={zone.zona} className="space-y-2">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <Badge variant="default" className="bg-amber-100 text-amber-800 dark:bg-amber-900 dark:text-amber-200">
+                          <Star className="h-3 w-3 mr-1" />
+                          {zone.zona}
+                        </Badge>
+                      </div>
+                      <div className="text-right">
+                        <p className="text-sm font-medium">{zone.count} propiedades</p>
+                        <p className="text-xs text-muted-foreground">
+                          {zone.ventaCount}V • {zone.alquilerCount}A
+                        </p>
+                      </div>
+                    </div>
+                    <div className="grid grid-cols-2 gap-4 text-xs">
+                      <div>
+                        <p className="text-muted-foreground">Precio venta</p>
+                        <p className="font-medium">
+                          {zone.avgPriceVenta > 0 ? formatCurrency(zone.avgPriceVenta) : 'N/A'}
+                        </p>
+                      </div>
+                      <div>
+                        <p className="text-muted-foreground">Precio/m² venta</p>
+                        <p className="font-medium">
+                          {zone.avgPricePerM2Venta > 0 ? formatCurrency(zone.avgPricePerM2Venta) : 'N/A'}
+                        </p>
+                      </div>
+                    </div>
+                    <Progress value={zone.marketShare} className="h-2" />
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div>
+              <h4 className="font-medium mb-4">Resumen Estratégico</h4>
+              <div className="space-y-4">
+                <div className="p-4 bg-amber-50 dark:bg-amber-950/20 rounded-lg border border-amber-200 dark:border-amber-800">
+                  <div className="flex items-center gap-2 mb-2">
+                    <Building className="h-4 w-4 text-amber-600" />
+                    <span className="font-medium text-amber-800 dark:text-amber-200">Penetración Estratégica</span>
+                  </div>
+                  <div className="space-y-2 text-sm">
+                    <div className="flex justify-between">
+                      <span>Zonas cubiertas:</span>
+                      <span className="font-medium">{analytics.strategicZoneAnalysis.totalStrategicZones}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span>Propiedades totales:</span>
+                      <span className="font-medium">{analytics.strategicZoneAnalysis.totalStrategicProperties}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span>Cuota estratégica:</span>
+                      <span className="font-medium">{analytics.strategicZoneAnalysis.strategicMarketShare.toFixed(1)}%</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="p-4 bg-blue-50 dark:bg-blue-950/20 rounded-lg border border-blue-200 dark:border-blue-800">
+                  <div className="flex items-center gap-2 mb-2">
+                    <TrendingUp className="h-4 w-4 text-blue-600" />
+                    <span className="font-medium text-blue-800 dark:text-blue-200">Precios Estratégicos</span>
+                  </div>
+                  <div className="space-y-2 text-sm">
+                    <div className="flex justify-between">
+                      <span>Precio promedio venta:</span>
+                      <span className="font-medium">
+                        {formatCurrency(analytics.strategicZoneAnalysis.avgPriceStrategicVenta)}
+                      </span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span>Precio/m² promedio:</span>
+                      <span className="font-medium">
+                        {formatCurrency(analytics.strategicZoneAnalysis.avgPricePerM2Strategic)}
+                      </span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span>vs Mercado general:</span>
+                      <span className="font-medium text-green-600">
+                        +{((analytics.strategicZoneAnalysis.avgPricePerM2Strategic / analytics.avgPricePerM2Venta - 1) * 100).toFixed(1)}%
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Análisis por Zonas Generales */}
@@ -403,10 +554,10 @@ export function MarketAnalytics({ properties }: MarketAnalyticsProps) {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Users className="h-5 w-5 text-primary" />
-              Principales Competidores
+              Competidores y Presencia Estratégica
             </CardTitle>
             <CardDescription>
-              Anunciantes con mayor presencia en el mercado
+              Anunciantes principales y su penetración en zonas estratégicas
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -419,6 +570,12 @@ export function MarketAnalytics({ properties }: MarketAnalyticsProps) {
                         #{index + 1}
                       </Badge>
                       <span className="font-medium text-sm">{competitor.anunciante}</span>
+                      {competitor.strategicZonesCount > 0 && (
+                        <Badge variant="outline" className="text-xs bg-amber-50 border-amber-200 text-foreground dark:text-black">
+                          <Star className="h-3 w-3 mr-1" />
+                          {competitor.strategicZonesCount} estratégicas
+                        </Badge>
+                      )}
                     </div>
                     <div className="text-right">
                       <p className="text-sm font-medium">
@@ -429,7 +586,7 @@ export function MarketAnalytics({ properties }: MarketAnalyticsProps) {
                       </p>
                     </div>
                   </div>
-                  <div className="grid grid-cols-2 gap-2 text-xs">
+                  <div className="grid grid-cols-3 gap-2 text-xs">
                     <div>
                       <p className="text-muted-foreground">Precio venta</p>
                       <p className="font-medium">
@@ -439,6 +596,10 @@ export function MarketAnalytics({ properties }: MarketAnalyticsProps) {
                     <div>
                       <p className="text-muted-foreground">Zonas totales</p>
                       <p className="font-medium">{competitor.zonesCount}</p>
+                    </div>
+                    <div>
+                      <p className="text-muted-foreground">Penetración estratégica</p>
+                      <p className="font-medium">{competitor.strategicPresence.toFixed(1)}%</p>
                     </div>
                   </div>
                   <Progress value={competitor.marketShare} className="h-2" />
@@ -523,6 +684,55 @@ export function MarketAnalytics({ properties }: MarketAnalyticsProps) {
           </CardContent>
         </Card>
       </div>
+
+      {/* Oportunidades de Mercado en Zonas Estratégicas */}
+      <Card>
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            <Target className="h-5 w-5 text-primary" />
+            Oportunidades en Zonas Estratégicas
+          </CardTitle>
+          <CardDescription>
+            Zonas estratégicas poco explotadas con alto potencial de rentabilidad
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          {analytics.strategicOpportunities.length > 0 ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {analytics.strategicOpportunities.map((opportunity, index) => (
+                <div key={opportunity.zona} className="p-4 border rounded-lg space-y-2 bg-gradient-to-br from-amber-50 to-orange-50 dark:from-amber-950/20 dark:to-orange-950/20 border-amber-200 dark:border-amber-800">
+                  <div className="flex items-center justify-between">
+                    <h4 className="font-medium flex items-center gap-2">
+                      <Star className="h-4 w-4 text-amber-600" />
+                      {opportunity.zona}
+                    </h4>
+                    <Badge variant="secondary" className="bg-amber-100 text-amber-800 dark:bg-amber-900 dark:text-amber-200">
+                      <Zap className="h-3 w-3 mr-1" />
+                      Alta Oportunidad
+                    </Badge>
+                  </div>
+                  <div className="space-y-1 text-sm">
+                    <p><span className="text-muted-foreground">Ventas:</span> {opportunity.ventaCount}</p>
+                    <p><span className="text-muted-foreground">Precio/m² venta:</span> {formatCurrency(opportunity.avgPricePerM2Venta)}</p>
+                    <p><span className="text-muted-foreground">Cuota mercado ventas:</span> {opportunity.ventaMarketShare.toFixed(1)}%</p>
+                  </div>
+                  <div className="pt-2">
+                    <Badge variant="outline" className="text-xs bg-green-50 border-green-200 text-green-800">
+                      +{((opportunity.avgPricePerM2Venta / analytics.avgPricePerM2Venta - 1) * 100).toFixed(1)}% vs promedio
+                    </Badge>
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className="text-center py-8">
+              <Eye className="h-8 w-8 text-muted-foreground mx-auto mb-2" />
+              <p className="text-muted-foreground">No se detectaron oportunidades claras en zonas estratégicas</p>
+              <p className="text-sm text-muted-foreground mt-1">Las zonas estratégicas están bien cubiertas</p>
+            </div>
+          )}
+        </CardContent>
+      </Card>
 
       {/* Análisis de Segmentación por Tipo */}
       <Card>
