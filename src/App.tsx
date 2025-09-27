@@ -340,9 +340,6 @@ function AppContent() {
 		
 		console.log('CSV Headers:', headers);
 		
-			if (!str || str === 'null' || str === '' || str === '""') return null;
-		
-		for (let i = 1; i < lines.length; i++) {
 			const values = lines[i].split(",").map(v => v.trim().replace(/"/g, ""));
 			
 			if (values.length < headers.length) continue;
