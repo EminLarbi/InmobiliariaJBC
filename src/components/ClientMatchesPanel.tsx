@@ -5,19 +5,7 @@ import { Button } from './ui/button';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from './ui/accordion';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from './ui/table';
 import { Property } from './PropertyTable';
-import { 
-  ExternalLink, 
-  User, 
-  Home, 
-  Bath, 
-  Square, 
-  MapPin, 
-  Euro, 
-  Star,
-  TrendingUp,
-  Users,
-  Target
-} from 'lucide-react';
+import { ExternalLink, User, Chrome as Home, Bath, Square, MapPin, Euro, Star, TrendingUp, Users, Target } from 'lucide-react';
 
 export interface ClientMatch {
   client_id: string;

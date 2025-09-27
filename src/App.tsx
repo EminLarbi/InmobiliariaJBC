@@ -11,7 +11,7 @@ import {
 	getUniqueAnunciantes,
 	getUniqueTiposOperacion,
 } from "./components/mockData";
-import { Database, LayoutGrid, List, BarChart3, Users } from "lucide-react";
+import { Database, LayoutGrid, List, ChartBar as BarChart3, Users } from "lucide-react";
 import { Button } from "./components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "./components/ui/tabs";
 import { Badge } from "./components/ui/badge";
@@ -93,138 +93,6 @@ function AppContent() {
 			fechaDesde: "",
 			fechaHasta: "",
 		});
-	};
-
-	// Función para parsear matches CSV
-	const parseMatchesCSV = (csvText: string): ClientMatch[] => {
-		const lines = csvText.trim().split("\n");
-		// Eliminar BOM si existe y preparar headers
-		const headerLine = lines[0].replace(/^\uFEFF/, "");
-		const headers = headerLine
-			.split(",")
-			.map((h) => h.trim().replace(/"/g, ""));
-
-		const toInt = (v: string) => {
-			const cleaned = (v || "").replace(/[^0-9-]/g, "");
-			return parseInt(cleaned) || 0;
-		};
-
-		const toFloat = (v: string) => {
-			if (!v) return 0;
-			let s = String(v).trim();
-			s = s.replace(/[€$]/g, "").replace(/\s+/g, "");
-			const hasComma = s.includes(",");
-			const hasDot = s.includes(".");
-			if (hasComma && hasDot) {
-				s = s.replace(/\./g, "");
-				s = s.replace(/,/g, ".");
-			} else if (hasComma && !hasDot) {
-				s = s.replace(/,/g, ".");
-			}
-			s = s.replace(/[^0-9.-]/g, "");
-			const num = parseFloat(s);
-			return isNaN(num) ? 0 : num;
-		};
-
-		return lines.slice(1).map((line, index) => {
-			const values = line.split(",").map((v) => v.trim().replace(/"/g, ""));
-			const match: any = {};
-
-			headers.forEach((header, i) => {
-				const value = values[i] || "";
-
-				switch (header.toLowerCase()) {
-					case "client_id":
-						match.client_id = value;
-						break;
-					case "client_name":
-						match.client_name = value;
-						break;
-					case "property_id":
-						match.property_id = value;
-						break;
-					case "link_inmueble":
-						match.link_inmueble = value;
-						break;
-					case "web":
-						match.web = value;
-						break;
-					case "anunciante":
-						match.anunciante = value;
-						break;
-					case "zona":
-						match.zona = value;
-						break;
-					case "operacion":
-						match.operacion = value;
-						break;
-					case "tipo":
-						match.tipo = value;
-						break;
-					case "habitaciones":
-						match.habitaciones = toInt(value);
-						break;
-					case "banos":
-						match.banos = toInt(value);
-						break;
-					case "m2":
-						match.m2 = toFloat(value);
-						break;
-					case "precio":
-						match.precio = toFloat(value);
-						break;
-					case "score":
-						match.score = toFloat(value);
-						break;
-					case "s_price":
-						match.s_price = toFloat(value);
-						break;
-					case "s_area":
-						match.s_area = toFloat(value);
-						break;
-					case "s_rooms":
-						match.s_rooms = toFloat(value);
-						break;
-					case "s_baths":
-						match.s_baths = toFloat(value);
-						break;
-					case "s_operation":
-						match.s_operation = toFloat(value);
-						break;
-					case "zone_match":
-						match.zone_match = value;
-						break;
-					case "type_match":
-						match.type_match = value;
-						break;
-					case "rank_client":
-						match.rank_client = toInt(value);
-						break;
-					default:
-						match[header] = value;
-				}
-			});
-
-			return match as ClientMatch;
-		});
-	};
-
-	// Función para cargar matches CSV desde el servidor
-	const loadMatchesFromServer = async () => {
-		try {
-			const response = await fetch("/matches.csv");
-			if (!response.ok) {
-				// Si no existe el archivo, no es un error crítico
-				return;
-			}
-
-			const csvText = await response.text();
-			const matches = parseMatchesCSV(csvText);
-			setLoadedMatches(matches);
-		} catch (error) {
-			// En caso de error, simplemente no cargar matches
-			console.log("No se pudo cargar matches.csv");
-		}
 	};
 
 	// Función para cargar CSV desde el servidor
@@ -375,7 +243,6 @@ function AppContent() {
 	// Cargar CSV automáticamente al iniciar la aplicación
 	useEffect(() => {
 		loadCSVFromServer();
-		loadMatchesFromServer();
 	}, []);
 
 	// Seleccionar la fuente de datos activa
@@ -525,7 +392,7 @@ function AppContent() {
 					defaultValue='search'
 					className='w-full'
 				>
-					<TabsList className='grid w-full grid-cols-3'>
+					<TabsList className='grid w-full grid-cols-2'>
 						<TabsTrigger
 							value='search'
 							className='flex items-center gap-2'
@@ -540,13 +407,6 @@ function AppContent() {
 							<BarChart3 className='h-4 w-4' />
 							Análisis de Mercado
 						</TabsTrigger>
-						<TabsTrigger
-							value='matches'
-							className='flex items-center gap-2'
-						>
-							<Users className='h-4 w-4' />
-							Matches de Clientes
-						</TabsTrigger>
 					</TabsList>
 
 					<TabsContent
@@ -554,16 +414,6 @@ function AppContent() {
 						className='space-y-6'
 					>
 						<MarketAnalytics properties={currentProperties} />
-					</TabsContent>
-
-					<TabsContent
-						value='matches'
-						className='space-y-6'
-					>
-						<ClientMatchesPanel 
-							properties={currentProperties} 
-							matches={loadedMatches} 
-						/>
 					</TabsContent>
 
 					<TabsContent
