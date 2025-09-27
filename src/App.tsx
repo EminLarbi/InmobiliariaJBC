@@ -318,38 +318,32 @@ function AppContent() {
 			if (values.length < headers.length) continue;
 
 			try {
-				// Función helper para encontrar índice de columna
-				const getColumnIndex = (possibleNames: string[]) => {
-					for (const name of possibleNames) {
-						const index = headers.findIndex(h => h.toLowerCase().includes(name.toLowerCase()));
-						if (index !== -1) return index;
-					}
-					return -1;
-				};
+				// Mapeo directo por posición basado en el formato del CSV
+				// Formato: client_id,client_name,property_id,link_inmueble,web,anunciante,zona,operacion,tipo,habitaciones,banos,m2,precio,score,s_price,s_area,s_rooms,s_baths,s_operation,zone_match,type_match,rank_client
 
 				const match: ClientMatch = {
-					client_id: values[getColumnIndex(['client_id', 'id_cliente'])] || '',
-					client_name: values[getColumnIndex(['client_name', 'nombre_cliente', 'cliente'])] || '',
-					property_id: values[getColumnIndex(['property_id', 'id_propiedad'])] || '',
-					link_inmueble: values[getColumnIndex(['link_inmueble', 'url', 'link'])] || '',
-					web: values[getColumnIndex(['web', 'website', 'portal'])] || '',
-					anunciante: values[getColumnIndex(['anunciante', 'advertiser', 'agencia'])] || '',
-					zona: values[getColumnIndex(['zona', 'zone', 'area', 'ubicacion'])] || '',
-					operacion: values[getColumnIndex(['operacion', 'operation', 'tipo_operacion'])] || '',
-					tipo: values[getColumnIndex(['tipo', 'type', 'tipo_propiedad'])] || '',
-					habitaciones: parseInt(values[getColumnIndex(['habitaciones', 'rooms', 'bedrooms'])]) || 0,
-					banos: parseInt(values[getColumnIndex(['banos', 'baños', 'bathrooms'])]) || 0,
-					m2: parseFloat(values[getColumnIndex(['m2', 'metros', 'area', 'superficie'])]) || 0,
-					precio: parseFloat(values[getColumnIndex(['precio', 'price', 'cost'])]) || 0,
-					score: parseFloat(values[getColumnIndex(['score', 'puntuacion', 'rating'])]) || 0,
-					s_price: parseFloat(values[getColumnIndex(['s_price', 'score_price', 'precio_score'])]) || 0,
-					s_area: parseFloat(values[getColumnIndex(['s_area', 'score_area', 'area_score'])]) || 0,
-					s_rooms: parseFloat(values[getColumnIndex(['s_rooms', 'score_rooms', 'rooms_score'])]) || 0,
-					s_baths: parseFloat(values[getColumnIndex(['s_baths', 'score_baths', 'baths_score'])]) || 0,
-					s_operation: parseFloat(values[getColumnIndex(['s_operation', 'score_operation', 'operation_score'])]) || 0,
-					zone_match: values[getColumnIndex(['zone_match', 'match_zona', 'zona_match'])] || '',
-					type_match: values[getColumnIndex(['type_match', 'match_tipo', 'tipo_match'])] || '',
-					rank_client: parseInt(values[getColumnIndex(['rank_client', 'ranking', 'posicion'])]) || 0,
+					client_id: values[0] || '',
+					client_name: values[1] || '',
+					property_id: values[2] || '',
+					link_inmueble: values[3] || '',
+					web: values[4] || '',
+					anunciante: values[5] || '',
+					zona: values[6] || '',
+					operacion: values[7] || '',
+					tipo: values[8] || '',
+					habitaciones: parseInt(values[9]) || 0,
+					banos: parseInt(values[10]) || 0,
+					m2: parseFloat(values[11]) || 0,
+					precio: parseFloat(values[12]) || 0,
+					score: parseFloat(values[13]) || 0,
+					s_price: parseFloat(values[14]) || 0,
+					s_area: parseFloat(values[15]) || 0,
+					s_rooms: parseFloat(values[16]) || 0,
+					s_baths: parseFloat(values[17]) || 0,
+					s_operation: parseFloat(values[18]) || 0,
+					zone_match: values[19] || '',
+					type_match: values[20] || '',
+					rank_client: parseInt(values[21]) || 0,
 				};
 
 				matches.push(match);
@@ -358,8 +352,6 @@ function AppContent() {
 			}
 		}
 
-		console.log('Parsed matches:', matches.length);
-		console.log('Unique clients:', [...new Set(matches.map(m => m.client_name))]);
 
 		return matches;
 	};
