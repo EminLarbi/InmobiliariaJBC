@@ -434,6 +434,13 @@ function AppContent() {
 							<BarChart3 className='h-4 w-4' />
 							Análisis de Mercado
 						</TabsTrigger>
+						<TabsTrigger
+							value='matches'
+							className='flex items-center gap-2'
+						>
+							<Users className='h-4 w-4' />
+							Matches de Clientes
+						</TabsTrigger>
 					</TabsList>
 
 					<TabsContent
@@ -441,6 +448,16 @@ function AppContent() {
 						className='space-y-6'
 					>
 						<MarketAnalytics properties={currentProperties} />
+					</TabsContent>
+
+					<TabsContent
+						value='matches'
+						className='space-y-6'
+					>
+						<ClientMatchesPanel 
+							properties={currentProperties} 
+							matches={loadedMatches} 
+						/>
 					</TabsContent>
 
 					<TabsContent
