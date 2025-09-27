@@ -1,11 +1,14 @@
 import React, { useMemo } from 'react';
+import { useState, useCallback } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
 import { Badge } from './ui/badge';
 import { Button } from './ui/button';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from './ui/accordion';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from './ui/table';
+import { Input } from './ui/input';
+import { Label } from './ui/label';
 import { Property } from './PropertyTable';
-import { ExternalLink, User, Chrome as Home, Bath, Square, MapPin, Euro, Star, TrendingUp, Users, Target } from 'lucide-react';
+import { ExternalLink, User, Chrome as Home, Bath, Square, MapPin, Euro, Star, TrendingUp, Users, Target, Search } from 'lucide-react';
 
 export interface ClientMatch {
   client_id: string;
@@ -38,14 +41,26 @@ interface ClientMatchesPanelProps {
 }
 
 export function ClientMatchesPanel({ properties, matches }: ClientMatchesPanelProps) {
-  const clientGroups = useMemo(() => {
-    if (!matches.length) return {};
+  const [searchTerm, setSearchTerm] = useState('');
+  const [expandedClient, setExpandedClient] = useState<string>('');
 
-    console.log('Total matches:', matches.length);
-    console.log('Sample matches:', matches.slice(0, 3));
+  // Filtrar matches por término de búsqueda
+  const filteredMatches = useMemo(() => {
+    if (!searchTerm.trim()) return matches;
+    
+    const term = searchTerm.toLowerCase();
+    return matches.filter(match => 
+      match.client_name.toLowerCase().includes(term) ||
+      match.zona.toLowerCase().includes(term) ||
+      match.anunciante.toLowerCase().includes(term)
+    );
+  }, [matches, searchTerm]);
+
+  const clientGroups = useMemo(() => {
+    if (!filteredMatches.length) return {};
 
     // Agrupar matches por cliente
-    const groups = matches.reduce((acc, match) => {
+    const groups = filteredMatches.reduce((acc, match) => {
       const clientKey = match.client_id || match.client_name;
       if (!acc[clientKey]) {
         acc[clientKey] = {
@@ -58,21 +73,29 @@ export function ClientMatchesPanel({ properties, matches }: ClientMatchesPanelPr
       return acc;
     }, {} as Record<string, { client_id: string; client_name: string; matches: ClientMatch[] }>);
 
-    console.log('Client groups:', Object.keys(groups));
-    console.log('Groups detail:', Object.entries(groups).map(([key, group]) => ({
-      key,
-      client_name: group.client_name,
-      matches_count: group.matches.length
-    })));
-
     // Ordenar matches dentro de cada cliente por rank_client
     Object.values(groups).forEach(group => {
       group.matches.sort((a, b) => a.rank_client - b.rank_client);
     });
 
     return groups;
-  }, [matches]);
+  }, [filteredMatches]);
 
+  // Memoizar cálculos pesados
+  const stats = useMemo(() => {
+    const clientList = Object.values(clientGroups);
+    const totalClients = clientList.length;
+    const totalMatches = filteredMatches.length;
+    const avgMatchesPerClient = totalClients > 0 ? totalMatches / totalClients : 0;
+    const highQualityMatches = filteredMatches.filter(m => m.score >= 0.8).length;
+    
+    return {
+      totalClients,
+      totalMatches,
+      avgMatchesPerClient,
+      highQualityMatches
+    };
+  }, [clientGroups, filteredMatches]);
   const formatPrice = (price: number) => {
     return new Intl.NumberFormat('es-ES', {
       style: 'currency',
@@ -103,11 +126,9 @@ export function ClientMatchesPanel({ properties, matches }: ClientMatchesPanelPr
     }
   };
 
-  const clientList = Object.values(clientGroups);
-  const totalClients = clientList.length;
-  const totalMatches = matches.length;
-  const avgMatchesPerClient = totalClients > 0 ? totalMatches / totalClients : 0;
-  const highQualityMatches = matches.filter(m => m.score >= 0.8).length;
+  const handleClientToggle = useCallback((clientId: string) => {
+    setExpandedClient(prev => prev === clientId ? '' : clientId);
+  }, []);
 
   if (!matches.length) {
     return (
@@ -135,7 +156,7 @@ export function ClientMatchesPanel({ properties, matches }: ClientMatchesPanelPr
             <Users className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{totalClients}</div>
+            <div className="text-2xl font-bold">{stats.totalClients}</div>
             <p className="text-xs text-muted-foreground">
               Con propiedades coincidentes
             </p>
@@ -148,7 +169,7 @@ export function ClientMatchesPanel({ properties, matches }: ClientMatchesPanelPr
             <Target className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{totalMatches}</div>
+            <div className="text-2xl font-bold">{stats.totalMatches}</div>
             <p className="text-xs text-muted-foreground">
               Coincidencias encontradas
             </p>
@@ -161,7 +182,7 @@ export function ClientMatchesPanel({ properties, matches }: ClientMatchesPanelPr
             <TrendingUp className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{avgMatchesPerClient.toFixed(1)}</div>
+            <div className="text-2xl font-bold">{stats.avgMatchesPerClient.toFixed(1)}</div>
             <p className="text-xs text-muted-foreground">
               Propiedades por cliente
             </p>
@@ -174,13 +195,41 @@ export function ClientMatchesPanel({ properties, matches }: ClientMatchesPanelPr
             <Star className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{highQualityMatches}</div>
+            <div className="text-2xl font-bold">{stats.highQualityMatches}</div>
             <p className="text-xs text-muted-foreground">
-              Score ≥ 80% ({((highQualityMatches / totalMatches) * 100).toFixed(1)}%)
+              Score ≥ 80% ({stats.totalMatches > 0 ? ((stats.highQualityMatches / stats.totalMatches) * 100).toFixed(1) : 0}%)
             </p>
           </CardContent>
         </Card>
       </div>
+
+      {/* Buscador de clientes */}
+      <Card>
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            <Search className="h-5 w-5 text-primary" />
+            Buscar Clientes
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="space-y-2">
+            <Label htmlFor="client-search">Buscar por nombre, zona o anunciante</Label>
+            <Input
+              id="client-search"
+              placeholder="Escribe para filtrar clientes..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="max-w-md"
+            />
+            {searchTerm && (
+              <p className="text-sm text-muted-foreground">
+                Mostrando {stats.totalClients} cliente{stats.totalClients !== 1 ? 's' : ''} 
+                {' '}con {stats.totalMatches} match{stats.totalMatches !== 1 ? 'es' : ''}
+              </p>
+            )}
+          </div>
+        </CardContent>
+      </Card>
 
       {/* Lista de Clientes y sus Matches */}
       <Card>
@@ -194,8 +243,8 @@ export function ClientMatchesPanel({ properties, matches }: ClientMatchesPanelPr
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <Accordion type="single" collapsible className="w-full">
-            {clientList.map((client) => (
+          <Accordion type="single" collapsible className="w-full" value={expandedClient} onValueChange={setExpandedClient}>
+            {Object.values(clientGroups).map((client) => (
               <AccordionItem key={client.client_id} value={client.client_id}>
                 <AccordionTrigger className="hover:no-underline">
                   <div className="flex items-center justify-between w-full mr-4">
@@ -222,9 +271,9 @@ export function ClientMatchesPanel({ properties, matches }: ClientMatchesPanelPr
                   </div>
                 </AccordionTrigger>
                 <AccordionContent>
-                  <div className="space-y-4 pt-4">
+                  <div className="space-y-4 pt-4" key={`content-${client.client_id}`}>
                     <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4">
-                      {client.matches.map((match) => (
+                      {client.matches.slice(0, 20).map((match) => (
                         <Card key={match.property_id} className="hover:shadow-md transition-shadow">
                           <CardContent className="p-4 space-y-3">
                             {/* Header con score y ranking */}
@@ -321,6 +370,14 @@ export function ClientMatchesPanel({ properties, matches }: ClientMatchesPanelPr
                         </Card>
                       ))}
                     </div>
+                    
+                    {client.matches.length > 20 && (
+                      <div className="text-center">
+                        <p className="text-sm text-muted-foreground">
+                          Mostrando los primeros 20 de {client.matches.length} matches
+                        </p>
+                      </div>
+                    )}
 
                     {/* Resumen del cliente */}
                     <div className="mt-6 p-4 bg-muted/30 rounded-lg">
