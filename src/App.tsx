@@ -102,11 +102,13 @@ function AppContent() {
 
 	const [loadedProperties, setLoadedProperties] = useState<Property[]>([]);
 	const [loadedMatches, setLoadedMatches] = useState<ClientMatch[]>([]);
+	const [loadedClients, setLoadedClients] = useState<any[]>([]);
 	const [dataSource, setDataSource] = useState<"mock" | "csv">("mock");
 	const [viewMode, setViewMode] = useState<ViewMode>("list");
 	const [activeTab, setActiveTab] = useState<string>("home");
 	const [csvLoading, setCsvLoading] = useState(false);
 	const [matchesLoading, setMatchesLoading] = useState(false);
+	const [clientsLoading, setClientsLoading] = useState(false);
 
 	const handleNavigation = (tab: string) => {
 		setActiveTab(tab);
@@ -300,6 +302,53 @@ function AppContent() {
 		}
 	};
 
+	// Función para cargar clientes CSV desde el servidor
+	const loadClientsFromServer = async () => {
+		try {
+			setClientsLoading(true);
+			const response = await fetch('/contacts_today_parsed.csv');
+			if (!response.ok) {
+				throw new Error(`Error al cargar clientes: ${response.status}`);
+			}
+
+			const csvText = await response.text();
+			const clients = parseClientsCSV(csvText);
+
+			setLoadedClients(clients);
+		} catch (error) {
+			console.warn('No se pudo cargar contacts_today_parsed.csv, usando datos vacíos');
+			setLoadedClients([]);
+		} finally {
+			setClientsLoading(false);
+		}
+	};
+
+	// Función para parsear CSV de clientes
+	const parseClientsCSV = (csvText: string): any[] => {
+		const lines = csvText.trim().split('\n');
+		if (lines.length < 2) return [];
+
+		const headerLine = lines[0].replace(/^\uFEFF/, '');
+		const headers = headerLine.split(',').map(h => h.trim().replace(/"/g, ''));
+		const clients: any[] = [];
+
+		for (let i = 1; i < lines.length; i++) {
+			try {
+				const values = lines[i].split(',').map(v => v.trim().replace(/"/g, ''));
+				if (values.length >= headers.length && values[0]) {
+					const client: any = {};
+					headers.forEach((header, index) => {
+						client[header] = values[index] || '';
+					});
+					clients.push(client);
+				}
+			} catch (err) {
+				console.warn(`Error procesando fila de cliente ${i + 1}:`, err);
+			}
+		}
+
+		return clients;
+	};
 	// Función para parsear CSV de matches
 	const parseMatchesCSV = (csvText: string): ClientMatch[] => {
 		const lines = csvText.trim().split("\n");
@@ -390,6 +439,7 @@ function AppContent() {
 	useEffect(() => {
 		loadCSVFromServer();
 		loadMatchesFromServer();
+		loadClientsFromServer();
 	}, []);
 
 	// Seleccionar la fuente de datos activa
@@ -697,6 +747,10 @@ function AppContent() {
 									<div className="flex justify-between text-sm">
 										<span className="text-muted-foreground">Matches:</span>
 										<Badge variant="secondary">{loadedMatches.length}</Badge>
+									</div>
+									<div className="flex justify-between text-sm">
+										<span className="text-muted-foreground">Clientes:</span>
+										<Badge variant="secondary">{loadedClients.length}</Badge>
 									</div>
 									<div className="flex justify-between text-sm">
 										<span className="text-muted-foreground">Fuente:</span>
