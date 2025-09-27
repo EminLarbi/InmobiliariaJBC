@@ -8,7 +8,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '.
 import { Input } from './ui/input';
 import { Label } from './ui/label';
 import { Property } from './PropertyTable';
-import { ExternalLink, User, Chrome as Home, Bath, Square, MapPin, Euro, Star, TrendingUp, Users, Target, Search } from 'lucide-react';
+import { ExternalLink, User, Chrome as Home, Bath, Square, MapPin, Euro, Star, TrendingUp, Users, Target, Search, Phone, Mail, Calendar } from 'lucide-react';
 
 export interface Client {
   id: string;
@@ -417,33 +417,35 @@ export function ClientMatchesPanel({ properties, matches, clients }: ClientMatch
                             Perfil del Cliente
                           </h4>
                           
-                          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                             {/* Información de contacto */}
                             <div className="space-y-2">
                               <h5 className="text-sm font-medium text-muted-foreground">Contacto</h5>
                               <div className="space-y-1 text-sm">
+                                <div className="flex items-center gap-2">
+                                  <User className="h-3 w-3 text-muted-foreground" />
+                                  <span className="text-muted-foreground">Nombre:</span>
+                                  <span className="font-medium">{client.client_name}</span>
+                                </div>
                                 {client.client_info.telefono && (
                                   <div className="flex items-center gap-2">
+                                    <Phone className="h-3 w-3 text-muted-foreground" />
                                     <span className="text-muted-foreground">Teléfono:</span>
-                                    <span>{client.client_info.telefono}</span>
+                                    <span className="font-medium">{client.client_info.telefono}</span>
                                   </div>
                                 )}
                                 {client.client_info.mail && (
                                   <div className="flex items-center gap-2">
+                                    <Mail className="h-3 w-3 text-muted-foreground" />
                                     <span className="text-muted-foreground">Email:</span>
-                                    <span className="truncate">{client.client_info.mail}</span>
+                                    <span className="font-medium truncate">{client.client_info.mail}</span>
                                   </div>
                                 )}
                                 {client.client_info.fecha_inclusion && (
                                   <div className="flex items-center gap-2">
+                                    <Calendar className="h-3 w-3 text-muted-foreground" />
                                     <span className="text-muted-foreground">Registrado:</span>
-                                    <span>{new Date(client.client_info.fecha_inclusion).toLocaleDateString('es-ES')}</span>
-                                  </div>
-                                )}
-                                {client.client_info.creado_info && (
-                                  <div className="flex items-center gap-2">
-                                    <span className="text-muted-foreground">Creado por:</span>
-                                    <span className="text-xs">{client.client_info.creado_info.replace(/,$/, '')}</span>
+                                    <span className="font-medium">{new Date(client.client_info.fecha_inclusion).toLocaleDateString('es-ES')}</span>
                                   </div>
                                 )}
                               </div>
@@ -462,7 +464,7 @@ export function ClientMatchesPanel({ properties, matches, clients }: ClientMatch
                                   </div>
                                 )}
                                 
-                                {client.client_info.types.length > 0 && (
+                                {client.client_info.types && client.client_info.types.length > 0 && (
                                   <div>
                                     <span className="text-muted-foreground">Tipos:</span>
                                     <div className="flex flex-wrap gap-1 mt-1">
@@ -479,7 +481,7 @@ export function ClientMatchesPanel({ properties, matches, clients }: ClientMatch
                                   <div className="flex items-center gap-2">
                                     <Home className="h-3 w-3 text-muted-foreground" />
                                     <span className="text-muted-foreground">Habitaciones:</span>
-                                    <span>{formatRange(client.client_info.rooms_min, client.client_info.rooms_max)}</span>
+                                    <span className="font-medium">{formatRange(client.client_info.rooms_min, client.client_info.rooms_max)}</span>
                                   </div>
                                 )}
                                 
@@ -487,7 +489,7 @@ export function ClientMatchesPanel({ properties, matches, clients }: ClientMatch
                                   <div className="flex items-center gap-2">
                                     <Bath className="h-3 w-3 text-muted-foreground" />
                                     <span className="text-muted-foreground">Baños:</span>
-                                    <span>{formatRange(client.client_info.bath_min, client.client_info.bath_max)}</span>
+                                    <span className="font-medium">{formatRange(client.client_info.bath_min, client.client_info.bath_max)}</span>
                                   </div>
                                 )}
                                 
@@ -495,7 +497,7 @@ export function ClientMatchesPanel({ properties, matches, clients }: ClientMatch
                                   <div className="flex items-center gap-2">
                                     <Square className="h-3 w-3 text-muted-foreground" />
                                     <span className="text-muted-foreground">Superficie:</span>
-                                    <span>{formatRange(client.client_info.area_min_m2, client.client_info.area_max_m2, ' m²')}</span>
+                                    <span className="font-medium">{formatRange(client.client_info.area_min_m2, client.client_info.area_max_m2, ' m²')}</span>
                                   </div>
                                 )}
                                 
@@ -513,17 +515,67 @@ export function ClientMatchesPanel({ properties, matches, clients }: ClientMatch
                                     </span>
                                   </div>
                                 )}
+                                
+                                {(client.client_info.living_min || client.client_info.living_max) && (
+                                  <div className="flex items-center gap-2">
+                                    <Home className="h-3 w-3 text-muted-foreground" />
+                                    <span className="text-muted-foreground">Salones:</span>
+                                    <span className="font-medium">{formatRange(client.client_info.living_min, client.client_info.living_max)}</span>
+                                  </div>
+                                )}
+                              </div>
+                            </div>
+
+                            {/* Información adicional */}
+                            <div className="space-y-2">
+                              <h5 className="text-sm font-medium text-muted-foreground">Información adicional</h5>
+                              <div className="space-y-1 text-sm">
+                                {client.client_info.creado_info && (
+                                  <div className="space-y-1">
+                                    <div className="flex items-center gap-1">
+                                      <User className="h-3 w-3 text-muted-foreground" />
+                                      <span className="text-muted-foreground">Creado por:</span>
+                                    </div>
+                                    <p className="text-xs bg-muted/50 p-2 rounded border-l-2 border-primary/20">
+                                      {client.client_info.creado_info.replace(/,$/, '')}
+                                    </p>
+                                  </div>
+                                )}
+                                
+                                {client.client_info.flags && client.client_info.flags.length > 0 && (
+                                  <div className="space-y-1">
+                                    <div className="flex items-center gap-1">
+                                      <Star className="h-3 w-3 text-muted-foreground" />
+                                      <span className="text-muted-foreground">Flags especiales:</span>
+                                    </div>
+                                    <div className="flex flex-wrap gap-1">
+                                      {client.client_info.flags.map((flag, idx) => (
+                                        <Badge key={idx} variant="outline" className="text-xs bg-amber-50 border-amber-200 text-amber-800 dark:bg-amber-950/20 dark:border-amber-800 dark:text-amber-200">
+                                          {flag}
+                                        </Badge>
+                                      ))}
+                                    </div>
+                                  </div>
+                                )}
+                                
+                                {client.client_info.zona_std && (
+                                  <div className="flex items-center gap-2">
+                                    <MapPin className="h-3 w-3 text-muted-foreground" />
+                                    <span className="text-muted-foreground">Zona estándar:</span>
+                                    <span className="font-medium text-xs">{client.client_info.zona_std}</span>
+                                  </div>
+                                )}
                               </div>
                             </div>
                           </div>
 
                           {/* Ubicaciones preferidas */}
-                          {client.client_info.locations.length > 0 && (
+                          {client.client_info.locations && client.client_info.locations.length > 0 && (
                             <div className="mt-3 pt-3 border-t border-border/50">
                               <h5 className="text-sm font-medium text-muted-foreground mb-2">Ubicaciones preferidas</h5>
                               <div className="flex flex-wrap gap-1">
                                 {client.client_info.locations.map((location, idx) => (
-                                  <Badge key={idx} variant="secondary" className="text-xs">
+                                  <Badge key={idx} variant="secondary" className="text-xs bg-blue-50 border-blue-200 text-blue-800 dark:bg-blue-950/20 dark:border-blue-800 dark:text-blue-200">
                                     <MapPin className="h-3 w-3 mr-1" />
                                     {location}
                                   </Badge>
@@ -538,13 +590,45 @@ export function ClientMatchesPanel({ properties, matches, clients }: ClientMatch
                               <h5 className="text-sm font-medium text-muted-foreground mb-2">Condiciones especiales</h5>
                               <div className="flex flex-wrap gap-1">
                                 {client.client_info.conditions.map((condition, idx) => (
-                                  <Badge key={idx} variant="outline" className="text-xs">
+                                  <Badge key={idx} variant="outline" className="text-xs bg-purple-50 border-purple-200 text-purple-800 dark:bg-purple-950/20 dark:border-purple-800 dark:text-purple-200">
                                     {condition}
                                   </Badge>
                                 ))}
                               </div>
                             </div>
                           )}
+                          
+                          {/* Resumen rápido de contacto */}
+                          <div className="mt-4 pt-3 border-t border-border/50 bg-primary/5 rounded-lg p-3">
+                            <h5 className="text-sm font-medium mb-2 flex items-center gap-2">
+                              <Phone className="h-4 w-4 text-primary" />
+                              Contacto rápido
+                            </h5>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-2 text-xs">
+                              {client.client_info.telefono && (
+                                <Button
+                                  variant="outline"
+                                  size="sm"
+                                  className="h-8 justify-start text-xs"
+                                  onClick={() => window.open(`tel:${client.client_info.telefono}`, '_self')}
+                                >
+                                  <Phone className="h-3 w-3 mr-1" />
+                                  Llamar
+                                </Button>
+                              )}
+                              {client.client_info.mail && (
+                                <Button
+                                  variant="outline"
+                                  size="sm"
+                                  className="h-8 justify-start text-xs"
+                                  onClick={() => window.open(`mailto:${client.client_info.mail}`, '_self')}
+                                >
+                                  <Mail className="h-3 w-3 mr-1" />
+                                  Email
+                                </Button>
+                              )}
+                            </div>
+                          </div>
                         </CardContent>
                       </Card>
                     )}
