@@ -92,35 +92,35 @@ export function ClientMatchesPanel({ properties, matches, clients }: ClientMatch
       const clientKey = match.client_id || match.client_name;
       if (!acc[clientKey]) {
         // Buscar información completa del cliente
-        const clientInfo = clients?.find(c => c.id === match.client_id) || {
-          id: match.client_id,
-          nombre: match.client_name,
-          telefono: '',
-          mail: '',
-          fecha_inclusion: '',
-          creado_info: '',
-          operation: '',
-          types: [],
-          conditions: [],
-          rooms_min: null,
-          rooms_max: null,
-          bath_min: null,
-          bath_max: null,
-          living_min: null,
-          living_max: null,
-          area_min_m2: null,
-          area_max_m2: null,
-          price_min_eur: null,
-          price_max_eur: null,
-          locations: [],
-          flags: [],
-          zona_std: ''
-        };
+        const clientInfo = clients?.find(c => c.id === match.client_id);
         
         acc[clientKey] = {
           client_id: match.client_id,
           client_name: match.client_name,
-          client_info: clientInfo,
+          client_info: clientInfo || {
+            id: match.client_id,
+            nombre: match.client_name,
+            telefono: '',
+            mail: '',
+            fecha_inclusion: '',
+            creado_info: '',
+            operation: '',
+            types: [],
+            conditions: [],
+            rooms_min: null,
+            rooms_max: null,
+            bath_min: null,
+            bath_max: null,
+            living_min: null,
+            living_max: null,
+            area_min_m2: null,
+            area_max_m2: null,
+            price_min_eur: null,
+            price_max_eur: null,
+            locations: [],
+            flags: [],
+            zona_std: ''
+          },
           matches: []
         };
       }

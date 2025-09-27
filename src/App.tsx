@@ -307,44 +307,74 @@ function AppContent() {
 
 		// Eliminar BOM si existe y preparar headers
 		const headerLine = lines[0].replace(/^\uFEFF/, "");
-		const headers = headerLine.split(",").map(h => h.trim().replace(/"/g, ""));
+		
+		// Parser CSV más robusto que maneja comas dentro de comillas
+		const parseCSVLine = (line: string): string[] => {
+			const result: string[] = [];
+			let current = '';
+			let inQuotes = false;
+			
+			for (let i = 0; i < line.length; i++) {
+				const char = line[i];
+				
+				if (char === '"') {
+					inQuotes = !inQuotes;
+				} else if (char === ',' && !inQuotes) {
+					result.push(current.trim());
+					current = '';
+				} else {
+					current += char;
+				}
+			}
+			
+			result.push(current.trim());
+			return result.map(v => v.replace(/^"|"$/g, ''));
+		};
+				// Si falla el parsing como JSON, intentar como string simple
+				const cleaned = str.replace(/[\[\]']/g, '');
+				if (cleaned.trim()) {
+					return [cleaned.trim()];
+				}
+				return [];
+		const headers = parseCSVLine(headerLine);
 		
 		console.log('CSV Headers:', headers);
 		
-		const matches: ClientMatch[] = [];
+			if (!str || str === 'null' || str === '' || str === '""') return null;
 		
 		for (let i = 1; i < lines.length; i++) {
 			const values = lines[i].split(",").map(v => v.trim().replace(/"/g, ""));
 			
 			if (values.length < headers.length) continue;
-
+			const values = parseCSVLine(lines[i]);
 			try {
 				// Mapeo según el formato real del CSV
 				// client_id,client_name,property_id,link_inmueble,web,anunciante,zona,operacion,tipo,habitaciones,banos,m2,precio,score,s_price,s_area,s_rooms,s_baths,s_operation,zone_match,type_match,rank_client
 
+				// Mapeo por posición según el header que mostraste
 				const match: ClientMatch = {
-					client_id: values[0] || '',
-					client_name: values[1] || '',
-					property_id: values[2] || '',
-					link_inmueble: values[3] || '',
-					web: values[4] || '',
-					anunciante: values[5] || '',
-					zona: values[6] || '',
-					operacion: values[7] || '',
-					tipo: values[8] || '',
-					habitaciones: parseInt(values[9]) || 0,
-					banos: parseInt(values[10]) || 0,
-					m2: parseFloat(values[11]) || 0,
-					precio: parseFloat(values[12]) || 0,
-					score: parseFloat(values[13]) || 0,
-					s_price: parseFloat(values[14]) || 0,
-					s_area: parseFloat(values[15]) || 0,
-					s_rooms: parseFloat(values[16]) || 0,
-					s_baths: parseFloat(values[17]) || 0,
-					s_operation: parseFloat(values[18]) || 0,
-					zone_match: values[19] || '',
-					type_match: values[20] || '',
-					rank_client: parseInt(values[21]) || 0,
+					id: values[0] || '',                    // id
+					nombre: values[1] || '',                // nombre
+					telefono: values[2] || '',              // telefono
+					mail: values[3] || '',                  // mail
+					fecha_inclusion: values[4] || '',       // fecha_inclusion
+					creado_info: values[5] || '',           // creado_info
+					operation: values[6] || '',             // operation
+					types: parseArray(values[7] || ''),     // types
+					conditions: parseArray(values[8] || ''), // conditions
+					rooms_min: parseNumber(values[9]),      // rooms_min
+					rooms_max: parseNumber(values[10]),     // rooms_max
+					bath_min: parseNumber(values[11]),      // bath_min
+					bath_max: parseNumber(values[12]),      // bath_max
+					living_min: parseNumber(values[13]),    // living_min
+					living_max: parseNumber(values[14]),    // living_max
+					area_min_m2: parseNumber(values[15]),   // area_min_m2
+					area_max_m2: parseNumber(values[16]),   // area_max_m2
+					price_min_eur: parseNumber(values[17]), // price_min_eur
+					price_max_eur: parseNumber(values[18]), // price_max_eur
+					locations: parseArray(values[19] || ''), // locations
+					flags: parseArray(values[20] || ''),    // flags
+					zona_std: values[21] || ''              // zona_std
 				};
 
 				// Validar que los datos son válidos antes de añadir
@@ -354,6 +384,11 @@ function AppContent() {
 			} catch (err) {
 				console.warn(`Error procesando fila de matches ${i + 1}:`, err);
 			}
+		}
+
+		console.log(`Clientes cargados: ${clients.length}`);
+		if (clients.length > 0) {
+			console.log('Ejemplo de cliente:', clients[0]);
 		}
 
 		console.log(`Matches cargados: ${matches.length}`);
