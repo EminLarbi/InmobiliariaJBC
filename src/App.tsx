@@ -167,7 +167,7 @@ function AppContent() {
 		// Eliminar BOM si existe y preparar headers
 		const headerLine = lines[0].replace(/^\uFEFF/, "");
 		const headers = headerLine
-			.split(",")
+			.split(";")
 			.map((h) => h.trim().replace(/"/g, ""));
 
 		const toInt = (v: string) => {
@@ -199,7 +199,7 @@ function AppContent() {
 		};
 
 		return lines.slice(1).map((line, index) => {
-			const values = line.split(",").map((v) => v.trim().replace(/"/g, ""));
+			const values = line.split(";").map((v) => v.trim().replace(/"/g, ""));
 			const property: any = {};
 
 			headers.forEach((header, i) => {
@@ -304,12 +304,12 @@ function AppContent() {
 		const lines = csvText.trim().split("\n");
 		if (lines.length < 2) return [];
 
-		const headers = lines[0].split(",").map(h => h.trim().replace(/"/g, ""));
+		const headers = lines[0].split(";").map(h => h.trim().replace(/"/g, ""));
 		
 		const matches: ClientMatch[] = [];
 		
 		for (let i = 1; i < lines.length; i++) {
-			const values = lines[i].split(",").map(v => v.trim().replace(/"/g, ""));
+			const values = lines[i].split(";").map(v => v.trim().replace(/"/g, ""));
 			
 			if (values.length < headers.length) continue;
 
