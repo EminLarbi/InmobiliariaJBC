@@ -417,7 +417,14 @@ function AppContent() {
 				<Tabs
 					defaultValue='search'
 					className='w-full'
-				>
+					<TabsList className='grid w-full grid-cols-4'>
+						<TabsTrigger
+							value='home'
+							className='flex items-center gap-2'
+						>
+							<Home className='h-4 w-4' />
+							Inicio
+						</TabsTrigger>
 					<TabsList className='grid w-full grid-cols-2'>
 						<TabsTrigger
 							value='search'
@@ -441,6 +448,17 @@ function AppContent() {
 							Matches de Clientes
 						</TabsTrigger>
 					</TabsList>
+
+					<TabsContent
+						value='home'
+						className='space-y-6'
+					>
+						<HomePage 
+							onNavigate={setActiveTab}
+							propertiesCount={currentProperties.length}
+							matchesCount={loadedMatches.length}
+						/>
+					</TabsContent>
 
 					<TabsContent
 						value='analytics'
