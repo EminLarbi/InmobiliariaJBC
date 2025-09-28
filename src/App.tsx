@@ -329,17 +329,79 @@ function AppContent() {
 		if (lines.length < 2) return [];
 
 		const headerLine = lines[0].replace(/^\uFEFF/, '');
-		const headers = headerLine.split(',').map(h => h.trim().replace(/"/g, ''));
+		
+		// Parser CSV más robusto que maneja comas dentro de comillas
+		const parseCSVLine = (line: string): string[] => {
+			const result: string[] = [];
+			let current = '';
+			let inQuotes = false;
+			
+			for (let i = 0; i < line.length; i++) {
+				const char = line[i];
+				
+				if (char === '"') {
+					inQuotes = !inQuotes;
+				} else if (char === ',' && !inQuotes) {
+					result.push(current.trim());
+					current = '';
+				} else {
+					current += char;
+				}
+			}
+			
+			result.push(current.trim());
+			return result.map(v => v.replace(/^"|"$/g, ''));
+		};
+
+		const parseArray = (str: string): string[] => {
+			if (!str || str === 'null' || str === '') return [];
+			try {
+				// Intentar parsear como array Python/JSON
+				const parsed = JSON.parse(str.replace(/'/g, '"'));
+				return Array.isArray(parsed) ? parsed : [];
+			} catch {
+				// Si falla, intentar como string simple
+				return [str];
+			}
+		};
+
+		const parseNumber = (str: string): number | null => {
+			if (!str || str === 'null' || str === '') return null;
+			const num = parseFloat(str);
+			return isNaN(num) ? null : num;
+		};
+
+		const headers = parseCSVLine(headerLine);
 		const clients: any[] = [];
 
 		for (let i = 1; i < lines.length; i++) {
 			try {
-				const values = lines[i].split(',').map(v => v.trim().replace(/"/g, ''));
+				const values = parseCSVLine(lines[i]);
 				if (values.length >= headers.length && values[0]) {
-					const client: any = {};
-					headers.forEach((header, index) => {
-						client[header] = values[index] || '';
-					});
+					const client: any = {
+						id: values[0] || '',
+						nombre: values[1] || '',
+						telefono: values[2] || '',
+						mail: values[3] || '',
+						fecha_inclusion: values[4] || '',
+						creado_info: values[5] || '',
+						operation: values[6] || '',
+						types: parseArray(values[7]),
+						conditions: parseArray(values[8]),
+						rooms_min: parseNumber(values[9]),
+						rooms_max: parseNumber(values[10]),
+						bath_min: parseNumber(values[11]),
+						bath_max: parseNumber(values[12]),
+						living_min: parseNumber(values[13]),
+						living_max: parseNumber(values[14]),
+						area_min_m2: parseNumber(values[15]),
+						area_max_m2: parseNumber(values[16]),
+						price_min_eur: parseNumber(values[17]),
+						price_max_eur: parseNumber(values[18]),
+						locations: parseArray(values[19]),
+						flags: parseArray(values[20]),
+						zona_std: values[21] || ''
+					};
 					clients.push(client);
 				}
 			} catch (err) {
@@ -347,6 +409,7 @@ function AppContent() {
 			}
 		}
 
+		console.log(`Clientes cargados: ${clients.length}`);
 		return clients;
 	};
 	// Función para parsear CSV de matches
