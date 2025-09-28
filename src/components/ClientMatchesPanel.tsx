@@ -376,10 +376,13 @@ export function ClientMatchesPanel({ properties, matches, clients }: ClientMatch
           <Accordion type="single" collapsible className="w-full" value={expandedClient} onValueChange={setExpandedClient}>
             {currentClients.map((client) => (
               <AccordionItem key={client.client_id} value={client.client_id}>
-                <AccordionTrigger className="hover:no-underline">
+                <AccordionTrigger 
+                  className="hover:no-underline"
+                  aria-label={`${expandedClient === client.client_id ? 'Contraer' : 'Expandir'} información de ${client.client_name} con ${client.matches.length} propiedades coincidentes`}
+                >
                   <div className="flex items-center justify-between w-full mr-4">
                     <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">
+                      <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center" aria-hidden="true">
                         <User className="h-5 w-5 text-primary" />
                       </div>
                       <div className="text-left">
@@ -393,11 +396,14 @@ export function ClientMatchesPanel({ properties, matches, clients }: ClientMatch
                       </div>
                     </div>
                     <div className="flex items-center gap-2">
-                      <Badge variant="secondary">
+                      <Badge variant="secondary" aria-label={`${client.matches.length} propiedades coincidentes`}>
                         {client.matches.length} propiedades
                       </Badge>
                       {client.matches.some(m => m.score >= 0.8) && (
-                        <Badge className="bg-green-100 text-green-800 border-green-200 dark:bg-green-900/30 dark:text-green-300 dark:border-green-800">
+                        <Badge 
+                          className="bg-green-100 text-green-800 border-green-200 dark:bg-green-900/30 dark:text-green-300 dark:border-green-800"
+                          aria-label="Cliente con matches de alta calidad"
+                        >
                           <Star className="h-3 w-3 mr-1" />
                           Alta calidad
                         </Badge>
@@ -406,7 +412,12 @@ export function ClientMatchesPanel({ properties, matches, clients }: ClientMatch
                   </div>
                 </AccordionTrigger>
                 <AccordionContent>
-                  <div className="space-y-4 pt-4" key={`content-${client.client_id}`}>
+                  <div 
+                    className="space-y-4 pt-4" 
+                    key={`content-${client.client_id}`}
+                    role="region"
+                    aria-label={`Detalles de ${client.client_name} y propiedades recomendadas`}
+                  >
                     
                     {/* Información del cliente */}
                     {client.client_info && (
@@ -638,17 +649,40 @@ export function ClientMatchesPanel({ properties, matches, clients }: ClientMatch
                       </Card>
                     )}
 
-                    <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4">
+                    <div 
+                      className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4"
+                      role="grid"
+                      aria-label={`${client.matches.length} propiedades recomendadas para ${client.client_name}`}
+                    >
                       {client.matches.slice(0, 20).map((match) => (
-                        <Card key={match.property_id} className="hover:shadow-md transition-shadow">
+                        <Card 
+                          key={match.property_id} 
+                          className="hover:shadow-md transition-shadow focus-within:ring-2 focus-within:ring-primary/20"
+                          role="gridcell"
+                          tabIndex={0}
+                          aria-label={`Propiedad recomendada: ${match.zona}, ${match.habitaciones} habitaciones, ${formatPrice(match.precio)}, ${formatScore(match.score)}% de coincidencia`}
+                          onKeyDown={(e) => {
+                            if (e.key === 'Enter' || e.key === ' ') {
+                              e.preventDefault();
+                              window.open(match.link_inmueble, '_blank');
+                            }
+                          }}
+                        >
                           <CardContent className="p-4 space-y-3">
                             {/* Header con score y ranking */}
                             <div className="flex items-start justify-between">
                               <div className="flex items-center gap-2">
-                                <Badge className={`text-xs px-2 py-1 ${getScoreColor(match.score)}`}>
+                                <Badge 
+                                  className={`text-xs px-2 py-1 ${getScoreColor(match.score)}`}
+                                  aria-label={`Puntuación de coincidencia: ${formatScore(match.score)} por ciento`}
+                                >
                                   {formatScore(match.score)}% match
                                 </Badge>
-                                <Badge variant="outline" className="text-xs">
+                                <Badge 
+                                  variant="outline" 
+                                  className="text-xs"
+                                  aria-label={`Ranking número ${match.rank_client} para este cliente`}
+                                >
                                   #{match.rank_client}
                                 </Badge>
                               </div>
@@ -657,6 +691,7 @@ export function ClientMatchesPanel({ properties, matches, clients }: ClientMatch
                                 size="sm"
                                 className="h-6 w-6 p-0"
                                 onClick={() => window.open(match.link_inmueble, '_blank')}
+                                aria-label={`Abrir enlace externo para propiedad en ${match.zona}`}
                               >
                                 <ExternalLink className="h-3 w-3" />
                               </Button>
@@ -665,14 +700,17 @@ export function ClientMatchesPanel({ properties, matches, clients }: ClientMatch
                             {/* Información básica */}
                             <div className="space-y-2">
                               <div className="flex items-center gap-2">
-                                <Badge className={`text-xs px-2 py-1 ${getOperationStyle(match.operacion)}`}>
+                                <Badge 
+                                  className={`text-xs px-2 py-1 ${getOperationStyle(match.operacion)}`}
+                                  aria-label={`Tipo de operación: ${match.operacion || 'No especificado'}`}
+                                >
                                   {match.operacion || 'N/A'}
                                 </Badge>
                                 <span className="text-sm text-muted-foreground">{match.web}</span>
                               </div>
                               
                               <div className="flex items-center gap-2">
-                                <MapPin className="h-3 w-3 text-muted-foreground" />
+                                <MapPin className="h-3 w-3 text-muted-foreground" aria-hidden="true" />
                                 <span className="text-sm font-medium truncate">
                                   {match.zona.includes("'municipio'") ? 
                                     match.zona.split("'municipio': '")[1]?.split("'")[0] || match.zona :
@@ -681,7 +719,7 @@ export function ClientMatchesPanel({ properties, matches, clients }: ClientMatch
                                 </span>
                               </div>
 
-                              <div className="text-lg font-bold text-primary">
+                              <div className="text-lg font-bold text-primary" aria-label={`Precio: ${formatPrice(match.precio)}`}>
                                 {formatPrice(match.precio)}
                               </div>
                             </div>
@@ -689,23 +727,26 @@ export function ClientMatchesPanel({ properties, matches, clients }: ClientMatch
                             {/* Características */}
                             <div className="grid grid-cols-3 gap-2">
                               <div className="flex items-center gap-1 bg-muted/30 rounded-md p-2">
-                                <Home className="h-3 w-3 text-muted-foreground" />
+                                <Home className="h-3 w-3 text-muted-foreground" aria-hidden="true" />
                                 <span className="text-xs font-medium">{match.habitaciones}</span>
+                                <span className="sr-only">habitaciones</span>
                               </div>
                               
                               <div className="flex items-center gap-1 bg-muted/30 rounded-md p-2">
-                                <Bath className="h-3 w-3 text-muted-foreground" />
+                                <Bath className="h-3 w-3 text-muted-foreground" aria-hidden="true" />
                                 <span className="text-xs font-medium">{match.banos}</span>
+                                <span className="sr-only">baños</span>
                               </div>
                               
                               <div className="flex items-center gap-1 bg-muted/30 rounded-md p-2">
-                                <Square className="h-3 w-3 text-muted-foreground" />
+                                <Square className="h-3 w-3 text-muted-foreground" aria-hidden="true" />
                                 <span className="text-xs font-medium">{match.m2}m²</span>
+                                <span className="sr-only">metros cuadrados</span>
                               </div>
                             </div>
 
                             {/* Scores detallados */}
-                            <div className="pt-2 border-t border-border/50">
+                            <div className="pt-2 border-t border-border/50" aria-label="Puntuaciones detalladas de coincidencia">
                               <p className="text-xs text-muted-foreground mb-2">Scores de coincidencia:</p>
                               <div className="grid grid-cols-2 gap-2 text-xs">
                                 <div className="flex justify-between">
@@ -729,7 +770,7 @@ export function ClientMatchesPanel({ properties, matches, clients }: ClientMatch
 
                             {/* Anunciante */}
                             <div className="flex items-center gap-1 text-xs text-muted-foreground">
-                              <User className="h-3 w-3" />
+                              <User className="h-3 w-3" aria-hidden="true" />
                               <span className="truncate">{match.anunciante}</span>
                             </div>
                           </CardContent>
@@ -739,7 +780,7 @@ export function ClientMatchesPanel({ properties, matches, clients }: ClientMatch
                     
                     {client.matches.length > 20 && (
                       <div className="text-center">
-                        <p className="text-sm text-muted-foreground">
+                        <p className="text-sm text-muted-foreground" aria-live="polite">
                           Mostrando los primeros 20 de {client.matches.length} matches
                         </p>
                       </div>
@@ -747,7 +788,9 @@ export function ClientMatchesPanel({ properties, matches, clients }: ClientMatch
 
                     {/* Resumen del cliente */}
                     <div className="mt-6 p-4 bg-muted/30 rounded-lg">
-                      <h4 className="font-medium mb-2">Resumen para {client.client_name}</h4>
+                      <h4 className="font-medium mb-2" id={`summary-${client.client_id}`}>
+                        Resumen para {client.client_name}
+                      </h4>
                       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
                         <div>
                           <p className="text-muted-foreground">Total matches:</p>

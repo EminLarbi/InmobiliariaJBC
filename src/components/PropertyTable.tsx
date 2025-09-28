@@ -1,5 +1,5 @@
 import React from 'react';
-import { ExternalLink, Chrome as Home, Bath, Square, MapPin, Calendar, User, Globe } from 'lucide-react';
+import { ExternalLink, Chrome as Home, Bath, Square, MapPin, Calendar, User, Globe, ArrowUpDown, ArrowUp, ArrowDown } from 'lucide-react';
 import { Badge } from './ui/badge';
 import { Card, CardContent } from './ui/card';
 import { Button } from './ui/button';
@@ -26,6 +26,9 @@ export interface Property {
   tipo_de_operacion: 'Venta' | 'Alquiler' | 'Otro';
 }
 
+type SortField = 'precio' | 'habitaciones' | 'baños' | 'metros_cuadrados' | 'zona' | 'anunciante' | 'fecha_inclusion';
+type SortDirection = 'asc' | 'desc' | null;
+
 interface PropertyTableProps {
   properties: Property[];
   viewMode?: 'cards' | 'list';
@@ -34,17 +37,76 @@ interface PropertyTableProps {
 
 export function PropertyTable({ properties, viewMode = 'cards', maxItems = 30 }: PropertyTableProps) {
   const [currentPage, setCurrentPage] = React.useState(1);
+  const [sortField, setSortField] = React.useState<SortField | null>(null);
+  const [sortDirection, setSortDirection] = React.useState<SortDirection>(null);
   
-  // Calcular paginación
-  const totalPages = Math.ceil(properties.length / maxItems);
+  // Función de ordenamiento
+  const sortedProperties = React.useMemo(() => {
+    if (!sortField || !sortDirection) return properties;
+    
+    return [...properties].sort((a, b) => {
+      let aValue: any = a[sortField];
+      let bValue: any = b[sortField];
+      
+      // Manejar valores especiales
+      if (sortField === 'precio') {
+        aValue = typeof aValue === 'number' ? aValue : 0;
+        bValue = typeof bValue === 'number' ? bValue : 0;
+      } else if (sortField === 'fecha_inclusion') {
+        aValue = new Date(aValue).getTime();
+        bValue = new Date(bValue).getTime();
+      } else if (typeof aValue === 'string') {
+        aValue = aValue.toLowerCase();
+        bValue = bValue.toLowerCase();
+      }
+      
+      if (aValue < bValue) return sortDirection === 'asc' ? -1 : 1;
+      if (aValue > bValue) return sortDirection === 'asc' ? 1 : -1;
+      return 0;
+    });
+  }, [properties, sortField, sortDirection]);
+  
+  // Calcular paginación con datos ordenados
+  const totalPages = Math.ceil(sortedProperties.length / maxItems);
   const startIndex = (currentPage - 1) * maxItems;
   const endIndex = startIndex + maxItems;
-  const currentProperties = properties.slice(startIndex, endIndex);
+  const currentProperties = sortedProperties.slice(startIndex, endIndex);
   
   // Reset página cuando cambian las propiedades
   React.useEffect(() => {
     setCurrentPage(1);
-  }, [properties.length]);
+  }, [sortedProperties.length]);
+
+  const handleSort = (field: SortField) => {
+    if (sortField === field) {
+      // Ciclar: asc -> desc -> null
+      if (sortDirection === 'asc') {
+        setSortDirection('desc');
+      } else if (sortDirection === 'desc') {
+        setSortField(null);
+        setSortDirection(null);
+      } else {
+        setSortDirection('asc');
+      }
+    } else {
+      setSortField(field);
+      setSortDirection('asc');
+    }
+  };
+
+  const getSortIcon = (field: SortField) => {
+    if (sortField !== field) return <ArrowUpDown className="h-3 w-3 opacity-50" />;
+    if (sortDirection === 'asc') return <ArrowUp className="h-3 w-3" />;
+    if (sortDirection === 'desc') return <ArrowDown className="h-3 w-3" />;
+    return <ArrowUpDown className="h-3 w-3 opacity-50" />;
+  };
+
+  const getSortAriaLabel = (field: SortField, label: string) => {
+    if (sortField !== field) return `Ordenar por ${label}`;
+    if (sortDirection === 'asc') return `${label} ordenado ascendente, click para descendente`;
+    if (sortDirection === 'desc') return `${label} ordenado descendente, click para quitar orden`;
+    return `Ordenar por ${label}`;
+  };
 
   const formatPrice = (price: number) => {
     return new Intl.NumberFormat('es-ES', {
@@ -89,7 +151,7 @@ export function PropertyTable({ properties, viewMode = 'cards', maxItems = 30 }:
     }
   };
 
-  if (currentProperties.length === 0 && properties.length === 0) {
+  if (currentProperties.length === 0 && sortedProperties.length === 0) {
     return (
       <Card className="border-dashed">
         <div className="text-center py-12">
@@ -111,7 +173,12 @@ export function PropertyTable({ properties, viewMode = 'cards', maxItems = 30 }:
     return (
       <div className="flex items-center justify-between mt-6">
         <div className="text-sm text-muted-foreground">
-          Mostrando {startIndex + 1}-{Math.min(endIndex, properties.length)} de {properties.length} propiedades
+          Mostrando {startIndex + 1}-{Math.min(endIndex, sortedProperties.length)} de {sortedProperties.length} propiedades
+          {sortField && sortDirection && (
+            <span className="ml-2">
+              (ordenado por {sortField} {sortDirection === 'asc' ? 'ascendente' : 'descendente'})
+            </span>
+          )}
         </div>
         <div className="flex items-center gap-2">
           <Button
@@ -119,6 +186,7 @@ export function PropertyTable({ properties, viewMode = 'cards', maxItems = 30 }:
             size="sm"
             onClick={() => setCurrentPage(prev => Math.max(1, prev - 1))}
             disabled={currentPage === 1}
+            aria-label="Ir a la página anterior"
           >
             Anterior
           </Button>
@@ -142,6 +210,8 @@ export function PropertyTable({ properties, viewMode = 'cards', maxItems = 30 }:
                   size="sm"
                   onClick={() => setCurrentPage(pageNum)}
                   className="w-8 h-8 p-0"
+                  aria-label={`Ir a la página ${pageNum}`}
+                  aria-current={currentPage === pageNum ? "page" : undefined}
                 >
                   {pageNum}
                 </Button>
@@ -153,6 +223,7 @@ export function PropertyTable({ properties, viewMode = 'cards', maxItems = 30 }:
             size="sm"
             onClick={() => setCurrentPage(prev => Math.min(totalPages, prev + 1))}
             disabled={currentPage === totalPages}
+            aria-label="Ir a la página siguiente"
           >
             Siguiente
           </Button>
@@ -167,20 +238,108 @@ export function PropertyTable({ properties, viewMode = 'cards', maxItems = 30 }:
       <div className="space-y-4">
         <Card>
           <CardContent className="p-0">
-            <div className="overflow-x-auto">
+            <div className="overflow-x-auto" role="region" aria-label="Tabla de propiedades inmobiliarias">
               <Table>
+                <caption className="sr-only">
+                  Lista de {sortedProperties.length} propiedades inmobiliarias con información detallada de precio, ubicación y características. 
+                  {sortField && sortDirection && ` Ordenada por ${sortField} en orden ${sortDirection === 'asc' ? 'ascendente' : 'descendente'}.`}
+                  Usa las teclas de flecha para navegar y Enter o Espacio para activar controles.
+                </caption>
                 <TableHeader>
                   <TableRow>
-                    <TableHead className="w-20">Tipo</TableHead>
-                    <TableHead>Ubicación</TableHead>
-                    <TableHead className="text-right">Precio</TableHead>
-                    <TableHead className="text-center">Hab</TableHead>
-                    <TableHead className="text-center">Baños</TableHead>
-                    <TableHead className="text-center">m²</TableHead>
-                    <TableHead className="min-w-32">Anunciante</TableHead>
-                    <TableHead>Web</TableHead>
-                    <TableHead>Fecha</TableHead>
-                    <TableHead className="w-16"></TableHead>
+                    <TableHead className="w-20" scope="col">
+                      <span>Tipo de operación</span>
+                    </TableHead>
+                    <TableHead scope="col">
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        className="h-auto p-0 font-medium hover:bg-transparent"
+                        onClick={() => handleSort('zona')}
+                        aria-label={getSortAriaLabel('zona', 'ubicación')}
+                      >
+                        <span>Ubicación</span>
+                        {getSortIcon('zona')}
+                      </Button>
+                    </TableHead>
+                    <TableHead className="text-right" scope="col">
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        className="h-auto p-0 font-medium hover:bg-transparent ml-auto flex items-center gap-1"
+                        onClick={() => handleSort('precio')}
+                        aria-label={getSortAriaLabel('precio', 'precio')}
+                      >
+                        <span>Precio</span>
+                        {getSortIcon('precio')}
+                      </Button>
+                    </TableHead>
+                    <TableHead className="text-center" scope="col">
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        className="h-auto p-0 font-medium hover:bg-transparent"
+                        onClick={() => handleSort('habitaciones')}
+                        aria-label={getSortAriaLabel('habitaciones', 'habitaciones')}
+                      >
+                        <span>Hab</span>
+                        {getSortIcon('habitaciones')}
+                      </Button>
+                    </TableHead>
+                    <TableHead className="text-center" scope="col">
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        className="h-auto p-0 font-medium hover:bg-transparent"
+                        onClick={() => handleSort('baños')}
+                        aria-label={getSortAriaLabel('baños', 'baños')}
+                      >
+                        <span>Baños</span>
+                        {getSortIcon('baños')}
+                      </Button>
+                    </TableHead>
+                    <TableHead className="text-center" scope="col">
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        className="h-auto p-0 font-medium hover:bg-transparent"
+                        onClick={() => handleSort('metros_cuadrados')}
+                        aria-label={getSortAriaLabel('metros_cuadrados', 'metros cuadrados')}
+                      >
+                        <span>m²</span>
+                        {getSortIcon('metros_cuadrados')}
+                      </Button>
+                    </TableHead>
+                    <TableHead className="min-w-32" scope="col">
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        className="h-auto p-0 font-medium hover:bg-transparent"
+                        onClick={() => handleSort('anunciante')}
+                        aria-label={getSortAriaLabel('anunciante', 'anunciante')}
+                      >
+                        <span>Anunciante</span>
+                        {getSortIcon('anunciante')}
+                      </Button>
+                    </TableHead>
+                    <TableHead scope="col">
+                      <span>Web</span>
+                    </TableHead>
+                    <TableHead scope="col">
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        className="h-auto p-0 font-medium hover:bg-transparent"
+                        onClick={() => handleSort('fecha_inclusion')}
+                        aria-label={getSortAriaLabel('fecha_inclusion', 'fecha de inclusión')}
+                      >
+                        <span>Fecha</span>
+                        {getSortIcon('fecha_inclusion')}
+                      </Button>
+                    </TableHead>
+                    <TableHead className="w-16" scope="col">
+                      <span className="sr-only">Acciones</span>
+                    </TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -190,67 +349,71 @@ export function PropertyTable({ properties, viewMode = 'cards', maxItems = 30 }:
                   return (
                     <TableRow 
                       key={property.id}
-                      className="hover:bg-muted/30 transition-colors"
+                      className="hover:bg-muted/30 transition-colors focus-within:bg-muted/50"
+                      role="row"
                     >
-                      <TableCell>
-                        <Badge className={`text-xs px-2 py-1 ${operationStyle}`}>
+                      <TableCell role="gridcell">
+                        <Badge 
+                          className={`text-xs px-2 py-1 ${operationStyle}`}
+                          aria-label={`Tipo de operación: ${property.tipo_de_operacion}`}
+                        >
                           {property.tipo_de_operacion}
                         </Badge>
                       </TableCell>
-                      <TableCell>
+                      <TableCell role="gridcell">
                         <div className="flex items-center gap-2">
-                          <MapPin className="h-3 w-3 text-muted-foreground flex-shrink-0" />
+                          <MapPin className="h-3 w-3 text-muted-foreground flex-shrink-0" aria-hidden="true" />
                           <span className="font-medium truncate">{property.zona}</span>
                         </div>
                       </TableCell>
-                      <TableCell className="text-right font-medium">
+                      <TableCell className="text-right font-medium" role="gridcell">
                         {formatCompactPrice(property.precio)}
                       </TableCell>
-                      <TableCell className="text-center">
+                      <TableCell className="text-center" role="gridcell">
                         <div className="flex items-center justify-center gap-1">
-                          <Home className="h-3 w-3 text-muted-foreground" />
+                          <Home className="h-3 w-3 text-muted-foreground" aria-hidden="true" />
                           <span>{property.habitaciones}</span>
                         </div>
                       </TableCell>
-                      <TableCell className="text-center">
+                      <TableCell className="text-center" role="gridcell">
                         <div className="flex items-center justify-center gap-1">
-                          <Bath className="h-3 w-3 text-muted-foreground" />
+                          <Bath className="h-3 w-3 text-muted-foreground" aria-hidden="true" />
                           <span>{property.baños}</span>
                         </div>
                       </TableCell>
-                      <TableCell className="text-center">
+                      <TableCell className="text-center" role="gridcell">
                         <div className="flex items-center justify-center gap-1">
-                          <Square className="h-3 w-3 text-muted-foreground" />
+                          <Square className="h-3 w-3 text-muted-foreground" aria-hidden="true" />
                           <span>{property.metros_cuadrados}</span>
                         </div>
                       </TableCell>
-                      <TableCell>
+                      <TableCell role="gridcell">
                         <div className="flex items-center gap-1 truncate">
-                          <User className="h-3 w-3 text-muted-foreground flex-shrink-0" />
+                          <User className="h-3 w-3 text-muted-foreground flex-shrink-0" aria-hidden="true" />
                           <span className="truncate text-sm">{property.anunciante}</span>
                         </div>
                       </TableCell>
-                      <TableCell>
+                      <TableCell role="gridcell">
                         <div className="flex items-center gap-1">
-                          <Globe className="h-3 w-3 text-muted-foreground" />
+                          <Globe className="h-3 w-3 text-muted-foreground" aria-hidden="true" />
                           <span className="text-sm">{property.web}</span>
                         </div>
                       </TableCell>
-                      <TableCell>
+                      <TableCell role="gridcell">
                         <div className="flex items-center gap-1">
-                          <Calendar className="h-3 w-3 text-muted-foreground" />
+                          <Calendar className="h-3 w-3 text-muted-foreground" aria-hidden="true" />
                           <span className="text-sm">{formatDate(property.fecha_inclusion)}</span>
                         </div>
                       </TableCell>
-                      <TableCell>
+                      <TableCell role="gridcell">
                         <Button
                           variant="ghost"
                           size="sm"
                           className="h-8 w-8 p-0"
                           onClick={() => window.open(property.link_inmueble, '_blank')}
+                          aria-label={`Ver detalles de la propiedad en ${property.zona}`}
                         >
                           <ExternalLink className="h-3 w-3" />
-                          <span className="sr-only">Ver propiedad</span>
                         </Button>
                       </TableCell>
                     </TableRow>
@@ -269,23 +432,34 @@ export function PropertyTable({ properties, viewMode = 'cards', maxItems = 30 }:
   // Vista de tarjetas (cards)
   return (
     <div className="space-y-4">
+      {/* Información de ordenamiento para vista de tarjetas */}
+      {sortField && sortDirection && (
+        <div className="text-sm text-muted-foreground">
+          Ordenado por {sortField} ({sortDirection === 'asc' ? 'ascendente' : 'descendente'})
+        </div>
+      )}
+      
       <div className="flex gap-2 text-sm text-muted-foreground">
         <div className="flex items-center gap-1">
-          <div className="w-2 h-2 bg-emerald-500 rounded-full"></div>
+          <div className="w-2 h-2 bg-emerald-500 rounded-full" aria-hidden="true"></div>
           <span>Venta</span>
         </div>
         <div className="flex items-center gap-1">
-          <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+          <div className="w-2 h-2 bg-blue-500 rounded-full" aria-hidden="true"></div>
           <span>Alquiler</span>
         </div>
         <div className="flex items-center gap-1">
-          <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
+          <div className="w-2 h-2 bg-purple-500 rounded-full" aria-hidden="true"></div>
           <span>Otro</span>
         </div>
       </div>
 
       <div className="space-y-6">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+        <div 
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4"
+          role="grid"
+          aria-label={`Cuadrícula de ${currentProperties.length} propiedades inmobiliarias`}
+        >
           {currentProperties.map((property) => {
           const operationStyle = getOperationStyle(property.tipo_de_operacion);
           
@@ -294,11 +468,23 @@ export function PropertyTable({ properties, viewMode = 'cards', maxItems = 30 }:
               key={property.id} 
               className="group hover:shadow-md transition-all duration-200 hover:border-primary/20 cursor-pointer"
               onClick={() => window.open(property.link_inmueble, '_blank')}
+              role="gridcell"
+              tabIndex={0}
+              aria-label={`Propiedad en ${property.zona}, ${property.habitaciones} habitaciones, ${formatCompactPrice(property.precio)}`}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  window.open(property.link_inmueble, '_blank');
+                }
+              }}
             >
               <CardContent className="p-4 space-y-3">
                 {/* Header con tipo y enlace */}
                 <div className="flex items-start justify-between">
-                  <Badge className={`text-xs px-2 py-1 ${operationStyle}`}>
+                  <Badge 
+                    className={`text-xs px-2 py-1 ${operationStyle}`}
+                    aria-label={`Tipo: ${property.tipo_de_operacion}`}
+                  >
                     {property.tipo_de_operacion}
                   </Badge>
                   <Button
@@ -309,6 +495,7 @@ export function PropertyTable({ properties, viewMode = 'cards', maxItems = 30 }:
                       e.stopPropagation();
                       window.open(property.link_inmueble, '_blank');
                     }}
+                    aria-label={`Abrir enlace externo para propiedad en ${property.zona}`}
                   >
                     <ExternalLink className="h-3 w-3" />
                   </Button>
@@ -316,12 +503,12 @@ export function PropertyTable({ properties, viewMode = 'cards', maxItems = 30 }:
                 
                 {/* Ubicación */}
                 <div className="flex items-center gap-2">
-                  <MapPin className="h-4 w-4 text-muted-foreground flex-shrink-0" />
+                  <MapPin className="h-4 w-4 text-muted-foreground flex-shrink-0" aria-hidden="true" />
                   <span className="text-sm font-medium truncate">{property.zona}</span>
                 </div>
 
                 {/* Precio principal */}
-                <div className="space-y-1">
+                <div className="space-y-1" aria-label={`Precio: ${formatCompactPrice(property.precio)}`}>
                   <div className="text-2xl font-bold text-foreground">
                     {formatCompactPrice(property.precio)}
                   </div>
@@ -330,18 +517,21 @@ export function PropertyTable({ properties, viewMode = 'cards', maxItems = 30 }:
                 {/* Características en grid compacto */}
                 <div className="grid grid-cols-3 gap-2">
                   <div className="flex items-center gap-1 bg-muted/30 rounded-md p-2">
-                    <Home className="h-3 w-3 text-muted-foreground" />
+                    <Home className="h-3 w-3 text-muted-foreground" aria-hidden="true" />
                     <span className="text-xs font-medium">{property.habitaciones}</span>
+                    <span className="sr-only">habitaciones</span>
                   </div>
                   
                   <div className="flex items-center gap-1 bg-muted/30 rounded-md p-2">
-                    <Bath className="h-3 w-3 text-muted-foreground" />
+                    <Bath className="h-3 w-3 text-muted-foreground" aria-hidden="true" />
                     <span className="text-xs font-medium">{property.baños}</span>
+                    <span className="sr-only">baños</span>
                   </div>
                   
                   <div className="flex items-center gap-1 bg-muted/30 rounded-md p-2">
-                    <Square className="h-3 w-3 text-muted-foreground" />
+                    <Square className="h-3 w-3 text-muted-foreground" aria-hidden="true" />
                     <span className="text-xs font-medium">{property.metros_cuadrados}m²</span>
+                    <span className="sr-only">metros cuadrados</span>
                   </div>
                 </div>
 
@@ -349,17 +539,17 @@ export function PropertyTable({ properties, viewMode = 'cards', maxItems = 30 }:
                 <div className="pt-2 border-t border-border/50 space-y-1">
                   <div className="flex items-center justify-between text-xs text-muted-foreground">
                     <div className="flex items-center gap-1 truncate">
-                      <User className="h-3 w-3 flex-shrink-0" />
+                      <User className="h-3 w-3 flex-shrink-0" aria-hidden="true" />
                       <span className="truncate">{property.anunciante}</span>
                     </div>
                     <div className="flex items-center gap-1">
-                      <Globe className="h-3 w-3" />
+                      <Globe className="h-3 w-3" aria-hidden="true" />
                       <span>{property.web}</span>
                     </div>
                   </div>
                   
                   <div className="flex items-center gap-1 text-xs text-muted-foreground">
-                    <Calendar className="h-3 w-3" />
+                    <Calendar className="h-3 w-3" aria-hidden="true" />
                     <span>{formatDate(property.fecha_inclusion)}</span>
                   </div>
                 </div>
