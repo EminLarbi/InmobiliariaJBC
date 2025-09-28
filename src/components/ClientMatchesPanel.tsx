@@ -586,13 +586,7 @@ export function ClientMatchesPanel({ properties, matches, clients }: ClientMatch
                                   </div>
                                 )}
                                 
-                                {client.client_info.zona_std && (
-                                  <div className="flex items-center gap-2">
-                                    <MapPin className="h-3 w-3 text-muted-foreground" />
-                                    <span className="text-muted-foreground">Zona estándar:</span>
-                                    <span className="font-medium text-xs bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded">{client.client_info.zona_std}</span>
-                                  </div>
-                                )}
+                             
                               </div>
                             </div>
                           </div>
