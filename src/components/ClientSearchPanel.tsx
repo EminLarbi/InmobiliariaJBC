@@ -5,7 +5,7 @@ import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { Label } from './ui/label';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from './ui/table';
-import { User, Phone, Mail, Calendar, Search, Chrome as Home, Bath, Square, Euro, MapPin, ListFilter as Filter, Users, Info, Star, Target } from 'lucide-react';
+import { User, Phone, Mail, Calendar, Search, Home, Bath, Square, Euro, MapPin, Filter, Users, Info, Star, Target } from 'lucide-react';
 
 interface Client {
   id: string;
