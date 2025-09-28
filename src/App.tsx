@@ -13,7 +13,7 @@ import {
 	getUniqueAnunciantes,
 	getUniqueTiposOperacion,
 } from "./components/mockData";
-import { Database, LayoutGrid, List, BarChart3, Users, Home, Building2 } from "lucide-react";
+import { Database, LayoutGrid, List, ChartBar as BarChart3, Users, Chrome as Home, Building2 } from "lucide-react";
 import { Target } from "lucide-react";
 import { Button } from "./components/ui/button";
 import { Badge } from "./components/ui/badge";

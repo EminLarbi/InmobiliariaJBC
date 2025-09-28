@@ -1,5 +1,5 @@
 import React from 'react';
-import { ExternalLink, Home, Bath, Square, MapPin, Calendar, User, Globe, ArrowUpDown, ArrowUp, ArrowDown } from 'lucide-react';
+import { ExternalLink, Chrome as Home, Bath, Square, MapPin, Calendar, User, Globe, ArrowUpDown, ArrowUp, ArrowDown } from 'lucide-react';
 import { Badge } from './ui/badge';
 import { Card, CardContent } from './ui/card';
 import { Button } from './ui/button';
