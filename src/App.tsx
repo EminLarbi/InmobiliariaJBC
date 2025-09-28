@@ -770,11 +770,18 @@ function AppContent() {
 					<SidebarHeader className="border-b">
 						<div className="flex items-center gap-2 px-2 py-2">
 							<div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-								<Building2 className="h-5 w-5 text-white" />
+								<img 
+									src="/logo-inmo.png" 
+									alt="Inmobiliaria JBC Logo" 
+									className="w-6 h-6 object-contain"
+								/>
 							</div>
 							<div>
 								<h2 className="text-lg font-semibold">JBC</h2>
 								<p className="text-xs text-muted-foreground">Inmobiliaria</p>
+							</div>
+							<div className="ml-auto">
+								<SidebarTrigger className="h-7 w-7" />
 							</div>
 						</div>
 					</SidebarHeader>
@@ -845,7 +852,6 @@ function AppContent() {
 
 				<SidebarInset>
 					<header className="flex h-16 shrink-0 items-center gap-2 border-b px-4">
-						<SidebarTrigger className="-ml-1" />
 						<div className="flex items-center gap-2">
 							<h1 className="text-lg font-semibold">
 								{menuItems.find(item => item.id === activeTab)?.title || 'Inmobiliaria JBC'}
