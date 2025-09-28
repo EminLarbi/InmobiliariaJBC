@@ -3,6 +3,7 @@ import { PropertyFilters } from "./components/PropertyFilters";
 import { PropertyTable, Property } from "./components/PropertyTable";
 import { MarketAnalytics } from "./components/MarketAnalytics";
 import { ClientMatchesPanel, ClientMatch } from "./components/ClientMatchesPanel";
+import { ClientSearchPanel } from "./components/ClientSearchPanel";
 import { HomePage } from "./components/HomePage";
 import { ThemeProvider } from "./components/ThemeProvider";
 import { ThemeToggle } from "./components/ThemeToggle";
@@ -653,6 +654,12 @@ function AppContent() {
 			description: 'Explorar inventario'
 		},
 		{
+			id: 'clients',
+			title: 'Buscar Clientes',
+			icon: Users,
+			description: 'Explorar clientes'
+		},
+		{
 			id: 'analytics',
 			title: 'Análisis de Mercado',
 			icon: BarChart3,
@@ -661,7 +668,7 @@ function AppContent() {
 		{
 			id: 'matches',
 			title: 'Matches de Clientes',
-			icon: Users,
+			icon: Target,
 			description: 'Coincidencias'
 		}
 	];
@@ -678,11 +685,14 @@ function AppContent() {
 				);
 			case 'analytics':
 				return <MarketAnalytics properties={currentProperties} />;
+			case 'clients':
+				return <ClientSearchPanel clients={loadedClients} />;
 			case 'matches':
 				return (
 					<ClientMatchesPanel 
 						properties={currentProperties} 
 						matches={loadedMatches} 
+						clients={loadedClients}
 					/>
 				);
 			case 'search':

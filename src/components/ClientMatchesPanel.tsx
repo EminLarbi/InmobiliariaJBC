@@ -10,7 +10,7 @@ import { Label } from './ui/label';
 import { Property } from './PropertyTable';
 import { ExternalLink, User, Chrome as Home, Bath, Square, MapPin, Euro, Star, TrendingUp, Users, Target, Search, Phone, Mail, Calendar } from 'lucide-react';
 
-export interface Client {
+interface ClientInfo {
   id: string;
   nombre: string;
   telefono: string;
@@ -63,7 +63,7 @@ export interface ClientMatch {
 interface ClientMatchesPanelProps {
   properties: Property[];
   matches: ClientMatch[];
-  clients?: Client[];
+  clients?: ClientInfo[];
 }
 
 export function ClientMatchesPanel({ properties, matches, clients }: ClientMatchesPanelProps) {
@@ -97,7 +97,7 @@ export function ClientMatchesPanel({ properties, matches, clients }: ClientMatch
         acc[clientKey] = {
           client_id: match.client_id,
           client_name: match.client_name,
-          client_info: clientInfo || {
+          client_info: clientInfo as ClientInfo || {
             id: match.client_id,
             nombre: match.client_name,
             telefono: '',
@@ -120,7 +120,7 @@ export function ClientMatchesPanel({ properties, matches, clients }: ClientMatch
             locations: [],
             flags: [],
             zona_std: ''
-          },
+          } as ClientInfo,
           matches: []
         };
       }

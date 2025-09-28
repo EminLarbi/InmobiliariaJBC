@@ -23,7 +23,7 @@ import {
   Target
 } from 'lucide-react';
 
-export interface Client {
+interface Client {
   id: string;
   nombre: string;
   telefono: string;
