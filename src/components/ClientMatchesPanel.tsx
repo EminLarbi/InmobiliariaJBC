@@ -64,6 +64,16 @@ export function ClientMatchesPanel({ properties, matches, clients }: ClientMatch
   const [expandedClients, setExpandedClients] = useState<Set<string>>(new Set());
   const maxClientsPerPage = 10;
 
+  // Helper function to format ranges
+  const formatRange = (min: number | null, max: number | null, suffix: string = '') => {
+    if (min && max) {
+      return min === max ? `${min}${suffix}` : `${min}-${max}${suffix}`;
+    }
+    if (min) return `Desde ${min}${suffix}`;
+    if (max) return `Hasta ${max}${suffix}`;
+    return 'No especificado';
+  };
+
   // Función para determinar si un anunciante es propio o competencia
   const isPropio = (anunciante: string): boolean => {
     const anuncianteLower = anunciante.toLowerCase();
