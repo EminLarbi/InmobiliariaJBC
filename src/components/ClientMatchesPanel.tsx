@@ -361,7 +361,7 @@ export function ClientMatchesPanel({ properties, matches, clients }: ClientMatch
                         <User className="h-5 w-5 text-primary" />
                       </div>
                       <div className="text-left">
-                        <p className="font-medium">{client.client_name}</p>
+                        <p className="font-medium">{client.client_name.toUpperCase()}</p>
                         <div className="flex items-center gap-2 text-sm text-muted-foreground">
                           <span>ID: {client.client_id}</span>
                           {client.client_info?.telefono && (
