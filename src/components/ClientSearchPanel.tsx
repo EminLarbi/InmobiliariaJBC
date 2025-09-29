@@ -473,7 +473,6 @@ export function ClientSearchPanel({ clients }: ClientSearchPanelProps) {
                               </p>
                             </div>
                           )}
-                  <p className="text-xs text-muted-foreground">
                           {(client.area_min_m2 || client.area_max_m2) && (
                             <div className="space-y-1">
                               <div className="flex items-center gap-1">
@@ -485,7 +484,6 @@ export function ClientSearchPanel({ clients }: ClientSearchPanelProps) {
                               </p>
                             </div>
                           )}
-                    {client.creado_info.replace(/,$/, '')}
                           {(client.price_min_eur || client.price_max_eur) && (
                             <div className="space-y-1">
                               <div className="flex items-center gap-1">
@@ -503,7 +501,6 @@ export function ClientSearchPanel({ clients }: ClientSearchPanelProps) {
                             </div>
                           )}
                         </div>
-                  </p>
                         {/* Ubicaciones preferidas */}
                         {client.locations.length > 0 && (
                           <div>
