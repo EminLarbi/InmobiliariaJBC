@@ -229,7 +229,7 @@ export function ClientMatchesPanel({ properties, matches, clients }: ClientMatch
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Total Clientes</CardTitle>
+            <CardTitle className="text-sm font-medium">Total clientes</CardTitle>
             <Users className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
@@ -242,7 +242,7 @@ export function ClientMatchesPanel({ properties, matches, clients }: ClientMatch
 
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Total Matches</CardTitle>
+            <CardTitle className="text-sm font-medium">Total matches</CardTitle>
             <Target className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
@@ -255,7 +255,7 @@ export function ClientMatchesPanel({ properties, matches, clients }: ClientMatch
 
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Promedio por Cliente</CardTitle>
+            <CardTitle className="text-sm font-medium">Promedio por cliente</CardTitle>
             <TrendingUp className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
@@ -268,7 +268,7 @@ export function ClientMatchesPanel({ properties, matches, clients }: ClientMatch
 
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Matches de Alta Calidad</CardTitle>
+            <CardTitle className="text-sm font-medium">Matches de alta calidad</CardTitle>
             <Star className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
@@ -285,7 +285,7 @@ export function ClientMatchesPanel({ properties, matches, clients }: ClientMatch
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Search className="h-5 w-5 text-primary" />
-            Buscar Clientes
+            Buscar clientes
           </CardTitle>
         </CardHeader>
         <CardContent>
@@ -366,7 +366,7 @@ export function ClientMatchesPanel({ properties, matches, clients }: ClientMatch
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <User className="h-5 w-5 text-primary" />
-            Matches por Cliente
+            Matches por cliente
           </CardTitle>
           <CardDescription>
             Propiedades recomendadas para cada cliente ordenadas por relevancia
@@ -387,13 +387,6 @@ export function ClientMatchesPanel({ properties, matches, clients }: ClientMatch
                       </div>
                       <div className="text-left">
                         <p className="font-medium">{client.client_name}</p>
-                        <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                          <span>ID: {client.client_id}</span>
-                          {client.client_info?.telefono && (
-                            <span>• {client.client_info.telefono}</span>
-                          )}
-                        </div>
-                        <p className="font-medium">{client.client_name.toUpperCase()}</p>
                         <div className="flex items-center gap-2 text-sm text-muted-foreground">
                           <span>ID: {client.client_id}</span>
                           {client.client_info?.telefono && (
@@ -432,18 +425,18 @@ export function ClientMatchesPanel({ properties, matches, clients }: ClientMatch
                         <CardContent className="p-4">
                           <h4 className="font-medium mb-3 flex items-center gap-2">
                             <User className="h-4 w-4 text-primary" />
-                            Perfil del Cliente
+                            Perfil del cliente
                           </h4>
                           
                           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                             {/* Información de contacto */}
                             <div className="space-y-2">
-                              <h5 className="text-sm font-medium text-muted-foreground">Contacto</h5>
+                              <h5 className="text-sm font-medium text-muted-foreground">Información de contacto</h5>
                               <div className="space-y-1 text-sm">
                                 <div className="flex items-center gap-2">
                                   <User className="h-3 w-3 text-muted-foreground" />
                                   <span className="text-muted-foreground">Nombre:</span>
-                                  <span className="font-medium">{(client.client_info.nombre || client.client_name).toUpperCase()}</span>
+                                  <span className="font-medium">{client.client_info.nombre || client.client_name}</span>
                                 </div>
                                 <div className="flex items-center gap-2">
                                   <span className="text-muted-foreground">ID:</span>
@@ -475,20 +468,20 @@ export function ClientMatchesPanel({ properties, matches, clients }: ClientMatch
 
                             {/* Requisitos */}
                             <div className="space-y-2">
-                              <h5 className="text-sm font-medium text-muted-foreground">Requisitos</h5>
+                              <h5 className="text-sm font-medium text-muted-foreground">Requisitos de búsqueda</h5>
                               <div className="space-y-1 text-sm">
                                 {client.client_info.operation && (
                                   <div className="flex items-center gap-2">
                                     <span className="text-muted-foreground">Operación:</span>
-                                    <Badge className={`text-xs px-2 py-1 ${getOperationStyle(client.client_info.operation.toUpperCase())}`}>
-                                      {client.client_info.operation.toUpperCase()}
+                                    <Badge className={`text-xs px-2 py-1 ${getOperationStyle(client.client_info.operation)}`}>
+                                      {client.client_info.operation}
                                     </Badge>
                                   </div>
                                 )}
                                 
                                 {client.client_info.types && client.client_info.types.length > 0 && (
                                   <div>
-                                    <span className="text-muted-foreground">Tipos buscados:</span>
+                                    <span className="text-muted-foreground">Tipos de propiedad:</span>
                                     <div className="flex flex-wrap gap-1 mt-1">
                                       {client.client_info.types.map((type, idx) => (
                                         <Badge key={idx} variant="outline" className="text-xs bg-green-50 border-green-200 text-green-800 dark:bg-green-950/20 dark:border-green-800 dark:text-green-200">
@@ -563,13 +556,13 @@ export function ClientMatchesPanel({ properties, matches, clients }: ClientMatch
 
                             {/* Información adicional */}
                             <div className="space-y-2">
-                              <h5 className="text-sm font-medium text-muted-foreground">Información adicional</h5>
+                              <h5 className="text-sm font-medium text-muted-foreground">Detalles adicionales</h5>
                               <div className="space-y-1 text-sm">
                                 {client.client_info.creado_info && (
                                   <div className="space-y-1">
                                     <div className="flex items-center gap-1">
                                       <User className="h-3 w-3 text-muted-foreground" />
-                                      <span className="text-muted-foreground">Creado por:</span>
+                                      <span className="text-muted-foreground">Registrado por:</span>
                                     </div>
                                     <p className="text-xs bg-blue-50 dark:bg-blue-950/20 p-2 rounded border-l-2 border-blue-300 dark:border-blue-700 font-medium">
                                       {client.client_info.creado_info.replace(/,$/, '')}
@@ -581,247 +574,6 @@ export function ClientMatchesPanel({ properties, matches, clients }: ClientMatch
                                   <div className="space-y-1">
                                     <div className="flex items-center gap-1">
                                       <Star className="h-3 w-3 text-muted-foreground" />
-                                      <span className="text-muted-foreground">Flags especiales:</span>
+                                      <span className="text-muted-foreground">Características especiales:</span>
                                     </div>
-                                    <div className="flex flex-wrap gap-1">
-                                      {client.client_info.flags.map((flag, idx) => (
-                                        <Badge key={idx} variant="outline" className="text-xs bg-amber-50 border-amber-200 text-amber-800 dark:bg-amber-950/20 dark:border-amber-800 dark:text-amber-200">
-                                          {flag}
-                                        </Badge>
-                                      ))}
-                                    </div>
-                                  </div>
-                                )}
-                                
-                             
-                              </div>
-                            </div>
-                          </div>
-
-                          {/* Ubicaciones preferidas */}
-                          {client.client_info.locations && client.client_info.locations.length > 0 && (
-                            <div className="mt-3 pt-3 border-t border-border/50">
-                              <h5 className="text-sm font-medium text-muted-foreground mb-2">Ubicaciones preferidas</h5>
-                              <div className="flex flex-wrap gap-1">
-                                {client.client_info.locations.map((location, idx) => (
-                                  <Badge key={idx} variant="secondary" className="text-xs bg-blue-50 border-blue-200 text-blue-800 dark:bg-blue-950/20 dark:border-blue-800 dark:text-blue-200">
-                                    <MapPin className="h-3 w-3 mr-1" />
-                                    {location}
-                                  </Badge>
-                                ))}
-                              </div>
-                            </div>
-                          )}
-                          
-                          {/* Resumen rápido de contacto */}
-                          {(client.client_info.telefono || client.client_info.mail) && (
-                          <div className="mt-4 pt-3 border-t border-border/50 bg-primary/5 dark:bg-primary/10 rounded-lg p-3">
-                            <h5 className="text-sm font-medium mb-2 flex items-center gap-2">
-                              <Phone className="h-4 w-4 text-primary" />
-                              Contacto rápido
-                            </h5>
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-2 text-xs">
-                              {client.client_info.telefono && (
-                                <Button
-                                  variant="outline"
-                                  size="sm"
-                                  className="h-8 justify-start text-xs"
-                                  onClick={() => window.open(`tel:${client.client_info.telefono}`, '_self')}
-                                >
-                                  <Phone className="h-3 w-3 mr-1" />
-                                  Llamar
-                                </Button>
-                              )}
-                              {client.client_info.mail && (
-                                <Button
-                                  variant="outline"
-                                  size="sm"
-                                  className="h-8 justify-start text-xs"
-                                  onClick={() => window.open(`mailto:${client.client_info.mail}`, '_self')}
-                                >
-                                  <Mail className="h-3 w-3 mr-1" />
-                                  Email
-                                </Button>
-                              )}
-                            </div>
-                          </div>
-                          )}
-                        </CardContent>
-                      </Card>
-                    )}
-
-                    <div 
-                      className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4"
-                      role="grid"
-                      aria-label={`${client.matches.length} propiedades recomendadas para ${client.client_name}`}
-                    >
-                      {client.matches.slice(0, 20).map((match) => (
-                        <Card 
-                          key={match.property_id} 
-                          className="hover:shadow-md transition-shadow focus-within:ring-2 focus-within:ring-primary/20"
-                          role="gridcell"
-                          tabIndex={0}
-                          aria-label={`Propiedad recomendada: ${match.zona}, ${match.habitaciones} habitaciones, ${formatPrice(match.precio)}, ${formatScore(match.score)}% de coincidencia`}
-                          onKeyDown={(e) => {
-                            if (e.key === 'Enter' || e.key === ' ') {
-                              e.preventDefault();
-                              window.open(match.link_inmueble, '_blank');
-                            }
-                          }}
-                        >
-                          <CardContent className="p-4 space-y-3">
-                            {/* Header con score y ranking */}
-                            <div className="flex items-start justify-between">
-                              <div className="flex items-center gap-2">
-                                <Badge 
-                                  className={`text-xs px-2 py-1 ${getScoreColor(match.score)}`}
-                                  aria-label={`Puntuación de coincidencia: ${formatScore(match.score)} por ciento`}
-                                >
-                                  {formatScore(match.score)}% match
-                                </Badge>
-                                <Badge 
-                                  variant="outline" 
-                                  className="text-xs"
-                                  aria-label={`Ranking número ${match.rank_client} para este cliente`}
-                                >
-                                  #{match.rank_client}
-                                </Badge>
-                              </div>
-                              <Button
-                                variant="ghost"
-                                size="sm"
-                                className="h-6 w-6 p-0"
-                                onClick={() => window.open(match.link_inmueble, '_blank')}
-                                aria-label={`Abrir enlace externo para propiedad en ${match.zona}`}
-                              >
-                                {(match.operacion || 'N/A').toUpperCase()}
-                              </Button>
-                            </div>
-
-                            {/* Información básica */}
-                            <div className="space-y-2">
-                              <div className="flex items-center gap-2">
-                                <Badge 
-                                  className={`text-xs px-2 py-1 ${getOperationStyle(match.operacion)}`}
-                                  aria-label={`Tipo de operación: ${match.operacion || 'No especificado'}`}
-                                >
-                                  {match.operacion || 'N/A'}
-                                </Badge>
-                                <span className="text-sm text-muted-foreground">{match.web}</span>
-                              </div>
-                              
-                              <div className="flex items-center gap-2">
-                                <MapPin className="h-3 w-3 text-muted-foreground" aria-hidden="true" />
-                                <span className="text-sm font-medium truncate">
-                                  {match.zona.includes("'municipio'") ? 
-                                    match.zona.split("'municipio': '")[1]?.split("'")[0] || match.zona :
-                                    match.zona
-                                  }
-                                </span>
-                              </div>
-
-                              <div className="text-lg font-bold text-primary" aria-label={`Precio: ${formatPrice(match.precio)}`}>
-                                {formatPrice(match.precio)}
-                              </div>
-                            </div>
-
-                            {/* Características */}
-                            <div className="grid grid-cols-3 gap-2">
-                              <div className="flex items-center gap-1 bg-muted/30 rounded-md p-2">
-                                <Bed className="h-3 w-3 text-muted-foreground" aria-hidden="true" />
-                                <span className="text-xs font-medium">{match.habitaciones}</span>
-                                <span className="sr-only">habitaciones</span>
-                              </div>
-                              
-                              <div className="flex items-center gap-1 bg-muted/30 rounded-md p-2">
-                                <Bath className="h-3 w-3 text-muted-foreground" aria-hidden="true" />
-                                <span className="text-xs font-medium">{match.banos}</span>
-                                <span className="sr-only">baños</span>
-                              </div>
-                              
-                              <div className="flex items-center gap-1 bg-muted/30 rounded-md p-2">
-                                <Square className="h-3 w-3 text-muted-foreground" aria-hidden="true" />
-                                <span className="text-xs font-medium">{match.m2}m²</span>
-                                <span className="sr-only">metros cuadrados</span>
-                              </div>
-                            </div>
-
-                            {/* Scores detallados */}
-                            <div className="pt-2 border-t border-border/50" aria-label="Puntuaciones detalladas de coincidencia">
-                              <p className="text-xs text-muted-foreground mb-2">Scores de coincidencia:</p>
-                              <div className="grid grid-cols-2 gap-2 text-xs">
-                                <div className="flex justify-between">
-                                  <span>Precio:</span>
-                                  <span className="font-medium">{formatScore(match.s_price)}%</span>
-                                </div>
-                                <div className="flex justify-between">
-                                  <span>Área:</span>
-                                  <span className="font-medium">{formatScore(match.s_area)}%</span>
-                                </div>
-                                <div className="flex justify-between">
-                                  <span>Habitaciones:</span>
-                                  <span className="font-medium">{formatScore(match.s_rooms)}%</span>
-                                </div>
-                                <div className="flex justify-between">
-                                  <span>Baños:</span>
-                                  <span className="font-medium">{formatScore(match.s_baths)}%</span>
-                                </div>
-                              </div>
-                            </div>
-
-                            {/* Anunciante */}
-                            <div className="flex items-center gap-1 text-xs text-muted-foreground">
-                              <User className="h-3 w-3" aria-hidden="true" />
-                              <span className="truncate">{match.anunciante.toUpperCase()}</span>
-                            </div>
-                          </CardContent>
-                        </Card>
-                      ))}
-                    </div>
-                    
-                    {client.matches.length > 20 && (
-                      <div className="text-center">
-                        <p className="text-sm text-muted-foreground" aria-live="polite">
-                          Mostrando los primeros 20 de {client.matches.length} matches
-                        </p>
-                      </div>
-                    )}
-
-                    {/* Resumen del cliente */}
-                    <div className="mt-6 p-4 bg-muted/30 rounded-lg">
-                      <h4 className="font-medium mb-2" id={`summary-${client.client_id}`}>
-                        Resumen para {client.client_name.toUpperCase()}
-                      </h4>
-                      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
-                        <div>
-                          <p className="text-muted-foreground">Total matches:</p>
-                          <p className="font-medium">{client.matches.length}</p>
-                        </div>
-                        <div>
-                          <p className="text-muted-foreground">Mejor score:</p>
-                          <p className="font-medium">{formatScore(Math.max(...client.matches.map(m => m.score)))}%</p>
-                        </div>
-                        <div>
-                          <p className="text-muted-foreground">Precio promedio:</p>
-                          <p className="font-medium">
-                            {formatPrice(client.matches.reduce((sum, m) => sum + m.precio, 0) / client.matches.length)}
-                          </p>
-                        </div>
-                        <div>
-                          <p className="text-muted-foreground">Matches alta calidad:</p>
-                          <p className="font-medium">
-                            {client.matches.filter(m => m.score >= 0.8).length}
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
-        </CardContent>
-      </Card>
-    </div>
-  );
-}
+                                    
