@@ -5,7 +5,9 @@ import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { Label } from './ui/label';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from './ui/table';
-import { User, Phone, Mail, Calendar, Search, Chrome as Home, Bath, Square, Euro, MapPin, ListFilter as Filter, Users, Info, Star, Target } from 'lucide-react';
+import { User, Phone, Mail, Calendar, Search, Chrome as Home, Bath, Square, Euro, MapPin, ListFilter as Filter, Users, Info, Star, Target, ChevronUp, ChevronDown, Building2, Copy, ExternalLink } from 'lucide-react';
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from './ui/collapsible';
+import { Alert, AlertDescription } from './ui/alert';
 
 interface Client {
   id: string;
@@ -112,6 +114,24 @@ export function ClientSearchPanel({ clients }: ClientSearchPanelProps) {
       default:
         return 'bg-purple-100 text-purple-800 border-purple-200 dark:bg-purple-900/30 dark:text-purple-300 dark:border-purple-800';
     }
+  };
+
+  const toggleClientExpansion = (clientId: string) => {
+    setExpandedClient(expandedClient === clientId ? '' : clientId);
+  };
+
+  const copyToClipboard = (text: string) => {
+    navigator.clipboard.writeText(text);
+  };
+
+  const getScoreColor = (score: number) => {
+    if (score >= 0.8) return 'bg-green-100 text-green-800 border-green-200';
+    if (score >= 0.6) return 'bg-yellow-100 text-yellow-800 border-yellow-200';
+    return 'bg-red-100 text-red-800 border-red-200';
+  };
+
+  const isPropio = (anunciante: string) => {
+    return anunciante.toLowerCase().includes('propio');
   };
 
   const stats = useMemo(() => {
@@ -284,6 +304,14 @@ export function ClientSearchPanel({ clients }: ClientSearchPanelProps) {
       )}
 
       {/* Lista de Clientes */}
+      <div className="space-y-4">
+        {currentClients.map((client) => {
+          const isExpanded = expandedClient === client.id;
+          const clientMatches: any[] = [];
+          const highQualityMatches = clientMatches.filter(m => m.score >= 0.8).length;
+          const propioMatches = clientMatches.filter(m => isPropio(m.anunciante)).length;
+
+          return (
             <Card key={client.id} className="overflow-hidden">
               <Collapsible 
                 open={isExpanded} 
@@ -515,7 +543,7 @@ export function ClientSearchPanel({ clients }: ClientSearchPanelProps) {
                             </div>
                           </div>
                         )}
-                </div>
+
                         {/* Condiciones adicionales */}
                         {client.conditions.length > 0 && (
                           <div>
@@ -531,7 +559,7 @@ export function ClientSearchPanel({ clients }: ClientSearchPanelProps) {
                         )}
                       </div>
                     </div>
-              )}
+
                     {/* 3. MATCHES - All relevant matches prominently displayed */}
                     {clientMatches.length > 0 ? (
                       <div className="bg-green-50 dark:bg-green-950/20 rounded-lg p-4 border border-green-200 dark:border-green-800">
@@ -557,7 +585,7 @@ export function ClientSearchPanel({ clients }: ClientSearchPanelProps) {
                             )}
                           </div>
                         </div>
-            </CardContent>
+
                         <div className="space-y-3">
                           {clientMatches.slice(0, 5).map((match, index) => (
                             <div key={`${match.property_id}-${index}`} className="bg-white dark:bg-gray-800 rounded-lg p-3 border">
@@ -648,8 +676,8 @@ export function ClientSearchPanel({ clients }: ClientSearchPanelProps) {
                 </CollapsibleContent>
               </Collapsible>
             </Card>
-          </Card>
-        ))}
+          );
+        })}
       </div>
     </div>
   );
