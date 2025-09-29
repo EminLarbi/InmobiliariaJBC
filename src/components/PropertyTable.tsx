@@ -1,5 +1,5 @@
 import React from 'react';
-import { ExternalLink, Bed, Bath, Square, MapPin, Calendar, User, Globe, ArrowUpDown, ArrowUp, ArrowDown } from 'lucide-react';
+import { ExternalLink, Bed, Bath, Square, MapPin, Calendar, User, Globe, ArrowUpDown, ArrowUp, ArrowDown, Building2, Target } from 'lucide-react';
 import { Badge } from './ui/badge';
 import { Card, CardContent } from './ui/card';
 import { Button } from './ui/button';
@@ -70,7 +70,7 @@ export function PropertyTable({ properties, viewMode = 'cards', maxItems = 30, m
   const propertyMatches = React.useMemo(() => {
     const matchMap = new Map<string, { total: number; highQuality: number }>();
     
-    matches.forEach(match => {
+    (matches || []).forEach(match => {
       const propertyKey = match.property_id;
       if (!propertyKey) return;
       
@@ -91,13 +91,13 @@ export function PropertyTable({ properties, viewMode = 'cards', maxItems = 30, m
   const propertyMatchesMap = React.useMemo(() => {
     const map = new Map<number, { total: number; highQuality: number }>();
     
-    properties.forEach(property => {
+    (properties || []).forEach(property => {
       // Buscar matches usando el property_id del CSV
       let matchInfo = propertyMatches.get(property.id.toString());
       
       // Si no encuentra, intentar buscar por link_inmueble
       if (!matchInfo) {
-        const matchingEntries = matches.filter(match => {
+        const matchingEntries = (matches || []).filter(match => {
           if (!match.link_inmueble || !property.link_inmueble) return false;
           
           const matchUrl = match.link_inmueble.toLowerCase().trim();
@@ -127,9 +127,9 @@ export function PropertyTable({ properties, viewMode = 'cards', maxItems = 30, m
   
   // Función de ordenamiento
   const sortedProperties = React.useMemo(() => {
-    if (!sortField || !sortDirection) return properties;
+    if (!sortField || !sortDirection || !properties) return properties || [];
     
-    return [...properties].sort((a, b) => {
+    return [...(properties || [])].sort((a, b) => {
       let aValue: any = a[sortField];
       let bValue: any = b[sortField];
       
@@ -157,15 +157,15 @@ export function PropertyTable({ properties, viewMode = 'cards', maxItems = 30, m
   }, [properties, sortField, sortDirection, propertyMatchesMap]);
   
   // Calcular paginación con datos ordenados
-  const totalPages = Math.ceil(sortedProperties.length / maxItems);
+  const totalPages = Math.ceil((sortedProperties || []).length / maxItems);
   const startIndex = (currentPage - 1) * maxItems;
   const endIndex = startIndex + maxItems;
-  const currentProperties = sortedProperties.slice(startIndex, endIndex);
+  const currentProperties = (sortedProperties || []).slice(startIndex, endIndex);
   
   // Reset página cuando cambian las propiedades
   React.useEffect(() => {
     setCurrentPage(1);
-  }, [sortedProperties.length]);
+  }, [(sortedProperties || []).length]);
 
   const handleSort = (field: SortField) => {
     if (sortField === field) {
@@ -275,7 +275,7 @@ export function PropertyTable({ properties, viewMode = 'cards', maxItems = 30, m
     return (
       <div className="flex items-center justify-between mt-6">
         <div className="text-sm text-muted-foreground">
-          Mostrando {startIndex + 1}-{Math.min(endIndex, sortedProperties.length)} de {sortedProperties.length} propiedades
+          Mostrando {startIndex + 1}-{Math.min(endIndex, (sortedProperties || []).length)} de {(sortedProperties || []).length} propiedades
           {sortField && sortDirection && (
             <span className="ml-2">
               (ordenado por {sortField} {sortDirection === 'asc' ? 'ascendente' : 'descendente'})
@@ -592,9 +592,9 @@ export function PropertyTable({ properties, viewMode = 'cards', maxItems = 30, m
         <div 
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4"
           role="grid"
-          aria-label={`Cuadrícula de ${currentProperties.length} propiedades inmobiliarias`}
+          aria-label={`Cuadrícula de ${(currentProperties || []).length} propiedades inmobiliarias`}
         >
-          {currentProperties.map((property) => {
+          {(currentProperties || []).map((property) => {
           const operationStyle = getOperationStyle(property.tipo_de_operacion);
           const matchInfo = getPropertyMatches(property);
           
