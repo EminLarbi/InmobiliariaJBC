@@ -74,6 +74,14 @@ export function ClientMatchesPanel({ properties, matches, clients }: ClientMatch
     return 'No especificado';
   };
 
+  // Función para capitalizar nombres después de espacios, comas, puntos o paréntesis
+  const capitalizeClientName = (name: string): string => {
+    if (!name) return '';
+    return name.replace(/([,.\s(]|^)([a-z])/g, (match, separator, letter) => {
+      return separator + letter.toUpperCase();
+    });
+  };
+
   // Función para determinar si un anunciante es propio o competencia
   const isPropio = (anunciante: string): boolean => {
     const anuncianteLower = anunciante.toLowerCase();
@@ -507,7 +515,7 @@ export function ClientMatchesPanel({ properties, matches, clients }: ClientMatch
                           <User className="h-5 w-5 text-primary" />
                         </div>
                         <div>
-                          <CardTitle className="text-lg">{group.client.name}</CardTitle>
+                          <CardTitle className="text-lg">{capitalizeClientName(group.client.name)}</CardTitle>
                           <CardDescription>
                             ID: {group.client.id}
                             {group.client.operation && (
