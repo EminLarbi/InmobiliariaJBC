@@ -1,5 +1,5 @@
 import React from 'react';
-import { ExternalLink, Bed, Bath, Square, MapPin, Calendar, User, Globe, ArrowUpDown, ArrowUp, ArrowDown } from 'lucide-react';
+import { ExternalLink, Bed, Bath, Square, MapPin, Calendar, User as UserIcon, Globe, ArrowUpDown, ArrowUp, ArrowDown } from 'lucide-react';
 import { Badge } from './ui/badge';
 import { Card, CardContent } from './ui/card';
 import { Button } from './ui/button';
@@ -414,7 +414,7 @@ export function PropertyTable({ properties, viewMode = 'cards', maxItems = 30 }:
                       </TableCell>
                       <TableCell role="gridcell">
                         <div className="flex items-center gap-1 truncate">
-                          <User className="h-3 w-3 text-muted-foreground flex-shrink-0" aria-hidden="true" />
+                          <UserIcon className="h-3 w-3 text-muted-foreground flex-shrink-0" aria-hidden="true" />
                           <span className="truncate text-sm">{property.anunciante}</span>
                         </div>
                       </TableCell>
@@ -564,7 +564,7 @@ export function PropertyTable({ properties, viewMode = 'cards', maxItems = 30 }:
                 <div className="pt-2 border-t border-border/50 space-y-1">
                   <div className="flex items-center justify-between text-xs text-muted-foreground">
                     <div className="flex items-center gap-1 truncate">
-                      <User className="h-3 w-3 flex-shrink-0" aria-hidden="true" />
+                      <UserIcon className="h-3 w-3 flex-shrink-0" aria-hidden="true" />
                       <span className="truncate">{property.anunciante}</span>
                     </div>
                     <div className="flex items-center gap-1">
