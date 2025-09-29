@@ -13,21 +13,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from './ui/popover';
-import { 
-  FilterX, 
-  Home,
-  Bath, 
-  Square, 
-  MapPin, 
-  User, 
-  ShoppingCart,
-  Euro,
-  Info,
-  TrendingUp,
-  Filter,
-  Calendar as CalendarIcon,
-  Clock
-} from 'lucide-react';
+import { ListFilter as FilterX, Chrome as Home, Bath, Square, MapPin, User, ShoppingCart, Euro, Info, TrendingUp, ListFilter as Filter, Calendar as CalendarIcon, Clock } from 'lucide-react';
 import { cn } from './ui/utils';
 
 interface FilterState {
