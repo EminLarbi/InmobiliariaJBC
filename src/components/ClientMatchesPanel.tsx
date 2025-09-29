@@ -652,7 +652,7 @@ export function ClientMatchesPanel({ properties, matches, clients }: ClientMatch
                                     
                                     <div className="flex items-center gap-2 text-sm">
                                       <MapPin className="h-3 w-3 text-muted-foreground" />
-                                      <span className="text-muted-foreground">{match.zona.split(',')[0].trim()}</span>
+                                      <span className="text-muted-foreground">{match.zona.split(',')[0].trim().replace(/^\('?/, '').replace(/'$/, '')}</span>
                                       <span className="text-muted-foreground">•</span>
                                       <span className="font-medium">{match.anunciante?.toUpperCase()}</span>
                                     </div>
