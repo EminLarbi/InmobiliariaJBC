@@ -393,6 +393,13 @@ export function ClientMatchesPanel({ properties, matches, clients }: ClientMatch
                             <span>• {client.client_info.telefono}</span>
                           )}
                         </div>
+                        <p className="font-medium">{client.client_name.toUpperCase()}</p>
+                        <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                          <span>ID: {client.client_id}</span>
+                          {client.client_info?.telefono && (
+                            <span>• {client.client_info.telefono}</span>
+                          )}
+                        </div>
                       </div>
                     </div>
                     <div className="flex items-center gap-2">
@@ -436,7 +443,7 @@ export function ClientMatchesPanel({ properties, matches, clients }: ClientMatch
                                 <div className="flex items-center gap-2">
                                   <User className="h-3 w-3 text-muted-foreground" />
                                   <span className="text-muted-foreground">Nombre:</span>
-                                  <span className="font-medium">{client.client_info.nombre || client.client_name}</span>
+                                  <span className="font-medium">{(client.client_info.nombre || client.client_name).toUpperCase()}</span>
                                 </div>
                                 <div className="flex items-center gap-2">
                                   <span className="text-muted-foreground">ID:</span>
@@ -473,8 +480,8 @@ export function ClientMatchesPanel({ properties, matches, clients }: ClientMatch
                                 {client.client_info.operation && (
                                   <div className="flex items-center gap-2">
                                     <span className="text-muted-foreground">Operación:</span>
-                                    <Badge className={`text-xs px-2 py-1 ${getOperationStyle(client.client_info.operation)}`}>
-                                      {client.client_info.operation}
+                                    <Badge className={`text-xs px-2 py-1 ${getOperationStyle(client.client_info.operation.toUpperCase())}`}>
+                                      {client.client_info.operation.toUpperCase()}
                                     </Badge>
                                   </div>
                                 )}
@@ -687,7 +694,7 @@ export function ClientMatchesPanel({ properties, matches, clients }: ClientMatch
                                 onClick={() => window.open(match.link_inmueble, '_blank')}
                                 aria-label={`Abrir enlace externo para propiedad en ${match.zona}`}
                               >
-                                <ExternalLink className="h-3 w-3" />
+                                {(match.operacion || 'N/A').toUpperCase()}
                               </Button>
                             </div>
 
@@ -765,7 +772,7 @@ export function ClientMatchesPanel({ properties, matches, clients }: ClientMatch
                             {/* Anunciante */}
                             <div className="flex items-center gap-1 text-xs text-muted-foreground">
                               <User className="h-3 w-3" aria-hidden="true" />
-                              <span className="truncate">{match.anunciante}</span>
+                              <span className="truncate">{match.anunciante.toUpperCase()}</span>
                             </div>
                           </CardContent>
                         </Card>
@@ -783,7 +790,7 @@ export function ClientMatchesPanel({ properties, matches, clients }: ClientMatch
                     {/* Resumen del cliente */}
                     <div className="mt-6 p-4 bg-muted/30 rounded-lg">
                       <h4 className="font-medium mb-2" id={`summary-${client.client_id}`}>
-                        Resumen para {client.client_name}
+                        Resumen para {client.client_name.toUpperCase()}
                       </h4>
                       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
                         <div>
