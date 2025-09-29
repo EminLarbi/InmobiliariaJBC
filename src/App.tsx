@@ -170,9 +170,61 @@ function AppContent() {
 		const lines = csvText.trim().split("\n");
 		// Eliminar BOM si existe y preparar headers
 		const headerLine = lines[0].replace(/^\uFEFF/, "");
-		const headers = headerLine
-			.split(";")
-			.map((h) => h.trim().replace(/"/g, ""));
+		
+		// Parser CSV más robusto que maneja comas dentro de comillas y estructuras complejas
+		const parseCSVLine = (line: string): string[] => {
+			const result: string[] = [];
+			let current = '';
+			let inQuotes = false;
+			let parenDepth = 0;
+			
+			for (let i = 0; i < line.length; i++) {
+				const char = line[i];
+				
+				if (char === '"' && (i === 0 || line[i-1] !== '\\')) {
+					inQuotes = !inQuotes;
+					current += char;
+				} else if (char === '(' && !inQuotes) {
+					parenDepth++;
+					current += char;
+				} else if (char === ')' && !inQuotes) {
+					parenDepth--;
+					current += char;
+				} else if (char === ',' && !inQuotes && parenDepth === 0) {
+					result.push(current.trim());
+					current = '';
+				} else {
+					current += char;
+				}
+			}
+			
+			result.push(current.trim());
+			return result.map(v => v.replace(/^"|"$/g, ''));
+		};
+
+		const headers = parseCSVLine(headerLine);
+
+		// Función para extraer zona limpia del formato complejo
+		const extractCleanZona = (zonaRaw: string): string => {
+			if (!zonaRaw) return 'Desconocido';
+			
+			// Si es una tupla/estructura compleja como "('Alcoi / Centre - Zona Alta', {...})"
+			const tupleMatch = zonaRaw.match(/^\('([^']+)'/);
+			if (tupleMatch) {
+				return tupleMatch[1];
+			}
+			
+			// Si es un diccionario directo, extraer municipio y barrio
+			const dictMatch = zonaRaw.match(/'municipio':\s*'([^']+)'.*'barrio':\s*'([^']+)'/);
+			if (dictMatch) {
+				const municipio = dictMatch[1];
+				const barrio = dictMatch[2];
+				return `${municipio} / ${barrio}`;
+			}
+			
+			// Fallback: devolver tal como está, limpiando comillas extras
+			return zonaRaw.replace(/^["']|["']$/g, '');
+		};
 
 		const toInt = (v: string) => {
 			const cleaned = (v || "").replace(/[^0-9-]/g, "");
@@ -203,7 +255,7 @@ function AppContent() {
 		};
 
 		return lines.slice(1).map((line, index) => {
-			const values = line.split(";").map((v) => v.trim().replace(/"/g, ""));
+			const values = parseCSVLine(line);
 			const property: any = {};
 
 			headers.forEach((header, i) => {
@@ -243,7 +295,7 @@ function AppContent() {
 					case "zona":
 					case "location":
 					case "area":
-						property.zona = value;
+						property.zona = extractCleanZona(value);
 						break;
 					case "web":
 					case "website":
