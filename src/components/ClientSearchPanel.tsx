@@ -50,12 +50,12 @@ export function ClientSearchPanel({ clients }: ClientSearchPanelProps) {
     
     const term = searchTerm.toLowerCase();
     return clients.filter(client => 
-      client.nombre.toLowerCase().includes(term) ||
-      client.telefono.includes(term) ||
-      client.mail.toLowerCase().includes(term) ||
-      client.zona_std.toLowerCase().includes(term) ||
-      client.types.some(type => type.toLowerCase().includes(term)) ||
-      client.locations.some(loc => loc.toLowerCase().includes(term))
+      (client.nombre || '').toLowerCase().includes(term) ||
+      (client.telefono || '').includes(term) ||
+      (client.mail || '').toLowerCase().includes(term) ||
+      (client.zona_std || '').toLowerCase().includes(term) ||
+      (client.types || []).some(type => (type || '').toLowerCase().includes(term)) ||
+      (client.locations || []).some(loc => (loc || '').toLowerCase().includes(term))
     );
   }, [clients, searchTerm]);
 
