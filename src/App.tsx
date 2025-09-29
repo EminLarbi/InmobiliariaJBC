@@ -185,6 +185,7 @@ function AppContent() {
 			if (!zonaRaw) return 'Desconocido';
 			
 			// Si es una tupla/estructura compleja como "('Alcoi / Centre - Zona Alta', {...})"
+			// Extraer solo el primer string de la tupla
 			const tupleMatch = zonaRaw.match(/^\('([^']+)'/);
 			if (tupleMatch) {
 				return tupleMatch[1];
