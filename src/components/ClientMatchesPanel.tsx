@@ -6,7 +6,7 @@ import { Input } from './ui/input';
 import { Label } from './ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from './ui/table';
-import { User, Phone, Mail, Calendar, Search, ListFilter as Filter, Bath, Square, Euro, MapPin, Users, Info, Star, Target, ExternalLink, Building2, TrendingUp, ChevronDown, ChevronUp } from 'lucide-react';
+import { User, Phone, Mail, Calendar, Search, ListFilter as Filter, Bath, Square, Euro, MapPin, Users, Info, Star, Target, ExternalLink, Building2, TrendingUp, ChevronDown, ChevronUp, Chrome as Home } from 'lucide-react';
 import { Property, ClientMatch } from './PropertyTable';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from './ui/collapsible';
 
