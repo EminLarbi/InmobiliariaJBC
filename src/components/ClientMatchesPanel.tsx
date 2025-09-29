@@ -551,4 +551,138 @@ export function ClientMatchesPanel({ properties, matches, clients }: ClientMatch
                                       <Star className="h-3 w-3 text-muted-foreground" />
                                       <span className="text-muted-foreground">Características especiales:</span>
                                     </div>
+                                    <div className="flex flex-wrap gap-1 mt-1">
+                                      {client.client_info.flags.map((flag, idx) => (
+                                        <Badge key={idx} variant="outline" className="text-xs bg-orange-50 border-orange-200 text-orange-800 dark:bg-orange-950/20 dark:border-orange-800 dark:text-orange-200">
+                                          {flag}
+                                        </Badge>
+                                      ))}
+                                    </div>
+                                  </div>
+                                )}
+                                
+                                {client.client_info.locations && client.client_info.locations.length > 0 && (
+                                  <div className="space-y-1">
+                                    <div className="flex items-center gap-1">
+                                      <MapPin className="h-3 w-3 text-muted-foreground" />
+                                      <span className="text-muted-foreground">Zonas de interés:</span>
+                                    </div>
+                                    <div className="flex flex-wrap gap-1 mt-1">
+                                      {client.client_info.locations.map((location, idx) => (
+                                        <Badge key={idx} variant="outline" className="text-xs bg-indigo-50 border-indigo-200 text-indigo-800 dark:bg-indigo-950/20 dark:border-indigo-800 dark:text-indigo-200">
+                                          {location}
+                                        </Badge>
+                                      ))}
+                                    </div>
+                                  </div>
+                                )}
+                                
+                                {client.client_info.zona_std && (
+                                  <div className="flex items-center gap-2">
+                                    <MapPin className="h-3 w-3 text-muted-foreground" />
+                                    <span className="text-muted-foreground">Zona estándar:</span>
+                                    <Badge variant="outline" className="text-xs bg-slate-50 border-slate-200 text-slate-800 dark:bg-slate-950/20 dark:border-slate-800 dark:text-slate-200">
+                                      {client.client_info.zona_std}
+                                    </Badge>
+                                  </div>
+                                )}
+                              </div>
+                            </div>
+                          </div>
+                        </CardContent>
+                      </Card>
+                    )}
+
+                    {/* Propiedades recomendadas */}
+                    <div className="space-y-3">
+                      <div className="flex items-center justify-between">
+                        <h4 className="font-medium flex items-center gap-2">
+                          <Target className="h-4 w-4 text-primary" />
+                          Propiedades recomendadas
+                        </h4>
+                        <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                          <span>Total: {client.matches.length}</span>
+                          <span>•</span>
+                          <span>Mejor score: {formatScore(Math.max(...client.matches.map(m => m.score)))}%</span>
+                          <span>•</span>
+                          <span>Alta calidad: {client.matches.filter(m => m.score >= 0.8).length}</span>
+                        </div>
+                      </div>
+
+                      <div className="grid gap-3">
+                        {client.matches.map((match, idx) => {
+                          const property = properties.find(p => p.link_inmueble === match.property_link);
+                          return (
+                            <Card key={`${match.property_link}-${idx}`} className="border-l-4 border-l-primary/20">
+                              <CardContent className="p-4">
+                                <div className="flex items-start justify-between gap-4">
+                                  <div className="flex-1 space-y-2">
+                                    <div className="flex items-center gap-2">
+                                      <Badge className={`text-xs px-2 py-1 ${getScoreColor(match.score)}`}>
+                                        Score: {formatScore(match.score)}%
+                                      </Badge>
+                                      <Badge className={`text-xs px-2 py-1 ${getOperationStyle(match.operacion)}`}>
+                                        {match.operacion?.toUpperCase()}
+                                      </Badge>
+                                      <span className="text-xs text-muted-foreground">
+                                        Rank: #{match.rank_client}
+                                      </span>
+                                    </div>
                                     
+                                    <div className="grid grid-cols-2 md:grid-cols-4 gap-2 text-sm">
+                                      <div className="flex items-center gap-1">
+                                        <Bed className="h-3 w-3 text-muted-foreground" />
+                                        <span>{property?.habitaciones || match.habitaciones} hab.</span>
+                                      </div>
+                                      <div className="flex items-center gap-1">
+                                        <Bath className="h-3 w-3 text-muted-foreground" />
+                                        <span>{property?.baños || match.baños} baños</span>
+                                      </div>
+                                      <div className="flex items-center gap-1">
+                                        <Square className="h-3 w-3 text-muted-foreground" />
+                                        <span>{property?.metros_cuadrados || match.metros_cuadrados} m²</span>
+                                      </div>
+                                      <div className="flex items-center gap-1">
+                                        <Euro className="h-3 w-3 text-muted-foreground" />
+                                        <span className="font-medium text-green-600 dark:text-green-400">
+                                          {formatPrice(property?.precio || match.precio)}
+                                        </span>
+                                      </div>
+                                    </div>
+                                    
+                                    <div className="flex items-center gap-2 text-sm">
+                                      <MapPin className="h-3 w-3 text-muted-foreground" />
+                                      <span className="text-muted-foreground">{match.zona}</span>
+                                      <span className="text-muted-foreground">•</span>
+                                      <span className="font-medium">{match.anunciante?.toUpperCase()}</span>
+                                    </div>
+                                  </div>
+                                  
+                                  <div className="flex flex-col gap-2">
+                                    <Button
+                                      size="sm"
+                                      variant="outline"
+                                      onClick={() => window.open(match.property_link, '_blank')}
+                                      className="flex items-center gap-1"
+                                    >
+                                      <ExternalLink className="h-3 w-3" />
+                                      Ver
+                                    </Button>
+                                  </div>
+                                </div>
+                              </CardContent>
+                            </Card>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  </div>
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        </CardContent>
+      </Card>
+    </div>
+  );
+}
