@@ -1,5 +1,5 @@
 import React from 'react';
-import { ExternalLink, Chrome as Home, Bath, Square, MapPin, Calendar, User, Globe, ArrowUpDown, ArrowUp, ArrowDown } from 'lucide-react';
+import { ExternalLink, Bed, Bath, Square, MapPin, Calendar, User, Globe, ArrowUpDown, ArrowUp, ArrowDown } from 'lucide-react';
 import { Badge } from './ui/badge';
 import { Card, CardContent } from './ui/card';
 import { Button } from './ui/button';
@@ -371,7 +371,7 @@ export function PropertyTable({ properties, viewMode = 'cards', maxItems = 30 }:
                       </TableCell>
                       <TableCell className="text-center" role="gridcell">
                         <div className="flex items-center justify-center gap-1">
-                          <Home className="h-3 w-3 text-muted-foreground" aria-hidden="true" />
+                          <Bed className="h-3 w-3 text-muted-foreground" aria-hidden="true" />
                           <span>{property.habitaciones}</span>
                         </div>
                       </TableCell>
