@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
 import { Button } from './ui/button';
-import { Database, ChartBar as BarChart3, Users, ArrowRight, Building2, Target } from 'lucide-react';
+import { Database, BarChart3, Users, ArrowRight, Building2, Target } from 'lucide-react';
 
 interface HomePageProps {
   onNavigate: (tabValue: string) => void;

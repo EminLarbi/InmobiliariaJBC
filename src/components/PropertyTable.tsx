@@ -155,8 +155,8 @@ export function PropertyTable({ properties, viewMode = 'cards', maxItems = 30 }:
     return (
       <Card className="border-dashed">
         <div className="text-center py-12">
-          <div className="mx-auto w-16 h-16 bg-muted/50 rounded-full flex items-center justify-center mb-4">
-            <Home className="h-8 w-8 text-muted-foreground" />
+          <div className="mx-auto w-16 h-16 bg-muted/50 rounded-full flex items-center justify-center mb-4" aria-hidden="true">
+            <Building2 className="h-8 w-8 text-muted-foreground" />
           </div>
           <h3 className="text-lg font-medium mb-2">No se encontraron propiedades</h3>
           <p className="text-sm text-muted-foreground max-w-sm mx-auto">

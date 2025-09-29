@@ -8,7 +8,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '.
 import { Input } from './ui/input';
 import { Label } from './ui/label';
 import { Property } from './PropertyTable';
-import { ExternalLink, User, Chrome as Home, Bath, Square, MapPin, Euro, Star, TrendingUp, Users, Target, Search, Phone, Mail, Calendar } from 'lucide-react';
+import { ExternalLink, User, Home, Bath, Square, MapPin, Euro, Star, TrendingUp, Users, Target, Search, Phone, Mail, Calendar } from 'lucide-react';
 
 interface ClientInfo {
   id: string;

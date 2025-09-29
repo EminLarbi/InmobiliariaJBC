@@ -15,7 +15,7 @@ import {
 } from './ui/popover';
 import { 
   FilterX, 
-  Home, 
+  Home,
   Bath, 
   Square, 
   MapPin, 
