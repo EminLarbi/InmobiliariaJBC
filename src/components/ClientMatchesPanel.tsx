@@ -504,7 +504,7 @@ export function ClientMatchesPanel({ properties, matches, clients }: ClientMatch
                             ID: {group.client.id}
                             {group.client.operation && (
                               <Badge className={`ml-2 text-xs ${getOperationStyle(group.client.operation)}`}>
-                                {group.client.operation}
+                                {group.client.operation.charAt(0).toUpperCase() + group.client.operation.slice(1)}
                               </Badge>
                             )}
                           </CardDescription>
