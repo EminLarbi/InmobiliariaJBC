@@ -26,6 +26,31 @@ export interface Property {
   tipo_de_operacion: 'Venta' | 'Alquiler' | 'Otro';
 }
 
+export interface ClientMatch {
+  client_id: string;
+  client_name: string;
+  property_id: string;
+  link_inmueble: string;
+  web: string;
+  anunciante: string;
+  zona: string;
+  operacion: string;
+  tipo: string;
+  habitaciones: number;
+  banos: number;
+  m2: number;
+  precio: number;
+  score: number;
+  s_price: number;
+  s_area: number;
+  s_rooms: number;
+  s_baths: number;
+  s_operation: number;
+  zone_match: string;
+  type_match: string;
+  rank_client: number;
+}
+
 type SortField = 'precio' | 'habitaciones' | 'baños' | 'metros_cuadrados' | 'zona' | 'anunciante' | 'fecha_inclusion';
 type SortDirection = 'asc' | 'desc' | null;
 

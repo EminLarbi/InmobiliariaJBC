@@ -2,7 +2,7 @@ import React, { useState, useMemo, useEffect } from "react";
 import { PropertyFilters } from "./components/PropertyFilters";
 import { PropertyTable, Property } from "./components/PropertyTable";
 import { MarketAnalytics } from "./components/MarketAnalytics";
-import { ClientMatchesPanel, ClientMatch } from "./components/ClientMatchesPanel";
+import { ClientMatchesPanel } from "./components/ClientMatchesPanel";
 import { ClientSearchPanel } from "./components/ClientSearchPanel";
 import { HomePage } from "./components/HomePage";
 import { ThemeProvider } from "./components/ThemeProvider";
@@ -17,6 +17,7 @@ import { Database, LayoutGrid, List, ChartBar as BarChart3, Users, Chrome as Hom
 import { Target } from "lucide-react";
 import { Button } from "./components/ui/button";
 import { Badge } from "./components/ui/badge";
+import { ClientMatch } from "./components/PropertyTable";
 import {
 	Sidebar,
 	SidebarContent,
@@ -32,31 +33,6 @@ import {
 	SidebarProvider,
 	SidebarTrigger,
 } from "./components/ui/sidebar";
-
-export interface ClientMatch {
-  client_id: string;
-  client_name: string;
-  property_id: string;
-  link_inmueble: string;
-  web: string;
-  anunciante: string;
-  zona: string;
-  operacion: string;
-  tipo: string;
-  habitaciones: number;
-  banos: number;
-  m2: number;
-  precio: number;
-  score: number;
-  s_price: number;
-  s_area: number;
-  s_rooms: number;
-  s_baths: number;
-  s_operation: number;
-  zone_match: string;
-  type_match: string;
-  rank_client: number;
-}
 
 interface FilterState {
 	habitaciones: string;
