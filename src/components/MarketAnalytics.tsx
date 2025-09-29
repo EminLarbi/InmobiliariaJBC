@@ -410,97 +410,42 @@ export function MarketAnalytics({ properties }: MarketAnalyticsProps) {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            <div>
-              <h4 className="font-medium mb-4">Rendimiento de Zonas Estratégicas</h4>
-              <div className="space-y-4">
-                {analytics.strategicZones.slice(0, 5).map((zone, index) => (
-                  <div key={zone.zona} className="space-y-2">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-2">
-                        <Badge variant="default" className="bg-amber-100 text-amber-800 dark:bg-amber-900 dark:text-amber-200">
-                          <Star className="h-3 w-3 mr-1" />
-                          {zone.zona}
-                        </Badge>
-                      </div>
-                      <div className="text-right">
-                        <p className="text-sm font-medium">{zone.count} propiedades</p>
-                        <p className="text-xs text-muted-foreground">
-                          {zone.ventaCount}V • {zone.alquilerCount}A
-                        </p>
-                      </div>
+          <div className="space-y-4">
+            <h4 className="font-medium mb-4">Rendimiento de Zonas Estratégicas</h4>
+            <div className="space-y-4">
+              {analytics.strategicZones.slice(0, 8).map((zone, index) => (
+                <div key={zone.zona} className="space-y-2">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <Badge variant="default" className="bg-amber-100 text-amber-800 dark:bg-amber-900 dark:text-amber-200">
+                        <Star className="h-3 w-3 mr-1" />
+                        {zone.zona}
+                      </Badge>
                     </div>
-                    <div className="grid grid-cols-2 gap-4 text-xs">
-                      <div>
-                        <p className="text-muted-foreground">Precio venta</p>
-                        <p className="font-medium">
-                          {zone.avgPriceVenta > 0 ? formatCurrency(zone.avgPriceVenta) : 'N/A'}
-                        </p>
-                      </div>
-                      <div>
-                        <p className="text-muted-foreground">Precio/m² venta</p>
-                        <p className="font-medium">
-                          {zone.avgPricePerM2Venta > 0 ? formatCurrency(zone.avgPricePerM2Venta) : 'N/A'}
-                        </p>
-                      </div>
-                    </div>
-                    <Progress value={zone.marketShare} className="h-2" />
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div>
-              <h4 className="font-medium mb-4">Resumen Estratégico</h4>
-              <div className="space-y-4">
-                <div className="p-4 bg-amber-50 dark:bg-amber-950/20 rounded-lg border border-amber-200 dark:border-amber-800">
-                  <div className="flex items-center gap-2 mb-2">
-                    <Building className="h-4 w-4 text-amber-600" />
-                    <span className="font-medium text-amber-800 dark:text-amber-200">Penetración Estratégica</span>
-                  </div>
-                  <div className="space-y-2 text-sm">
-                    <div className="flex justify-between">
-                      <span>Zonas cubiertas:</span>
-                      <span className="font-medium">{analytics.strategicZoneAnalysis.totalStrategicZones}</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span>Propiedades totales:</span>
-                      <span className="font-medium">{analytics.strategicZoneAnalysis.totalStrategicProperties}</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span>Cuota estratégica:</span>
-                      <span className="font-medium">{analytics.strategicZoneAnalysis.strategicMarketShare.toFixed(1)}%</span>
+                    <div className="text-right">
+                      <p className="text-sm font-medium">{zone.count} propiedades</p>
+                      <p className="text-xs text-muted-foreground">
+                        {zone.ventaCount}V • {zone.alquilerCount}A
+                      </p>
                     </div>
                   </div>
+                  <div className="grid grid-cols-2 gap-4 text-xs">
+                    <div>
+                      <p className="text-muted-foreground">Precio venta</p>
+                      <p className="font-medium">
+                        {zone.avgPriceVenta > 0 ? formatCurrency(zone.avgPriceVenta) : 'N/A'}
+                      </p>
+                    </div>
+                    <div>
+                      <p className="text-muted-foreground">Precio/m² venta</p>
+                      <p className="font-medium">
+                        {zone.avgPricePerM2Venta > 0 ? formatCurrency(zone.avgPricePerM2Venta) : 'N/A'}
+                      </p>
+                    </div>
+                  </div>
+                  <Progress value={zone.marketShare} className="h-2" />
                 </div>
-
-                <div className="p-4 bg-blue-50 dark:bg-blue-950/20 rounded-lg border border-blue-200 dark:border-blue-800">
-                  <div className="flex items-center gap-2 mb-2">
-                    <TrendingUp className="h-4 w-4 text-blue-600" />
-                    <span className="font-medium text-blue-800 dark:text-blue-200">Precios Estratégicos</span>
-                  </div>
-                  <div className="space-y-2 text-sm">
-                    <div className="flex justify-between">
-                      <span>Precio promedio venta:</span>
-                      <span className="font-medium">
-                        {formatCurrency(analytics.strategicZoneAnalysis.avgPriceStrategicVenta)}
-                      </span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span>Precio/m² promedio:</span>
-                      <span className="font-medium">
-                        {formatCurrency(analytics.strategicZoneAnalysis.avgPricePerM2Strategic)}
-                      </span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span>vs Mercado general:</span>
-                      <span className="font-medium text-green-600">
-                        +{((analytics.strategicZoneAnalysis.avgPricePerM2Strategic / analytics.avgPricePerM2Venta - 1) * 100).toFixed(1)}%
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              ))}
             </div>
           </div>
         </CardContent>
@@ -682,55 +627,6 @@ export function MarketAnalytics({ properties }: MarketAnalyticsProps) {
           </CardContent>
         </Card>
       </div>
-
-      {/* Oportunidades de Mercado en Zonas Estratégicas */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <Target className="h-5 w-5 text-primary" />
-            Oportunidades en Zonas Estratégicas
-          </CardTitle>
-          <CardDescription>
-            Zonas estratégicas poco explotadas con alto potencial de rentabilidad
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          {analytics.strategicOpportunities.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {analytics.strategicOpportunities.map((opportunity, index) => (
-                <div key={opportunity.zona} className="p-4 border rounded-lg space-y-2 bg-gradient-to-br from-amber-50 to-orange-50 dark:from-amber-950/20 dark:to-orange-950/20 border-amber-200 dark:border-amber-800">
-                  <div className="flex items-center justify-between">
-                    <h4 className="font-medium flex items-center gap-2">
-                      <Star className="h-4 w-4 text-amber-600" />
-                      {opportunity.zona}
-                    </h4>
-                    <Badge variant="secondary" className="bg-amber-100 text-amber-800 dark:bg-amber-900 dark:text-amber-200">
-                      <Zap className="h-3 w-3 mr-1" />
-                      Alta Oportunidad
-                    </Badge>
-                  </div>
-                  <div className="space-y-1 text-sm">
-                    <p><span className="text-muted-foreground">Ventas:</span> {opportunity.ventaCount}</p>
-                    <p><span className="text-muted-foreground">Precio/m² venta:</span> {formatCurrency(opportunity.avgPricePerM2Venta)}</p>
-                    <p><span className="text-muted-foreground">Cuota mercado ventas:</span> {opportunity.ventaMarketShare.toFixed(1)}%</p>
-                  </div>
-                  <div className="pt-2">
-                    <Badge variant="outline" className="text-xs bg-green-50 border-green-200 text-green-800">
-                      +{((opportunity.avgPricePerM2Venta / analytics.avgPricePerM2Venta - 1) * 100).toFixed(1)}% vs promedio
-                    </Badge>
-                  </div>
-                </div>
-              ))}
-            </div>
-          ) : (
-            <div className="text-center py-8">
-              <Eye className="h-8 w-8 text-muted-foreground mx-auto mb-2" />
-              <p className="text-muted-foreground">No se detectaron oportunidades claras en zonas estratégicas</p>
-              <p className="text-sm text-muted-foreground mt-1">Las zonas estratégicas están bien cubiertas</p>
-            </div>
-          )}
-        </CardContent>
-      </Card>
 
       {/* Análisis de Segmentación por Tipo */}
       <Card>
