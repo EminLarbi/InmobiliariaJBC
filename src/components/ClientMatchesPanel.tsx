@@ -552,6 +552,155 @@ export function ClientMatchesPanel({ properties, matches, clients }: ClientMatch
 
                 <CollapsibleContent>
                   <CardContent className="pt-0">
+                    {/* Contact Information Section */}
+                    {(() => {
+                      const clientInfo = clients.find(c => c.id === group.client.id);
+                      if (!clientInfo) return null;
+                      
+                      return (
+                        <>
+                          <div className="bg-blue-50 dark:bg-blue-950/20 rounded-lg p-4 border border-blue-200 dark:border-blue-800">
+                            <div className="flex items-center gap-2 mb-3">
+                              <User className="h-4 w-4 text-blue-600" />
+                              <h4 className="font-medium text-blue-800 dark:text-blue-200">Información de Contacto</h4>
+                            </div>
+                            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                              <div className="space-y-1">
+                                <Label className="text-xs text-muted-foreground">Teléfono</Label>
+                                <div className="flex items-center gap-2">
+                                  <Phone className="h-3 w-3 text-muted-foreground" />
+                                  <span className="font-medium">{clientInfo.telefono || 'No especificado'}</span>
+                                </div>
+                              </div>
+                              <div className="space-y-1">
+                                <Label className="text-xs text-muted-foreground">Email</Label>
+                                <div className="flex items-center gap-2">
+                                  <Mail className="h-3 w-3 text-muted-foreground" />
+                                  <span className="font-medium truncate">{clientInfo.mail || 'No especificado'}</span>
+                                </div>
+                              </div>
+                              <div className="space-y-1">
+                                <Label className="text-xs text-muted-foreground">Fecha de registro</Label>
+                                <div className="flex items-center gap-2">
+                                  <Calendar className="h-3 w-3 text-muted-foreground" />
+                                  <span className="font-medium">{formatDate(clientInfo.fecha_inclusion)}</span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          {/* Requirements Section */}
+                          <div className="bg-amber-50 dark:bg-amber-950/20 rounded-lg p-4 border border-amber-200 dark:border-amber-800">
+                            <div className="flex items-center gap-2 mb-3">
+                              <Building2 className="h-4 w-4 text-amber-600" />
+                              <h4 className="font-medium text-amber-800 dark:text-amber-200">Requisitos y Preferencias</h4>
+                            </div>
+                            
+                            <div className="space-y-4">
+                              {/* Property types */}
+                              {clientInfo.types && clientInfo.types.length > 0 && (
+                                <div>
+                                  <Label className="text-sm font-medium mb-2 block">Tipos de propiedad buscados:</Label>
+                                  <div className="flex flex-wrap gap-2">
+                                    {clientInfo.types.map((type, index) => (
+                                      <Badge key={index} variant="outline" className="bg-white dark:bg-gray-800">
+                                        {type}
+                                      </Badge>
+                                    ))}
+                                  </div>
+                                </div>
+                              )}
+
+                              {/* Physical characteristics */}
+                              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                                {(clientInfo.rooms_min || clientInfo.rooms_max) && (
+                                  <div className="space-y-1">
+                                    <div className="flex items-center gap-1">
+                                      <Home className="h-3 w-3 text-muted-foreground" />
+                                      <Label className="text-xs font-medium">Habitaciones</Label>
+                                    </div>
+                                    <p className="text-sm font-bold text-amber-700 dark:text-amber-300">
+                                      {formatRange(clientInfo.rooms_min, clientInfo.rooms_max)}
+                                    </p>
+                                  </div>
+                                )}
+                                
+                                {(clientInfo.bath_min || clientInfo.bath_max) && (
+                                  <div className="space-y-1">
+                                    <div className="flex items-center gap-1">
+                                      <Bath className="h-3 w-3 text-muted-foreground" />
+                                      <Label className="text-xs font-medium">Baños</Label>
+                                    </div>
+                                    <p className="text-sm font-bold text-amber-700 dark:text-amber-300">
+                                      {formatRange(clientInfo.bath_min, clientInfo.bath_max)}
+                                    </p>
+                                  </div>
+                                )}
+                                
+                                {(clientInfo.area_min_m2 || clientInfo.area_max_m2) && (
+                                  <div className="space-y-1">
+                                    <div className="flex items-center gap-1">
+                                      <Square className="h-3 w-3 text-muted-foreground" />
+                                      <Label className="text-xs font-medium">Superficie</Label>
+                                    </div>
+                                    <p className="text-sm font-bold text-amber-700 dark:text-amber-300">
+                                      {formatRange(clientInfo.area_min_m2, clientInfo.area_max_m2, ' m²')}
+                                    </p>
+                                  </div>
+                                )}
+                                
+                                {(clientInfo.price_min_eur || clientInfo.price_max_eur) && (
+                                  <div className="space-y-1">
+                                    <div className="flex items-center gap-1">
+                                      <Euro className="h-3 w-3 text-muted-foreground" />
+                                      <Label className="text-xs font-medium">Presupuesto</Label>
+                                    </div>
+                                    <p className="text-sm font-bold text-amber-700 dark:text-amber-300">
+                                      {clientInfo.price_min_eur && clientInfo.price_max_eur ? 
+                                        `${formatPrice(clientInfo.price_min_eur)} - ${formatPrice(clientInfo.price_max_eur)}` :
+                                        clientInfo.price_min_eur ? 
+                                          `Desde ${formatPrice(clientInfo.price_min_eur)}` :
+                                          `Hasta ${formatPrice(clientInfo.price_max_eur)}`
+                                      }
+                                    </p>
+                                  </div>
+                                )}
+                              </div>
+
+                              {/* Preferred locations */}
+                              {clientInfo.locations && clientInfo.locations.length > 0 && (
+                                <div>
+                                  <Label className="text-sm font-medium mb-2 block">Ubicaciones preferidas:</Label>
+                                  <div className="flex flex-wrap gap-2">
+                                    {clientInfo.locations.map((location, index) => (
+                                      <Badge key={index} variant="secondary" className="bg-white dark:bg-gray-800">
+                                        <MapPin className="h-3 w-3 mr-1" />
+                                        {location}
+                                      </Badge>
+                                    ))}
+                                  </div>
+                                </div>
+                              )}
+
+                              {/* Special conditions */}
+                              {clientInfo.conditions && clientInfo.conditions.length > 0 && (
+                                <div>
+                                  <Label className="text-sm font-medium mb-2 block">Condiciones especiales:</Label>
+                                  <div className="flex flex-wrap gap-2">
+                                    {clientInfo.conditions.map((condition, index) => (
+                                      <Badge key={index} variant="outline" className="text-xs">
+                                        {condition}
+                                      </Badge>
+                                    ))}
+                                  </div>
+                                </div>
+                              )}
+                            </div>
+                          </div>
+                        </>
+                      );
+                    })()}
+
                     <div className="overflow-x-auto">
                       <Table>
                         <TableHeader>
