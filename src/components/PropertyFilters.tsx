@@ -13,7 +13,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from './ui/popover';
-import { ListFilter as FilterX, Chrome as Home, Bath, Square, MapPin, User as UserIcon, ShoppingCart, Euro, Info, TrendingUp, ListFilter as Filter, Calendar as CalendarIcon, Clock } from 'lucide-react';
+import { ListFilter as FilterX, Chrome as Home, Bath, Square, MapPin, User, ShoppingCart, Euro, Info, TrendingUp, ListFilter as Filter, Calendar as CalendarIcon, Clock } from 'lucide-react';
 import { cn } from './ui/utils';
 
 interface FilterState {
@@ -450,7 +450,7 @@ export function PropertyFilters({
                   <span>{zonas.length} zonas disponibles</span>
                 </div>
                 <div className="flex items-center gap-1">
-                  <UserIcon className="h-3 w-3" />
+                  <User className="h-3 w-3" />
                   <span>{anunciantes.length} anunciantes</span>
                 </div>
               </div>

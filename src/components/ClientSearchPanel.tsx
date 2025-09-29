@@ -5,7 +5,7 @@ import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { Label } from './ui/label';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from './ui/table';
-import { User as UserIcon, Phone, Mail, Calendar, Search, Chrome as Home, Bath, Square, Euro, MapPin, ListFilter as Filter, Users, Info, Star, Target } from 'lucide-react';
+import { User, Phone, Mail, Calendar, Search, Chrome as Home, Bath, Square, Euro, MapPin, ListFilter as Filter, Users, Info, Star, Target } from 'lucide-react';
 
 interface Client {
   id: string;
@@ -291,7 +291,7 @@ export function ClientSearchPanel({ clients }: ClientSearchPanelProps) {
               <div className="flex items-start justify-between">
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">
-                    <UserIcon className="h-5 w-5 text-primary" />
+                    <User className="h-5 w-5 text-primary" />
                   </div>
                   <div>
                     <CardTitle className="text-base">{client.nombre}</CardTitle>
