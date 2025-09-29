@@ -18,9 +18,12 @@ export function HomePage({ onNavigate, propertiesCount, matchesCount }: HomePage
       description: 'Explora y filtra el inventario completo de propiedades inmobiliarias con herramientas avanzadas de búsqueda',
       icon: Database,
       color: 'from-blue-500 via-cyan-500 to-blue-600',
+      hoverColor: 'hover:from-blue-600 hover:via-cyan-600 hover:to-blue-700',
       accentColor: 'bg-blue-500',
       textColor: 'text-blue-600',
-      bgColor: 'bg-blue-50 dark:bg-blue-950/30',
+      bgColor: 'bg-gradient-to-br from-blue-50 via-cyan-50 to-blue-100 dark:from-blue-950/30 dark:via-cyan-950/20 dark:to-blue-900/40',
+      borderColor: 'border-blue-200 dark:border-blue-800',
+      shadowColor: 'shadow-blue-500/25',
       stats: `${propertiesCount.toLocaleString()} propiedades`,
       features: ['Filtros avanzados', 'Vista de tarjetas y lista', 'Ordenamiento múltiple']
     },
@@ -30,9 +33,12 @@ export function HomePage({ onNavigate, propertiesCount, matchesCount }: HomePage
       description: 'Gestiona y explora la base de datos completa de clientes registrados con sus preferencias',
       icon: Users,
       color: 'from-orange-500 via-red-500 to-pink-600',
+      hoverColor: 'hover:from-orange-600 hover:via-red-600 hover:to-pink-700',
       accentColor: 'bg-orange-500',
       textColor: 'text-orange-600',
-      bgColor: 'bg-orange-50 dark:bg-orange-950/30',
+      bgColor: 'bg-gradient-to-br from-orange-50 via-red-50 to-pink-100 dark:from-orange-950/30 dark:via-red-950/20 dark:to-pink-900/40',
+      borderColor: 'border-orange-200 dark:border-orange-800',
+      shadowColor: 'shadow-orange-500/25',
       stats: 'Base de clientes activa',
       features: ['Perfiles detallados', 'Historial de búsquedas', 'Preferencias guardadas']
     },
@@ -42,9 +48,12 @@ export function HomePage({ onNavigate, propertiesCount, matchesCount }: HomePage
       description: 'Insights profundos y tendencias del mercado inmobiliario local con datos en tiempo real',
       icon: BarChart3,
       color: 'from-emerald-500 via-teal-500 to-green-600',
+      hoverColor: 'hover:from-emerald-600 hover:via-teal-600 hover:to-green-700',
       accentColor: 'bg-emerald-500',
       textColor: 'text-emerald-600',
-      bgColor: 'bg-emerald-50 dark:bg-emerald-950/30',
+      bgColor: 'bg-gradient-to-br from-emerald-50 via-teal-50 to-green-100 dark:from-emerald-950/30 dark:via-teal-950/20 dark:to-green-900/40',
+      borderColor: 'border-emerald-200 dark:border-emerald-800',
+      shadowColor: 'shadow-emerald-500/25',
       stats: 'Datos actualizados',
       features: ['Tendencias de precios', 'Análisis por zonas', 'Competencia']
     },
@@ -54,9 +63,12 @@ export function HomePage({ onNavigate, propertiesCount, matchesCount }: HomePage
       description: 'Sistema inteligente de coincidencias entre clientes y propiedades disponibles',
       icon: Target,
       color: 'from-purple-500 via-violet-500 to-indigo-600',
+      hoverColor: 'hover:from-purple-600 hover:via-violet-600 hover:to-indigo-700',
       accentColor: 'bg-purple-500',
       textColor: 'text-purple-600',
-      bgColor: 'bg-purple-50 dark:bg-purple-950/30',
+      bgColor: 'bg-gradient-to-br from-purple-50 via-violet-50 to-indigo-100 dark:from-purple-950/30 dark:via-violet-950/20 dark:to-indigo-900/40',
+      borderColor: 'border-purple-200 dark:border-purple-800',
+      shadowColor: 'shadow-purple-500/25',
       stats: `${matchesCount.toLocaleString()} matches activos`,
       features: ['Algoritmo de matching', 'Scores de compatibilidad', 'Ranking automático']
     }
@@ -170,31 +182,34 @@ export function HomePage({ onNavigate, propertiesCount, matchesCount }: HomePage
                 onClick={() => onNavigate(section.id)}
               >
                 {/* Background gradient overlay */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${section.color} opacity-5 group-hover:opacity-15 transition-opacity duration-500`}></div>
+                <div className={`absolute inset-0 bg-gradient-to-br ${section.color} opacity-10 group-hover:opacity-25 transition-opacity duration-500`}></div>
                 
                 {/* Animated color orbs */}
-                <div className={`absolute -top-8 -right-8 w-24 h-24 bg-gradient-to-br ${section.color} rounded-full opacity-10 group-hover:opacity-20 group-hover:scale-150 transition-all duration-700 blur-xl`}></div>
-                <div className={`absolute -bottom-4 -left-4 w-16 h-16 bg-gradient-to-tr ${section.color} rounded-full opacity-5 group-hover:opacity-15 group-hover:scale-125 transition-all duration-500 blur-lg`}></div>
+                <div className={`absolute -top-8 -right-8 w-32 h-32 bg-gradient-to-br ${section.color} rounded-full opacity-15 group-hover:opacity-30 group-hover:scale-150 transition-all duration-700 blur-2xl`}></div>
+                <div className={`absolute -bottom-6 -left-6 w-20 h-20 bg-gradient-to-tr ${section.color} rounded-full opacity-10 group-hover:opacity-25 group-hover:scale-125 transition-all duration-500 blur-xl`}></div>
+                <div className={`absolute top-1/2 left-1/2 w-40 h-40 bg-gradient-to-r ${section.color} rounded-full opacity-5 group-hover:opacity-15 group-hover:scale-110 transition-all duration-1000 blur-3xl -translate-x-1/2 -translate-y-1/2`}></div>
                 
                 {/* Floating decoration */}
-                <div className={`absolute top-4 right-4 w-32 h-32 bg-gradient-to-br ${section.color} opacity-10 rounded-full blur-2xl group-hover:scale-150 group-hover:opacity-20 transition-all duration-700`}></div>
+                <div className={`absolute top-6 right-6 w-36 h-36 bg-gradient-to-br ${section.color} opacity-15 rounded-full blur-3xl group-hover:scale-150 group-hover:opacity-30 transition-all duration-700`}></div>
                 
-                <CardHeader className="relative z-10 space-y-6 p-8">
+                <CardHeader className={`relative z-10 space-y-6 p-8 ${section.bgColor} border-2 ${section.borderColor} rounded-t-xl`}>
                   <div className="flex items-start justify-between">
-                    <div className={`w-18 h-18 rounded-2xl bg-gradient-to-br ${section.color} flex items-center justify-center group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-xl shadow-${section.accentColor.split('-')[1]}-500/30 group-hover:shadow-2xl`}>
+                    <div className={`w-20 h-20 rounded-3xl bg-gradient-to-br ${section.color} flex items-center justify-center group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-2xl ${section.shadowColor} group-hover:shadow-3xl relative overflow-hidden`}>
+                      <div className="absolute inset-0 bg-gradient-to-br from-white/30 to-transparent"></div>
+                      <div className="absolute inset-0 bg-gradient-to-tl from-yellow-400/20 via-transparent to-transparent"></div>
                       <IconComponent className="h-8 w-8 text-white" />
                     </div>
                     
-                    <Badge variant="secondary" className={`${section.bgColor} backdrop-blur-sm border ${section.textColor} font-medium shadow-sm`}>
+                    <Badge variant="secondary" className={`bg-gradient-to-r ${section.color} text-white backdrop-blur-sm border-white/20 font-medium shadow-lg hover:shadow-xl transition-all duration-300`}>
                       {section.stats}
                     </Badge>
                   </div>
                   
                   <div className="space-y-3">
-                    <CardTitle className={`text-2xl group-hover:${section.textColor} transition-colors duration-300 font-bold`}>
+                    <CardTitle className={`text-3xl bg-gradient-to-r ${section.color} bg-clip-text text-transparent group-hover:scale-105 transition-all duration-300 font-bold`}>
                       {section.title}
                     </CardTitle>
-                    <CardDescription className="text-base leading-relaxed">
+                    <CardDescription className="text-base leading-relaxed text-gray-700 dark:text-gray-300">
                       {section.description}
                     </CardDescription>
                   </div>
@@ -203,7 +218,7 @@ export function HomePage({ onNavigate, propertiesCount, matchesCount }: HomePage
                   <div className="space-y-2">
                     {section.features.map((feature, featureIndex) => (
                       <div key={featureIndex} className="flex items-center gap-2 text-sm text-muted-foreground">
-                        <div className={`w-2 h-2 bg-gradient-to-r ${section.color} rounded-full shadow-sm`}></div>
+                        <div className={`w-3 h-3 bg-gradient-to-r ${section.color} rounded-full shadow-md animate-pulse`} style={{animationDelay: `${featureIndex * 200}ms`}}></div>
                         <span>{feature}</span>
                       </div>
                     ))}
@@ -212,7 +227,7 @@ export function HomePage({ onNavigate, propertiesCount, matchesCount }: HomePage
 
                 <CardContent className="relative z-10 p-8 pt-0">
                   <Button 
-                    className={`w-full group-hover:bg-gradient-to-r group-hover:${section.color} group-hover:text-white transition-all duration-300 shadow-lg group-hover:shadow-xl group-hover:shadow-${section.accentColor.split('-')[1]}-500/25 border-2 border-transparent group-hover:border-white/20`}
+                    className={`w-full bg-gradient-to-r ${section.color} text-white hover:bg-gradient-to-l ${section.hoverColor} transition-all duration-300 shadow-xl hover:shadow-2xl ${section.shadowColor} border-2 border-white/20 hover:border-white/40 hover:scale-105 font-semibold`}
                     variant="outline"
                     size="lg"
                     onClick={(e) => {
@@ -221,12 +236,12 @@ export function HomePage({ onNavigate, propertiesCount, matchesCount }: HomePage
                     }}
                   >
                     <span>Acceder</span>
-                    <ArrowRight className="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
+                    <ArrowRight className="h-5 w-5 ml-2 group-hover:translate-x-2 transition-transform duration-300" />
                   </Button>
                 </CardContent>
 
                 {/* Hover effect border */}
-                <div className={`absolute inset-0 rounded-xl border-2 border-transparent group-hover:border-gradient-to-r group-hover:${section.color} group-hover:opacity-30 transition-all duration-500`}></div>
+                <div className={`absolute inset-0 rounded-xl border-3 border-transparent group-hover:border-gradient-to-r group-hover:${section.color} group-hover:opacity-50 transition-all duration-500`}></div>
               </Card>
             );
           })}
@@ -234,39 +249,39 @@ export function HomePage({ onNavigate, propertiesCount, matchesCount }: HomePage
 
         {/* Additional Info Section */}
         <div className="max-w-4xl mx-auto">
-          <Card className="bg-gradient-to-r from-blue-50 via-purple-50 to-emerald-50 dark:from-blue-950/30 dark:via-purple-950/30 dark:to-emerald-950/30 border-2 border-gradient-to-r from-blue-200 via-purple-200 to-emerald-200 dark:from-blue-800 dark:via-purple-800 dark:to-emerald-800 shadow-xl">
+          <Card className="bg-gradient-to-r from-blue-50 via-purple-50 to-emerald-50 dark:from-blue-950/30 dark:via-purple-950/30 dark:to-emerald-950/30 border-2 border-gradient-to-r from-blue-200 via-purple-200 to-emerald-200 dark:from-blue-800 dark:via-purple-800 dark:to-emerald-800 shadow-2xl hover:shadow-3xl transition-all duration-500">
             <CardContent className="p-8">
               <div className="text-center space-y-4">
                 <div className="flex items-center justify-center gap-2">
-                  <div className="w-8 h-8 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-lg flex items-center justify-center shadow-lg">
+                  <div className="w-10 h-10 bg-gradient-to-br from-yellow-400 via-orange-500 to-red-500 rounded-xl flex items-center justify-center shadow-xl hover:scale-110 transition-transform duration-300">
                     <Zap className="h-5 w-5 text-white" />
                   </div>
-                  <h3 className="text-xl font-semibold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Sistema Inteligente de Gestión</h3>
+                  <h3 className="text-2xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-emerald-600 bg-clip-text text-transparent">Sistema Inteligente de Gestión</h3>
                 </div>
-                <p className="text-muted-foreground max-w-2xl mx-auto">
+                <p className="text-gray-700 dark:text-gray-300 max-w-2xl mx-auto text-lg leading-relaxed">
                   Nuestra plataforma utiliza algoritmos avanzados para conectar clientes con las propiedades perfectas, 
                   analizando preferencias, presupuesto y ubicación para generar matches de alta precisión.
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
                   <div className="text-center space-y-2">
-                    <div className="w-14 h-14 bg-gradient-to-br from-green-100 to-emerald-100 dark:from-green-900/40 dark:to-emerald-900/40 border-2 border-green-200 dark:border-green-800 rounded-xl flex items-center justify-center mx-auto shadow-lg hover:scale-110 transition-transform duration-300">
+                    <div className="w-16 h-16 bg-gradient-to-br from-green-400 via-emerald-500 to-teal-600 border-2 border-green-300 dark:border-green-700 rounded-2xl flex items-center justify-center mx-auto shadow-xl hover:scale-110 hover:rotate-6 transition-all duration-300">
                       <TrendingUp className="h-6 w-6 text-green-600" />
                     </div>
-                    <h4 className="font-semibold text-green-700 dark:text-green-300">Análisis Predictivo</h4>
+                    <h4 className="font-bold text-lg bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">Análisis Predictivo</h4>
                     <p className="text-sm text-muted-foreground">Tendencias de mercado en tiempo real</p>
                   </div>
                   <div className="text-center space-y-2">
-                    <div className="w-14 h-14 bg-gradient-to-br from-yellow-100 to-orange-100 dark:from-yellow-900/40 dark:to-orange-900/40 border-2 border-yellow-200 dark:border-yellow-800 rounded-xl flex items-center justify-center mx-auto shadow-lg hover:scale-110 transition-transform duration-300">
+                    <div className="w-16 h-16 bg-gradient-to-br from-yellow-400 via-orange-500 to-red-600 border-2 border-yellow-300 dark:border-yellow-700 rounded-2xl flex items-center justify-center mx-auto shadow-xl hover:scale-110 hover:rotate-6 transition-all duration-300">
                       <Star className="h-6 w-6 text-yellow-600" />
                     </div>
-                    <h4 className="font-semibold text-yellow-700 dark:text-yellow-300">Matching Inteligente</h4>
+                    <h4 className="font-bold text-lg bg-gradient-to-r from-yellow-600 to-orange-600 bg-clip-text text-transparent">Matching Inteligente</h4>
                     <p className="text-sm text-muted-foreground">Algoritmos de compatibilidad avanzados</p>
                   </div>
                   <div className="text-center space-y-2">
-                    <div className="w-14 h-14 bg-gradient-to-br from-purple-100 to-indigo-100 dark:from-purple-900/40 dark:to-indigo-900/40 border-2 border-purple-200 dark:border-purple-800 rounded-xl flex items-center justify-center mx-auto shadow-lg hover:scale-110 transition-transform duration-300">
+                    <div className="w-16 h-16 bg-gradient-to-br from-purple-400 via-violet-500 to-indigo-600 border-2 border-purple-300 dark:border-purple-700 rounded-2xl flex items-center justify-center mx-auto shadow-xl hover:scale-110 hover:rotate-6 transition-all duration-300">
                       <Activity className="h-6 w-6 text-purple-600" />
                     </div>
-                    <h4 className="font-semibold text-purple-700 dark:text-purple-300">Datos en Vivo</h4>
+                    <h4 className="font-bold text-lg bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">Datos en Vivo</h4>
                     <p className="text-sm text-muted-foreground">Información actualizada automáticamente</p>
                   </div>
                 </div>
