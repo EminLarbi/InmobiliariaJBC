@@ -71,8 +71,10 @@ export function PropertyTable({ properties, viewMode = 'cards', maxItems = 30, m
     const matchMap = new Map<string, { total: number; highQuality: number }>();
     
     matches.forEach(match => {
-      // Usar property_id como clave principal, fallback a link_inmueble
-      const propertyKey = match.property_id || match.link_inmueble;
+      // Usar property_id del CSV de matches
+      const propertyKey = match.property_id;
+      if (!propertyKey) return; // Skip si no hay property_id
+      
       if (!matchMap.has(propertyKey)) {
         matchMap.set(propertyKey, { total: 0, highQuality: 0 });
       }
@@ -88,26 +90,33 @@ export function PropertyTable({ properties, viewMode = 'cards', maxItems = 30, m
   
   // Función para obtener matches de una propiedad
   const getPropertyMatches = (property: Property) => {
-    // Buscar matches usando diferentes claves posibles
+    // Buscar matches usando el property_id del CSV
+    // Primero intentar con el ID de la propiedad como string
     let matchInfo = propertyMatches.get(property.id.toString());
     
+    // Si no encuentra, intentar buscar en el CSV por link_inmueble
     if (!matchInfo) {
-      matchInfo = propertyMatches.get(property.link_inmueble);
-    }
-    
-    // Si aún no hay matches, intentar buscar por URL sin protocolo/dominio
-    if (!matchInfo && property.link_inmueble) {
-      const urlPath = property.link_inmueble.replace(/^https?:\/\/[^\/]+/, '');
-      for (const [key, value] of propertyMatches.entries()) {
-        if (key.includes(urlPath) || urlPath.includes(key)) {
-          matchInfo = value;
-          break;
-        }
+      // Buscar en los matches originales por link_inmueble que coincida
+      const matchingEntries = matches.filter(match => {
+        if (!match.link_inmueble || !property.link_inmueble) return false;
+        
+        // Comparar URLs normalizadas
+        const matchUrl = match.link_inmueble.toLowerCase().trim();
+        const propUrl = property.link_inmueble.toLowerCase().trim();
+        
+        return matchUrl === propUrl || 
+               matchUrl.includes(propUrl) || 
+               propUrl.includes(matchUrl);
+      });
+      
+      if (matchingEntries.length > 0) {
+        // Usar el property_id del primer match encontrado
+        const propertyId = matchingEntries[0].property_id;
+        matchInfo = propertyMatches.get(propertyId);
       }
     }
     
     return matchInfo || { total: 0, highQuality: 0 };
-    return matchInfo;
   };
   
   // Función de ordenamiento
