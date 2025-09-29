@@ -359,7 +359,7 @@ export function ClientMatchesPanel({ properties, matches, clients }: ClientMatch
                   <SelectItem value="all">Todos los scores</SelectItem>
                   <SelectItem value="high">Alta (≥80%)</SelectItem>
                   <SelectItem value="medium">Media (60-79%)</SelectItem>
-                  <SelectItem value="low">Baja (<60%)</SelectItem>
+                  <SelectItem value="low">Baja {"(<60%)"}</SelectItem>
                 </SelectContent>
               </Select>
             </div>
