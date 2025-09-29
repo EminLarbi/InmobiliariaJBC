@@ -517,7 +517,7 @@ export function PropertyTable({ properties, viewMode = 'cards', maxItems = 30 }:
                 {/* Características en grid compacto */}
                 <div className="grid grid-cols-3 gap-2">
                   <div className="flex items-center gap-1 bg-muted/30 rounded-md p-2">
-                    <Home className="h-3 w-3 text-muted-foreground" aria-hidden="true" />
+                    <Bed className="h-3 w-3 text-muted-foreground" aria-hidden="true" />
                     <span className="text-xs font-medium">{property.habitaciones}</span>
                     <span className="sr-only">habitaciones</span>
                   </div>
