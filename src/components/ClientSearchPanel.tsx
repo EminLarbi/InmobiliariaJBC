@@ -284,154 +284,373 @@ export function ClientSearchPanel({ clients }: ClientSearchPanelProps) {
       )}
 
       {/* Lista de Clientes */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4">
-        {currentClients.map((client) => (
-          <Card key={client.id} className="hover:shadow-md transition-shadow">
-            <CardHeader>
-              <div className="flex items-start justify-between">
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">
-                    <User className="h-5 w-5 text-primary" />
-                  </div>
-                  <div>
-                    <CardTitle className="text-base">{client.nombre}</CardTitle>
-                    <CardDescription>ID: {client.id}</CardDescription>
-                  </div>
-                </div>
-                {client.operation && (
-                  <Badge className={`text-xs px-2 py-1 ${getOperationStyle(client.operation)}`}>
-                    {client.operation}
-                  </Badge>
-                )}
-              </div>
-            </CardHeader>
-
-            <CardContent className="space-y-4">
-              {/* Información de contacto */}
-              <div className="space-y-2">
-                <div className="flex items-center gap-2 text-sm">
-                  <Phone className="h-3 w-3 text-muted-foreground" />
-                  <span>{client.telefono || 'No especificado'}</span>
-                </div>
-                <div className="flex items-center gap-2 text-sm">
-                  <Mail className="h-3 w-3 text-muted-foreground" />
-                  <span className="truncate">{client.mail || 'No especificado'}</span>
-                </div>
-                <div className="flex items-center gap-2 text-sm">
-                  <Calendar className="h-3 w-3 text-muted-foreground" />
-                  <span>{formatDate(client.fecha_inclusion)}</span>
-                </div>
-              </div>
-
-              {/* Tipos de propiedad buscados */}
-              {client.types.length > 0 && (
-                <div className="space-y-2">
-                  <Label className="text-xs text-muted-foreground">Tipos buscados:</Label>
-                  <div className="flex flex-wrap gap-1">
-                    {client.types.map((type, index) => (
-                      <Badge key={index} variant="outline" className="text-xs">
-                        {type}
-                      </Badge>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              {/* Requisitos de habitaciones y baños */}
-              {(client.rooms_min || client.rooms_max || client.bath_min || client.bath_max) && (
-                <div className="grid grid-cols-2 gap-4">
-                  {(client.rooms_min || client.rooms_max) && (
-                    <div className="space-y-1">
-                      <div className="flex items-center gap-1">
-                        <Home className="h-3 w-3 text-muted-foreground" />
-                        <Label className="text-xs text-muted-foreground">Habitaciones:</Label>
+            <Card key={client.id} className="overflow-hidden">
+              <Collapsible 
+                open={isExpanded} 
+                onOpenChange={() => toggleClientExpansion(client.id)}
+              >
+                <CollapsibleTrigger asChild>
+                  <CardHeader className="cursor-pointer hover:bg-muted/50 transition-colors">
+                    <div className="flex items-center justify-between">
+                      {/* Cliente Info */}
+                      <div className="flex items-center gap-4">
+                        <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
+                          <User className="h-6 w-6 text-primary" />
+                        </div>
+                        <div>
+                          <CardTitle className="text-lg">{client.nombre}</CardTitle>
+                          <CardDescription className="flex items-center gap-2">
+                            <span>ID: {client.id}</span>
+                            {client.operation && (
+                              <Badge className={`text-xs px-2 py-1 ${getOperationStyle(client.operation)}`}>
+                                {client.operation}
+                              </Badge>
+                            )}
+                          </CardDescription>
+                        </div>
                       </div>
-                      <p className="text-sm font-medium">
-                        {formatRange(client.rooms_min, client.rooms_max)}
-                      </p>
-                    </div>
-                  )}
-                  
-                  {(client.bath_min || client.bath_max) && (
-                    <div className="space-y-1">
-                      <div className="flex items-center gap-1">
-                        <Bath className="h-3 w-3 text-muted-foreground" />
-                        <Label className="text-xs text-muted-foreground">Baños:</Label>
+                      
+                      {/* Stats y Toggle */}
+                      <div className="flex items-center gap-6">
+                        {/* Contact Info Quick View */}
+                        <div className="hidden md:flex items-center gap-4 text-sm">
+                          {client.telefono && (
+                            <div className="flex items-center gap-1">
+                              <Phone className="h-3 w-3 text-muted-foreground" />
+                              <span>{client.telefono}</span>
+                            </div>
+                          )}
+                          {client.mail && (
+                            <div className="flex items-center gap-1">
+                              <Mail className="h-3 w-3 text-muted-foreground" />
+                              <span className="truncate max-w-32">{client.mail}</span>
+                            </div>
+                          )}
+                        </div>
+
+                        {/* Matches Stats */}
+                        {clientMatches.length > 0 && (
+                          <div className="flex items-center gap-4">
+                            <div className="text-center">
+                              <div className="text-lg font-bold text-green-600">{clientMatches.length}</div>
+                              <div className="text-xs text-muted-foreground">Matches</div>
+                            </div>
+                            {highQualityMatches > 0 && (
+                              <div className="text-center">
+                                <div className="text-lg font-bold text-amber-600">{highQualityMatches}</div>
+                                <div className="text-xs text-muted-foreground">Alta calidad</div>
+                              </div>
+                            )}
+                            {propioMatches > 0 && (
+                              <div className="text-center">
+                                <div className="text-lg font-bold text-blue-600">{propioMatches}</div>
+                                <div className="text-xs text-muted-foreground">Propias</div>
+                              </div>
+                            )}
+                          </div>
+                        )}
+
+                        <div className="flex items-center">
+                          {isExpanded ? (
+                            <ChevronUp className="h-5 w-5 text-muted-foreground" />
+                          ) : (
+                            <ChevronDown className="h-5 w-5 text-muted-foreground" />
+                          )}
+                        </div>
                       </div>
-                      <p className="text-sm font-medium">
-                        {formatRange(client.bath_min, client.bath_max)}
-                      </p>
                     </div>
-                  )}
-                </div>
-              )}
+                  </CardHeader>
+                </CollapsibleTrigger>
 
-              {/* Superficie */}
-              {(client.area_min_m2 || client.area_max_m2) && (
-                <div className="space-y-1">
-                  <div className="flex items-center gap-1">
-                    <Square className="h-3 w-3 text-muted-foreground" />
-                    <Label className="text-xs text-muted-foreground">Superficie:</Label>
-                  </div>
-                  <p className="text-sm font-medium">
-                    {formatRange(client.area_min_m2, client.area_max_m2, ' m²')}
-                  </p>
-                </div>
-              )}
+                <CollapsibleContent>
+                  <CardContent className="pt-0 space-y-6">
+                    {/* 1. CONTACT INFORMATION - Prominently displayed */}
+                    <div className="bg-blue-50 dark:bg-blue-950/20 rounded-lg p-4 border border-blue-200 dark:border-blue-800">
+                      <div className="flex items-center gap-2 mb-3">
+                        <User className="h-4 w-4 text-blue-600" />
+                        <h4 className="font-medium text-blue-800 dark:text-blue-200">Información de Contacto</h4>
+                      </div>
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div className="space-y-1">
+                          <Label className="text-xs text-muted-foreground">Teléfono</Label>
+                          <div className="flex items-center gap-2">
+                            <Phone className="h-3 w-3 text-muted-foreground" />
+                            <span className="font-medium">{client.telefono || 'No especificado'}</span>
+                            {client.telefono && (
+                              <Button
+                                variant="ghost"
+                                size="sm"
+                                className="h-6 w-6 p-0"
+                                onClick={() => copyToClipboard(client.telefono)}
+                              >
+                                <Copy className="h-3 w-3" />
+                              </Button>
+                            )}
+                          </div>
+                        </div>
+                        <div className="space-y-1">
+                          <Label className="text-xs text-muted-foreground">Email</Label>
+                          <div className="flex items-center gap-2">
+                            <Mail className="h-3 w-3 text-muted-foreground" />
+                            <span className="font-medium truncate">{client.mail || 'No especificado'}</span>
+                            {client.mail && (
+                              <Button
+                                variant="ghost"
+                                size="sm"
+                                className="h-6 w-6 p-0"
+                                onClick={() => copyToClipboard(client.mail)}
+                              >
+                                <Copy className="h-3 w-3" />
+                              </Button>
+                            )}
+                          </div>
+                        </div>
+                        <div className="space-y-1">
+                          <Label className="text-xs text-muted-foreground">Fecha de registro</Label>
+                          <div className="flex items-center gap-2">
+                            <Calendar className="h-3 w-3 text-muted-foreground" />
+                            <span className="font-medium">{formatDate(client.fecha_inclusion)}</span>
+                          </div>
+                        </div>
+                      </div>
+                      {client.creado_info && (
+                        <div className="mt-3 pt-3 border-t border-blue-200 dark:border-blue-800">
+                          <div className="flex items-center gap-1 mb-1">
+                            <Info className="h-3 w-3 text-muted-foreground" />
+                            <Label className="text-xs text-muted-foreground">Creado por:</Label>
+                          </div>
+                          <p className="text-sm text-muted-foreground">
+                            {client.creado_info.replace(/,$/, '')}
+                          </p>
+                        </div>
+                      )}
+                    </div>
 
-              {/* Presupuesto */}
-              {(client.price_min_eur || client.price_max_eur) && (
-                <div className="space-y-1">
-                  <div className="flex items-center gap-1">
-                    <Euro className="h-3 w-3 text-muted-foreground" />
-                    <Label className="text-xs text-muted-foreground">Presupuesto:</Label>
-                  </div>
-                  <p className="text-sm font-medium">
-                    {client.price_min_eur && client.price_max_eur ? 
-                      `${formatPrice(client.price_min_eur)} - ${formatPrice(client.price_max_eur)}` :
-                      client.price_min_eur ? 
-                        `Desde ${formatPrice(client.price_min_eur)}` :
-                        `Hasta ${formatPrice(client.price_max_eur)}`
-                    }
-                  </p>
-                </div>
-              )}
+                    {/* 2. REQUIREMENTS - Clearly structured */}
+                    <div className="bg-amber-50 dark:bg-amber-950/20 rounded-lg p-4 border border-amber-200 dark:border-amber-800">
+                      <div className="flex items-center gap-2 mb-3">
+                        <Building2 className="h-4 w-4 text-amber-600" />
+                        <h4 className="font-medium text-amber-800 dark:text-amber-200">Requisitos y Preferencias</h4>
+                      </div>
+                      
+                      <div className="space-y-4">
+                        {/* Tipos de propiedad */}
+                        {client.types.length > 0 && (
+                          <div>
+                            <Label className="text-sm font-medium mb-2 block">Tipos de propiedad buscados:</Label>
+                            <div className="flex flex-wrap gap-2">
+                              {client.types.map((type, index) => (
+                                <Badge key={index} variant="outline" className="bg-white dark:bg-gray-800">
+                                  {type}
+                                </Badge>
+                              ))}
+                            </div>
+                          </div>
+                        )}
 
-              {/* Ubicaciones preferidas */}
-              {client.locations.length > 0 && (
-                <div className="space-y-2">
-                  <div className="flex items-center gap-1">
-                    <MapPin className="h-3 w-3 text-muted-foreground" />
-                    <Label className="text-xs text-muted-foreground">Ubicaciones preferidas:</Label>
-                  </div>
-                  <div className="flex flex-wrap gap-1">
-                    {client.locations.slice(0, 3).map((location, index) => (
-                      <Badge key={index} variant="secondary" className="text-xs">
-                        {location}
-                      </Badge>
-                    ))}
-                    {client.locations.length > 3 && (
-                      <Badge variant="outline" className="text-xs">
-                        +{client.locations.length - 3} más
-                      </Badge>
-                    )}
-                  </div>
-                </div>
-              )}
-
-              {/* Información adicional */}
-              {client.creado_info && (
-                <div className="pt-2 border-t border-border/50">
-                  <div className="flex items-center gap-1 mb-1">
-                    <Info className="h-3 w-3 text-muted-foreground" />
-                    <Label className="text-xs text-muted-foreground">Creado por:</Label>
-                  </div>
+                        {/* Características físicas */}
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                          {(client.rooms_min || client.rooms_max) && (
+                            <div className="space-y-1">
+                              <div className="flex items-center gap-1">
+                                <Home className="h-3 w-3 text-muted-foreground" />
+                                <Label className="text-xs font-medium">Habitaciones</Label>
+                              </div>
+                              <p className="text-sm font-bold text-amber-700 dark:text-amber-300">
+                                {formatRange(client.rooms_min, client.rooms_max)}
+                              </p>
+                            </div>
+                          )}
+                          
+                          {(client.bath_min || client.bath_max) && (
+                            <div className="space-y-1">
+                              <div className="flex items-center gap-1">
+                                <Bath className="h-3 w-3 text-muted-foreground" />
+                                <Label className="text-xs font-medium">Baños</Label>
+                              </div>
+                              <p className="text-sm font-bold text-amber-700 dark:text-amber-300">
+                                {formatRange(client.bath_min, client.bath_max)}
+                              </p>
+                            </div>
+                          )}
                   <p className="text-xs text-muted-foreground">
+                          {(client.area_min_m2 || client.area_max_m2) && (
+                            <div className="space-y-1">
+                              <div className="flex items-center gap-1">
+                                <Square className="h-3 w-3 text-muted-foreground" />
+                                <Label className="text-xs font-medium">Superficie</Label>
+                              </div>
+                              <p className="text-sm font-bold text-amber-700 dark:text-amber-300">
+                                {formatRange(client.area_min_m2, client.area_max_m2, ' m²')}
+                              </p>
+                            </div>
+                          )}
                     {client.creado_info.replace(/,$/, '')}
+                          {(client.price_min_eur || client.price_max_eur) && (
+                            <div className="space-y-1">
+                              <div className="flex items-center gap-1">
+                                <Euro className="h-3 w-3 text-muted-foreground" />
+                                <Label className="text-xs font-medium">Presupuesto</Label>
+                              </div>
+                              <p className="text-sm font-bold text-amber-700 dark:text-amber-300">
+                                {client.price_min_eur && client.price_max_eur ? 
+                                  `${formatPrice(client.price_min_eur)} - ${formatPrice(client.price_max_eur)}` :
+                                  client.price_min_eur ? 
+                                    `Desde ${formatPrice(client.price_min_eur)}` :
+                                    `Hasta ${formatPrice(client.price_max_eur)}`
+                                }
+                              </p>
+                            </div>
+                          )}
+                        </div>
                   </p>
+                        {/* Ubicaciones preferidas */}
+                        {client.locations.length > 0 && (
+                          <div>
+                            <Label className="text-sm font-medium mb-2 block">Ubicaciones preferidas:</Label>
+                            <div className="flex flex-wrap gap-2">
+                              {client.locations.map((location, index) => (
+                                <Badge key={index} variant="secondary" className="bg-white dark:bg-gray-800">
+                                  <MapPin className="h-3 w-3 mr-1" />
+                                  {location}
+                                </Badge>
+                              ))}
+                            </div>
+                          </div>
+                        )}
                 </div>
+                        {/* Condiciones adicionales */}
+                        {client.conditions.length > 0 && (
+                          <div>
+                            <Label className="text-sm font-medium mb-2 block">Condiciones especiales:</Label>
+                            <div className="flex flex-wrap gap-2">
+                              {client.conditions.map((condition, index) => (
+                                <Badge key={index} variant="outline" className="text-xs">
+                                  {condition}
+                                </Badge>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    </div>
               )}
+                    {/* 3. MATCHES - All relevant matches prominently displayed */}
+                    {clientMatches.length > 0 ? (
+                      <div className="bg-green-50 dark:bg-green-950/20 rounded-lg p-4 border border-green-200 dark:border-green-800">
+                        <div className="flex items-center justify-between mb-4">
+                          <div className="flex items-center gap-2">
+                            <Target className="h-4 w-4 text-green-600" />
+                            <h4 className="font-medium text-green-800 dark:text-green-200">
+                              Propiedades Coincidentes ({clientMatches.length})
+                            </h4>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            {highQualityMatches > 0 && (
+                              <Badge className="bg-green-100 text-green-800 border-green-300 dark:bg-green-900 dark:text-green-200">
+                                <Star className="h-3 w-3 mr-1" />
+                                {highQualityMatches} alta calidad
+                              </Badge>
+                            )}
+                            {propioMatches > 0 && (
+                              <Badge className="bg-blue-100 text-blue-800 border-blue-300 dark:bg-blue-900 dark:text-blue-200">
+                                <Building2 className="h-3 w-3 mr-1" />
+                                {propioMatches} propias
+                              </Badge>
+                            )}
+                          </div>
+                        </div>
             </CardContent>
+                        <div className="space-y-3">
+                          {clientMatches.slice(0, 5).map((match, index) => (
+                            <div key={`${match.property_id}-${index}`} className="bg-white dark:bg-gray-800 rounded-lg p-3 border">
+                              <div className="flex items-start justify-between">
+                                <div className="space-y-2 flex-1">
+                                  <div className="flex items-center gap-2">
+                                    <Badge className={`text-xs px-2 py-1 ${getOperationStyle(match.operacion)}`}>
+                                      {match.operacion}
+                                    </Badge>
+                                    <Badge className={`text-xs px-2 py-1 ${getScoreColor(match.score)}`}>
+                                      {(match.score * 100).toFixed(0)}% match
+                                    </Badge>
+                                    <Badge 
+                                      variant="outline" 
+                                      className={`text-xs ${isPropio(match.anunciante) 
+                                        ? 'bg-blue-50 text-blue-700 border-blue-200 dark:bg-blue-900/20 dark:text-blue-300' 
+                                        : 'bg-orange-50 text-orange-700 border-orange-200 dark:bg-orange-900/20 dark:text-orange-300'
+                                      }`}
+                                    >
+                                      {isPropio(match.anunciante) ? 'Propio' : 'Competencia'}
+                                    </Badge>
+                                  </div>
+                                  
+                                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <div>
+                                      <p className="font-medium">{match.tipo}</p>
+                                      <p className="text-sm text-muted-foreground">{match.zona}</p>
+                                      <p className="text-xs text-muted-foreground">{match.anunciante}</p>
+                                    </div>
+                                    <div className="flex items-center gap-4 text-sm">
+                                      <div className="flex items-center gap-1">
+                                        <Home className="h-3 w-3 text-muted-foreground" />
+                                        <span>{match.habitaciones}</span>
+                                      </div>
+                                      <div className="flex items-center gap-1">
+                                        <Bath className="h-3 w-3 text-muted-foreground" />
+                                        <span>{match.banos}</span>
+                                      </div>
+                                      <div className="flex items-center gap-1">
+                                        <Square className="h-3 w-3 text-muted-foreground" />
+                                        <span>{match.m2}m²</span>
+                                      </div>
+                                      <div className="flex items-center gap-1">
+                                        <Euro className="h-3 w-3 text-muted-foreground" />
+                                        <span className="font-medium">{formatPrice(match.precio)}</span>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                
+                                <div className="flex flex-col gap-2 ml-4">
+                                  <Button
+                                    variant="outline"
+                                    size="sm"
+                                    onClick={() => window.open(match.link_inmueble, '_blank')}
+                                    className="h-8"
+                                  >
+                                    <ExternalLink className="h-3 w-3 mr-1" />
+                                    Ver
+                                  </Button>
+                                  <div className="text-center">
+                                    <div className="text-xs text-muted-foreground">Rank</div>
+                                    <div className="text-sm font-bold">#{match.rank_client}</div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          ))}
+                          
+                          {clientMatches.length > 5 && (
+                            <div className="text-center pt-2">
+                              <p className="text-sm text-muted-foreground">
+                                Y {clientMatches.length - 5} matches adicionales...
+                              </p>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    ) : (
+                      <Alert>
+                        <Info className="h-4 w-4" />
+                        <AlertDescription>
+                          No se encontraron propiedades coincidentes para este cliente.
+                        </AlertDescription>
+                      </Alert>
+                    )}
+                  </CardContent>
+                </CollapsibleContent>
+              </Collapsible>
+            </Card>
           </Card>
         ))}
       </div>
