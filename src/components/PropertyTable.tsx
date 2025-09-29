@@ -71,7 +71,8 @@ export function PropertyTable({ properties, viewMode = 'cards', maxItems = 30, m
     const matchMap = new Map<string, { total: number; highQuality: number }>();
     
     matches.forEach(match => {
-      const propertyKey = match.link_inmueble || match.property_id;
+      // Usar property_id como clave principal, fallback a link_inmueble
+      const propertyKey = match.property_id || match.link_inmueble;
       if (!matchMap.has(propertyKey)) {
         matchMap.set(propertyKey, { total: 0, highQuality: 0 });
       }
@@ -87,9 +88,25 @@ export function PropertyTable({ properties, viewMode = 'cards', maxItems = 30, m
   
   // Función para obtener matches de una propiedad
   const getPropertyMatches = (property: Property) => {
-    const matchInfo = propertyMatches.get(property.link_inmueble) || 
-                     propertyMatches.get(property.id.toString()) || 
-                     { total: 0, highQuality: 0 };
+    // Buscar matches usando diferentes claves posibles
+    let matchInfo = propertyMatches.get(property.id.toString());
+    
+    if (!matchInfo) {
+      matchInfo = propertyMatches.get(property.link_inmueble);
+    }
+    
+    // Si aún no hay matches, intentar buscar por URL sin protocolo/dominio
+    if (!matchInfo && property.link_inmueble) {
+      const urlPath = property.link_inmueble.replace(/^https?:\/\/[^\/]+/, '');
+      for (const [key, value] of propertyMatches.entries()) {
+        if (key.includes(urlPath) || urlPath.includes(key)) {
+          matchInfo = value;
+          break;
+        }
+      }
+    }
+    
+    return matchInfo || { total: 0, highQuality: 0 };
     return matchInfo;
   };
   
