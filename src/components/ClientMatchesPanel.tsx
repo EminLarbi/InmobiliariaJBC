@@ -10,7 +10,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from './
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from './ui/table';
 import { Input } from './ui/input';
 import { Label } from './ui/label';
-import { MultiSelect } from './MultiSelect';
+import { Search, Users, MapPin, Euro, Target as Home, Bath, Square, User, Globe, Calendar, ArrowUpDown, ArrowUp, ArrowDown, Filter, X, SlidersHorizontal, Target } from 'lucide-react';
 import { Property, ClientMatch } from './PropertyTable';
 import { ExternalLink, User, Bed, Bath, Square, MapPin, Euro, Star, TrendingUp, Users, Target, Search, Phone, Mail, Calendar, ListFilter as Filter, SlidersHorizontal, Chrome as Home, ShoppingCart } from 'lucide-react';
 
