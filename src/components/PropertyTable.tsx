@@ -66,14 +66,13 @@ export function PropertyTable({ properties, viewMode = 'cards', maxItems = 30, m
   const [sortField, setSortField] = React.useState<SortField | null>(null);
   const [sortDirection, setSortDirection] = React.useState<SortDirection>(null);
   
-  // Calcular matches por propiedad
+  // Calcular matches por propiedad - memoizado para mejor rendimiento
   const propertyMatches = React.useMemo(() => {
     const matchMap = new Map<string, { total: number; highQuality: number }>();
     
     matches.forEach(match => {
-      // Usar property_id del CSV de matches
       const propertyKey = match.property_id;
-      if (!propertyKey) return; // Skip si no hay property_id
+      if (!propertyKey) return;
       
       if (!matchMap.has(propertyKey)) {
         matchMap.set(propertyKey, { total: 0, highQuality: 0 });
@@ -88,36 +87,43 @@ export function PropertyTable({ properties, viewMode = 'cards', maxItems = 30, m
     return matchMap;
   }, [matches]);
   
-  // Función para obtener matches de una propiedad
-  const getPropertyMatches = (property: Property) => {
-    // Buscar matches usando el property_id del CSV
-    // Primero intentar con el ID de la propiedad como string
-    let matchInfo = propertyMatches.get(property.id.toString());
+  // Mapa de matches por propiedad - pre-calculado para mejor rendimiento
+  const propertyMatchesMap = React.useMemo(() => {
+    const map = new Map<number, { total: number; highQuality: number }>();
     
-    // Si no encuentra, intentar buscar en el CSV por link_inmueble
-    if (!matchInfo) {
-      // Buscar en los matches originales por link_inmueble que coincida
-      const matchingEntries = matches.filter(match => {
-        if (!match.link_inmueble || !property.link_inmueble) return false;
-        
-        // Comparar URLs normalizadas
-        const matchUrl = match.link_inmueble.toLowerCase().trim();
-        const propUrl = property.link_inmueble.toLowerCase().trim();
-        
-        return matchUrl === propUrl || 
-               matchUrl.includes(propUrl) || 
-               propUrl.includes(matchUrl);
-      });
+    properties.forEach(property => {
+      // Buscar matches usando el property_id del CSV
+      let matchInfo = propertyMatches.get(property.id.toString());
       
-      if (matchingEntries.length > 0) {
-        // Usar el property_id del primer match encontrado
-        const propertyId = matchingEntries[0].property_id;
-        matchInfo = propertyMatches.get(propertyId);
+      // Si no encuentra, intentar buscar por link_inmueble
+      if (!matchInfo) {
+        const matchingEntries = matches.filter(match => {
+          if (!match.link_inmueble || !property.link_inmueble) return false;
+          
+          const matchUrl = match.link_inmueble.toLowerCase().trim();
+          const propUrl = property.link_inmueble.toLowerCase().trim();
+          
+          return matchUrl === propUrl || 
+                 matchUrl.includes(propUrl) || 
+                 propUrl.includes(matchUrl);
+        });
+        
+        if (matchingEntries.length > 0) {
+          const propertyId = matchingEntries[0].property_id;
+          matchInfo = propertyMatches.get(propertyId);
+        }
       }
-    }
+      
+      map.set(property.id, matchInfo || { total: 0, highQuality: 0 });
+    });
     
-    return matchInfo || { total: 0, highQuality: 0 };
-  };
+    return map;
+  }, [properties, propertyMatches, matches]);
+  
+  // Función optimizada para obtener matches
+  const getPropertyMatches = React.useCallback((property: Property) => {
+    return propertyMatchesMap.get(property.id) || { total: 0, highQuality: 0 };
+  }, [propertyMatchesMap]);
   
   // Función de ordenamiento
   const sortedProperties = React.useMemo(() => {
@@ -129,8 +135,8 @@ export function PropertyTable({ properties, viewMode = 'cards', maxItems = 30, m
       
       // Manejar ordenamiento por matches
       if (sortField === 'matches_count') {
-        aValue = getPropertyMatches(a).highQuality;
-        bValue = getPropertyMatches(b).highQuality;
+        aValue = propertyMatchesMap.get(a.id)?.highQuality || 0;
+        bValue = propertyMatchesMap.get(b.id)?.highQuality || 0;
       }
       // Manejar valores especiales
       else if (sortField === 'precio') {
@@ -148,7 +154,7 @@ export function PropertyTable({ properties, viewMode = 'cards', maxItems = 30, m
       if (aValue > bValue) return sortDirection === 'asc' ? 1 : -1;
       return 0;
     });
-  }, [properties, sortField, sortDirection, propertyMatches]);
+  }, [properties, sortField, sortDirection, propertyMatchesMap]);
   
   // Calcular paginación con datos ordenados
   const totalPages = Math.ceil(sortedProperties.length / maxItems);
@@ -159,7 +165,7 @@ export function PropertyTable({ properties, viewMode = 'cards', maxItems = 30, m
   // Reset página cuando cambian las propiedades
   React.useEffect(() => {
     setCurrentPage(1);
-  }, [sortedProperties.length, matches.length]);
+  }, [sortedProperties.length]);
 
   const handleSort = (field: SortField) => {
     if (sortField === field) {
