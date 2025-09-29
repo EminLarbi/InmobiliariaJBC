@@ -8,7 +8,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '.
 import { Input } from './ui/input';
 import { Label } from './ui/label';
 import { Property } from './PropertyTable';
-import { ExternalLink, User, Chrome as Home, Bath, Square, MapPin, Euro, Star, TrendingUp, Users, Target, Search, Phone, Mail, Calendar } from 'lucide-react';
+import { ExternalLink, User, Bed, Bath, Square, MapPin, Euro, Star, TrendingUp, Users, Target, Search, Phone, Mail, Calendar } from 'lucide-react';
 
 interface ClientInfo {
   id: string;
@@ -507,7 +507,7 @@ export function ClientMatchesPanel({ properties, matches, clients }: ClientMatch
                                 
                                 {(client.client_info.rooms_min || client.client_info.rooms_max) && (
                                   <div className="flex items-center gap-2">
-                                    <Home className="h-3 w-3 text-muted-foreground" />
+                                    <Bed className="h-3 w-3 text-muted-foreground" />
                                     <span className="text-muted-foreground">Habitaciones:</span>
                                     <span className="font-medium text-green-600 dark:text-green-400">{formatRange(client.client_info.rooms_min, client.client_info.rooms_max)}</span>
                                   </div>
@@ -546,7 +546,7 @@ export function ClientMatchesPanel({ properties, matches, clients }: ClientMatch
                                 
                                 {(client.client_info.living_min || client.client_info.living_max) && (
                                   <div className="flex items-center gap-2">
-                                    <Home className="h-3 w-3 text-muted-foreground" />
+                                    <Bed className="h-3 w-3 text-muted-foreground" />
                                     <span className="text-muted-foreground">Salones:</span>
                                     <span className="font-medium text-green-600 dark:text-green-400">{formatRange(client.client_info.living_min, client.client_info.living_max)}</span>
                                   </div>
@@ -721,7 +721,7 @@ export function ClientMatchesPanel({ properties, matches, clients }: ClientMatch
                             {/* Características */}
                             <div className="grid grid-cols-3 gap-2">
                               <div className="flex items-center gap-1 bg-muted/30 rounded-md p-2">
-                                <Home className="h-3 w-3 text-muted-foreground" aria-hidden="true" />
+                                <Bed className="h-3 w-3 text-muted-foreground" aria-hidden="true" />
                                 <span className="text-xs font-medium">{match.habitaciones}</span>
                                 <span className="sr-only">habitaciones</span>
                               </div>
