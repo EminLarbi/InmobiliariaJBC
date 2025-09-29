@@ -3,12 +3,35 @@ import { useState, useCallback } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
 import { Badge } from './ui/badge';
 import { Button } from './ui/button';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select';
+import { Slider } from './ui/slider';
+import { Separator } from './ui/separator';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from './ui/accordion';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from './ui/table';
 import { Input } from './ui/input';
 import { Label } from './ui/label';
+import { MultiSelect } from './MultiSelect';
 import { Property, ClientMatch } from './PropertyTable';
-import { ExternalLink, User, Bed, Bath, Square, MapPin, Euro, Star, TrendingUp, Users, Target, Search, Phone, Mail, Calendar } from 'lucide-react';
+import { ExternalLink, User, Bed, Bath, Square, MapPin, Euro, Star, TrendingUp, Users, Target, Search, Phone, Mail, Calendar, Filter, SlidersHorizontal, Chrome as Home, ShoppingCart } from 'lucide-react';
+
+interface MatchFilters {
+  searchTerm: string;
+  minScore: number;
+  maxScore: number;
+  operaciones: string[];
+  zonas: string[];
+  anunciantes: string[];
+  minPrecio: string;
+  maxPrecio: string;
+  minHabitaciones: string;
+  maxHabitaciones: string;
+  minBanos: string;
+  maxBanos: string;
+  minM2: string;
+  maxM2: string;
+  sortBy: 'score' | 'precio' | 'habitaciones' | 'rank' | 'client_name';
+  sortDirection: 'asc' | 'desc';
+}
 
 interface ClientInfo {
   id: string;
@@ -42,28 +65,215 @@ interface ClientMatchesPanelProps {
 }
 
 export function ClientMatchesPanel({ properties, matches, clients }: ClientMatchesPanelProps) {
-  const [searchTerm, setSearchTerm] = useState('');
   const [expandedClient, setExpandedClient] = useState<string>('');
   const [currentPage, setCurrentPage] = useState(1);
+  const [filters, setFilters] = useState<MatchFilters>({
+    searchTerm: '',
+    minScore: 0,
+    maxScore: 100,
+    operaciones: [],
+    zonas: [],
+    anunciantes: [],
+    minPrecio: '',
+    maxPrecio: '',
+    minHabitaciones: '',
+    maxHabitaciones: '',
+    minBanos: '',
+    maxBanos: '',
+    minM2: '',
+    maxM2: '',
+    sortBy: 'score',
+    sortDirection: 'desc'
+  });
+  const [scoreRange, setScoreRange] = useState<number[]>([0, 100]);
   const maxClientsPerPage = 30;
 
-  // Filtrar matches por término de búsqueda
-  const filteredMatches = useMemo(() => {
-    if (!searchTerm.trim()) return matches;
+  // Obtener opciones únicas para filtros
+  const filterOptions = useMemo(() => {
+    const operaciones = [...new Set(matches.map(m => m.operacion).filter(Boolean))].sort();
+    const zonas = [...new Set(matches.map(m => {
+      const zona = m.zona.split(',')[0].trim().replace(/^\('?/, '').replace(/'$/, '');
+      return zona;
+    }).filter(Boolean))].sort();
+    const anunciantes = [...new Set(matches.map(m => m.anunciante).filter(Boolean))].sort();
     
-    const term = searchTerm.toLowerCase();
-    return matches.filter(match => 
-      match.client_name.toLowerCase().includes(term) ||
-      match.zona.toLowerCase().includes(term) ||
-      match.anunciante.toLowerCase().includes(term)
-    );
-  }, [matches, searchTerm]);
+    return { operaciones, zonas, anunciantes };
+  }, [matches]);
 
+  // Aplicar todos los filtros
+  const filteredMatches = useMemo(() => {
+    let filtered = matches;
+    
+    // Filtro por término de búsqueda
+    if (filters.searchTerm.trim()) {
+      const term = filters.searchTerm.toLowerCase();
+      filtered = filtered.filter(match => 
+        match.client_name.toLowerCase().includes(term) ||
+        match.zona.toLowerCase().includes(term) ||
+        match.anunciante.toLowerCase().includes(term)
+      );
+    }
+    
+    // Filtro por score
+    filtered = filtered.filter(match => {
+      const scorePercent = match.score * 100;
+      return scorePercent >= filters.minScore && scorePercent <= filters.maxScore;
+    });
+    
+    // Filtro por operaciones
+    if (filters.operaciones.length > 0) {
+      filtered = filtered.filter(match => 
+        filters.operaciones.includes(match.operacion)
+      );
+    }
+    
+    // Filtro por zonas
+    if (filters.zonas.length > 0) {
+      filtered = filtered.filter(match => {
+        const zona = match.zona.split(',')[0].trim().replace(/^\('?/, '').replace(/'$/, '');
+        return filters.zonas.includes(zona);
+      });
+    }
+    
+    // Filtro por anunciantes
+    if (filters.anunciantes.length > 0) {
+      filtered = filtered.filter(match => 
+        filters.anunciantes.includes(match.anunciante)
+      );
+    }
+    
+    // Filtro por precio
+    if (filters.minPrecio) {
+      filtered = filtered.filter(match => match.precio >= parseInt(filters.minPrecio));
+    }
+    if (filters.maxPrecio) {
+      filtered = filtered.filter(match => match.precio <= parseInt(filters.maxPrecio));
+    }
+    
+    // Filtro por habitaciones
+    if (filters.minHabitaciones) {
+      filtered = filtered.filter(match => match.habitaciones >= parseInt(filters.minHabitaciones));
+    }
+    if (filters.maxHabitaciones) {
+      filtered = filtered.filter(match => match.habitaciones <= parseInt(filters.maxHabitaciones));
+    }
+    
+    // Filtro por baños
+    if (filters.minBanos) {
+      filtered = filtered.filter(match => match.banos >= parseInt(filters.minBanos));
+    }
+    if (filters.maxBanos) {
+      filtered = filtered.filter(match => match.banos <= parseInt(filters.maxBanos));
+    }
+    
+    // Filtro por m²
+    if (filters.minM2) {
+      filtered = filtered.filter(match => match.m2 >= parseInt(filters.minM2));
+    }
+    if (filters.maxM2) {
+      filtered = filtered.filter(match => match.m2 <= parseInt(filters.maxM2));
+    }
+    
+    return filtered;
+  }, [matches, filters]);
+
+  // Ordenar matches
+  const sortedMatches = useMemo(() => {
+    return [...filteredMatches].sort((a, b) => {
+      let aValue: any, bValue: any;
+      
+      switch (filters.sortBy) {
+        case 'score':
+          aValue = a.score;
+          bValue = b.score;
+          break;
+        case 'precio':
+          aValue = a.precio;
+          bValue = b.precio;
+          break;
+        case 'habitaciones':
+          aValue = a.habitaciones;
+          bValue = b.habitaciones;
+          break;
+        case 'rank':
+          aValue = a.rank_client;
+          bValue = b.rank_client;
+          break;
+        case 'client_name':
+          aValue = a.client_name.toLowerCase();
+          bValue = b.client_name.toLowerCase();
+          break;
+        default:
+          aValue = a.score;
+          bValue = b.score;
+      }
+      
+      if (filters.sortDirection === 'asc') {
+        return aValue < bValue ? -1 : aValue > bValue ? 1 : 0;
+      } else {
+        return aValue > bValue ? -1 : aValue < bValue ? 1 : 0;
+      }
+    });
+  }, [filteredMatches, filters.sortBy, filters.sortDirection]);
+
+  const handleFilterChange = (key: keyof MatchFilters, value: any) => {
+    setFilters(prev => ({
+      ...prev,
+      [key]: value
+    }));
+  };
+
+  const handleScoreRangeChange = (values: number[]) => {
+    setScoreRange(values);
+    setFilters(prev => ({
+      ...prev,
+      minScore: values[0],
+      maxScore: values[1]
+    }));
+  };
+
+  const clearFilters = () => {
+    setFilters({
+      searchTerm: '',
+      minScore: 0,
+      maxScore: 100,
+      operaciones: [],
+      zonas: [],
+      anunciantes: [],
+      minPrecio: '',
+      maxPrecio: '',
+      minHabitaciones: '',
+      maxHabitaciones: '',
+      minBanos: '',
+      maxBanos: '',
+      minM2: '',
+      maxM2: '',
+      sortBy: 'score',
+      sortDirection: 'desc'
+    });
+    setScoreRange([0, 100]);
+  };
+
+  const getActiveFiltersCount = () => {
+    let count = 0;
+    if (filters.searchTerm) count++;
+    if (filters.minScore > 0 || filters.maxScore < 100) count++;
+    if (filters.operaciones.length > 0) count++;
+    if (filters.zonas.length > 0) count++;
+    if (filters.anunciantes.length > 0) count++;
+    if (filters.minPrecio || filters.maxPrecio) count++;
+    if (filters.minHabitaciones || filters.maxHabitaciones) count++;
+    if (filters.minBanos || filters.maxBanos) count++;
+    if (filters.minM2 || filters.maxM2) count++;
+    return count;
+  };
+
+  // Agrupar matches filtrados y ordenados por cliente
   const clientGroups = useMemo(() => {
-    if (!filteredMatches.length) return {};
-
-    // Agrupar matches por cliente
-    const groups = filteredMatches.reduce((acc, match) => {
+    if (!sortedMatches.length) return {};
+    
+    // Agrupar matches filtrados por cliente
+    const groups = sortedMatches.reduce((acc, match) => {
       const clientKey = match.client_id || match.client_name;
       if (!acc[clientKey]) {
         // Buscar información completa del cliente
@@ -109,7 +319,7 @@ export function ClientMatchesPanel({ properties, matches, clients }: ClientMatch
     });
 
     return groups;
-  }, [filteredMatches, clients]);
+  }, [sortedMatches, clients]);
   
   const formatRange = (min: number | null, max: number | null, unit: string = '') => {
     if (min !== null && max !== null) {
@@ -131,14 +341,14 @@ export function ClientMatchesPanel({ properties, matches, clients }: ClientMatch
   // Reset página cuando cambian los filtros
   React.useEffect(() => {
     setCurrentPage(1);
-  }, [searchTerm]);
+  }, [filters]);
 
   // Memoizar cálculos pesados
   const stats = useMemo(() => {
     const totalClients = clientList.length;
-    const totalMatches = filteredMatches.length;
+    const totalMatches = sortedMatches.length;
     const avgMatchesPerClient = totalClients > 0 ? totalMatches / totalClients : 0;
-    const highQualityMatches = filteredMatches.filter(m => m.score >= 0.8).length;
+    const highQualityMatches = sortedMatches.filter(m => m.score >= 0.8).length;
     
     return {
       totalClients,
@@ -146,7 +356,7 @@ export function ClientMatchesPanel({ properties, matches, clients }: ClientMatch
       avgMatchesPerClient,
       highQualityMatches
     };
-  }, [clientList, filteredMatches]);
+  }, [clientList, sortedMatches]);
 
   const formatPrice = (price: number) => {
     return new Intl.NumberFormat('es-ES', {
@@ -255,25 +465,279 @@ export function ClientMatchesPanel({ properties, matches, clients }: ClientMatch
         </Card>
       </div>
 
-      {/* Buscador de clientes */}
+      {/* Panel de Filtros Avanzados */}
+      <Card>
+        <CardHeader>
+          <div className="flex items-center justify-between">
+            <div>
+              <CardTitle className="flex items-center gap-2">
+                <SlidersHorizontal className="h-5 w-5 text-primary" />
+                Filtros de matches
+              </CardTitle>
+              <CardDescription>
+                Filtra y ordena las coincidencias entre clientes y propiedades
+              </CardDescription>
+            </div>
+            <div className="flex items-center gap-2">
+              {getActiveFiltersCount() > 0 && (
+                <Badge variant="secondary">
+                  {getActiveFiltersCount()} filtro{getActiveFiltersCount() !== 1 ? 's' : ''}
+                </Badge>
+              )}
+              <Button variant="outline" size="sm" onClick={clearFilters}>
+                <Filter className="h-4 w-4 mr-2" />
+                Limpiar
+              </Button>
+            </div>
+          </div>
+        </CardHeader>
+        <CardContent>
+          <div className="space-y-6">
+            {/* Búsqueda y ordenamiento */}
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+              <div className="space-y-2">
+                <Label htmlFor="client-search">Buscar por nombre, zona o anunciante</Label>
+                <Input
+                  id="client-search"
+                  placeholder="Escribe para filtrar..."
+                  value={filters.searchTerm}
+                  onChange={(e) => handleFilterChange('searchTerm', e.target.value)}
+                />
+              </div>
+              
+              <div className="space-y-2">
+                <Label>Ordenar por</Label>
+                <Select value={filters.sortBy} onValueChange={(value) => handleFilterChange('sortBy', value)}>
+                  <SelectTrigger>
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="score">Score de coincidencia</SelectItem>
+                    <SelectItem value="precio">Precio</SelectItem>
+                    <SelectItem value="habitaciones">Habitaciones</SelectItem>
+                    <SelectItem value="rank">Ranking del cliente</SelectItem>
+                    <SelectItem value="client_name">Nombre del cliente</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+              
+              <div className="space-y-2">
+                <Label>Dirección</Label>
+                <Select value={filters.sortDirection} onValueChange={(value) => handleFilterChange('sortDirection', value)}>
+                  <SelectTrigger>
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="desc">Descendente</SelectItem>
+                    <SelectItem value="asc">Ascendente</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+            </div>
+
+            <Separator />
+
+            {/* Filtro por Score */}
+            <div className="space-y-4">
+              <div className="flex items-center gap-2">
+                <Star className="h-4 w-4 text-primary" />
+                <Label>Score de coincidencia</Label>
+              </div>
+              <div className="space-y-3">
+                <div className="flex items-center justify-between text-sm text-muted-foreground">
+                  <span>{scoreRange[0]}%</span>
+                  <span>{scoreRange[1]}%</span>
+                </div>
+                <Slider
+                  value={scoreRange}
+                  onValueChange={handleScoreRangeChange}
+                  max={100}
+                  min={0}
+                  step={5}
+                  className="w-full"
+                />
+              </div>
+            </div>
+
+            <Separator />
+
+            {/* Filtros por categorías */}
+            <div className="space-y-4">
+              <div className="flex items-center gap-2">
+                <ShoppingCart className="h-4 w-4 text-primary" />
+                <Label>Filtros por categorías</Label>
+              </div>
+              
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+                <div className="space-y-2">
+                  <Label className="text-sm text-muted-foreground">Tipo de operación</Label>
+                  <MultiSelect
+                    options={filterOptions.operaciones}
+                    selected={filters.operaciones}
+                    onSelectionChange={(selected) => handleFilterChange('operaciones', selected)}
+                    placeholder="Todas las operaciones..."
+                    searchPlaceholder="Buscar operación..."
+                    emptyText="No se encontraron operaciones"
+                  />
+                </div>
+                
+                <div className="space-y-2">
+                  <Label className="text-sm text-muted-foreground">Zonas</Label>
+                  <MultiSelect
+                    options={filterOptions.zonas}
+                    selected={filters.zonas}
+                    onSelectionChange={(selected) => handleFilterChange('zonas', selected)}
+                    placeholder="Todas las zonas..."
+                    searchPlaceholder="Buscar zona..."
+                    emptyText="No se encontraron zonas"
+                  />
+                </div>
+                
+                <div className="space-y-2">
+                  <Label className="text-sm text-muted-foreground">Anunciantes</Label>
+                  <MultiSelect
+                    options={filterOptions.anunciantes}
+                    selected={filters.anunciantes}
+                    onSelectionChange={(selected) => handleFilterChange('anunciantes', selected)}
+                    placeholder="Todos los anunciantes..."
+                    searchPlaceholder="Buscar anunciante..."
+                    emptyText="No se encontraron anunciantes"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <Separator />
+
+            {/* Filtros numéricos */}
+            <div className="space-y-4">
+              <div className="flex items-center gap-2">
+                <Home className="h-4 w-4 text-primary" />
+                <Label>Filtros por características</Label>
+              </div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                {/* Precio */}
+                <div className="space-y-2">
+                  <Label className="text-sm text-muted-foreground">Precio (€)</Label>
+                  <div className="grid grid-cols-2 gap-1">
+                    <Input
+                      type="number"
+                      placeholder="Mín"
+                      value={filters.minPrecio}
+                      onChange={(e) => handleFilterChange('minPrecio', e.target.value)}
+                      className="h-8 text-xs"
+                    />
+                    <Input
+                      type="number"
+                      placeholder="Máx"
+                      value={filters.maxPrecio}
+                      onChange={(e) => handleFilterChange('maxPrecio', e.target.value)}
+                      className="h-8 text-xs"
+                    />
+                  </div>
+                </div>
+                
+                {/* Habitaciones */}
+                <div className="space-y-2">
+                  <Label className="text-sm text-muted-foreground">Habitaciones</Label>
+                  <div className="grid grid-cols-2 gap-1">
+                    <Input
+                      type="number"
+                      placeholder="Mín"
+                      value={filters.minHabitaciones}
+                      onChange={(e) => handleFilterChange('minHabitaciones', e.target.value)}
+                      className="h-8 text-xs"
+                    />
+                    <Input
+                      type="number"
+                      placeholder="Máx"
+                      value={filters.maxHabitaciones}
+                      onChange={(e) => handleFilterChange('maxHabitaciones', e.target.value)}
+                      className="h-8 text-xs"
+                    />
+                  </div>
+                </div>
+                
+                {/* Baños */}
+                <div className="space-y-2">
+                  <Label className="text-sm text-muted-foreground">Baños</Label>
+                  <div className="grid grid-cols-2 gap-1">
+                    <Input
+                      type="number"
+                      placeholder="Mín"
+                      value={filters.minBanos}
+                      onChange={(e) => handleFilterChange('minBanos', e.target.value)}
+                      className="h-8 text-xs"
+                    />
+                    <Input
+                      type="number"
+                      placeholder="Máx"
+                      value={filters.maxBanos}
+                      onChange={(e) => handleFilterChange('maxBanos', e.target.value)}
+                      className="h-8 text-xs"
+                    />
+                  </div>
+                </div>
+                
+                {/* Metros cuadrados */}
+                <div className="space-y-2">
+                  <Label className="text-sm text-muted-foreground">Superficie (m²)</Label>
+                  <div className="grid grid-cols-2 gap-1">
+                    <Input
+                      type="number"
+                      placeholder="Mín"
+                      value={filters.minM2}
+                      onChange={(e) => handleFilterChange('minM2', e.target.value)}
+                      className="h-8 text-xs"
+                    />
+                    <Input
+                      type="number"
+                      placeholder="Máx"
+                      value={filters.maxM2}
+                      onChange={(e) => handleFilterChange('maxM2', e.target.value)}
+                      className="h-8 text-xs"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Resumen de filtros activos */}
+            {getActiveFiltersCount() > 0 && (
+              <div className="bg-muted/30 rounded-lg p-4">
+                <div className="flex items-center gap-2 mb-2">
+                  <Target className="h-4 w-4 text-muted-foreground" />
+                  <span className="text-sm font-medium">Filtros aplicados</span>
+                </div>
+                <div className="text-sm text-muted-foreground">
+                  Mostrando {stats.totalMatches} matches de {stats.totalClients} clientes
+                  {filters.minScore > 0 || filters.maxScore < 100 ? ` con score entre ${filters.minScore}%-${filters.maxScore}%` : ''}
+                </div>
+              </div>
+            )}
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Información adicional de filtros */}
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Search className="h-5 w-5 text-primary" />
-            Buscar clientes
+            Resultados de búsqueda
           </CardTitle>
         </CardHeader>
         <CardContent>
           <div className="space-y-2">
-            <Label htmlFor="client-search">Buscar por nombre, zona o anunciante</Label>
             <Input
               id="client-search"
               placeholder="Escribe para filtrar clientes..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
+              value={filters.searchTerm}
+              onChange={(e) => handleFilterChange('searchTerm', e.target.value)}
               className="max-w-md"
             />
-            {searchTerm && (
+            {filters.searchTerm && (
               <p className="text-sm text-muted-foreground">
                 Mostrando {stats.totalClients} cliente{stats.totalClients !== 1 ? 's' : ''} 
                 {' '}con {stats.totalMatches} match{stats.totalMatches !== 1 ? 'es' : ''}
