@@ -68,9 +68,7 @@ export function ClientMatchesPanel({ properties, matches, clients }: ClientMatch
   const isPropio = (anunciante: string): boolean => {
     const anuncianteLower = anunciante.toLowerCase();
     return anuncianteLower.includes('jbc') || 
-           anuncianteLower.includes('j.b.c') || 
-           anuncianteLower.includes('picó blanes') || 
-           anuncianteLower.includes('pico blanes');
+           anuncianteLower.includes('j.b.c');
   };
 
   // Agrupar matches por cliente
