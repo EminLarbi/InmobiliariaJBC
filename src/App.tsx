@@ -644,7 +644,7 @@ function AppContent() {
 		{
 			id: 'home',
 			title: 'Inicio',
-			icon: Home,
+			icon: Building2,
 			description: 'Panel principal'
 		},
 		{
