@@ -12,7 +12,7 @@ import { Input } from './ui/input';
 import { Label } from './ui/label';
 import { MultiSelect } from './MultiSelect';
 import { Property, ClientMatch } from './PropertyTable';
-import { ExternalLink, User, Bed, Bath, Square, MapPin, Euro, Star, TrendingUp, Users, Target, Search, Phone, Mail, Calendar, ListFilter as Filter, SlidersHorizontal, Chrome as Home, ShoppingCart } from 'lucide-react';
+import { ExternalLink, User, Bed, Bath, Square, MapPin, Euro, Star, TrendingUp, Users, Target, Search, Phone, Mail, Calendar, Filter, SlidersHorizontal, Home, ShoppingCart } from 'lucide-react';
 
 interface MatchFilters {
   searchTerm: string;
