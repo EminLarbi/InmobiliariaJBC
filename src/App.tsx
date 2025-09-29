@@ -785,6 +785,7 @@ function AppContent() {
 							<PropertyTable
 								properties={filteredProperties}
 								viewMode={viewMode}
+								matches={loadedMatches}
 							/>
 						</div>
 					</div>
